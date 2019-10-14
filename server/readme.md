@@ -30,9 +30,7 @@ Add additional notes about how to deploy this on a live system
 
 ## Built With
 
-* [Dropwizard](http://www.dropwizard.io/1.0.2/docs/) - The web framework used
-* [Maven](https://maven.apache.org/) - Dependency Management
-* [ROME](https://rometools.github.io/rome/) - Used to generate RSS Feeds
+COMING SOON
 
 ## Versioning
 
@@ -40,9 +38,10 @@ We use [SemVer](http://semver.org/) for versioning. For the versions available, 
 
 ## Authors
 
-* **Billie Thompson** - *Initial work* - [PurpleBooth](https://github.com/PurpleBooth)
+* **Wouter Vlaeyen** - *Development* - [Vl-Wouter](https://github.com/Vl-Wouter)
+* **Lukas Marynissen** - *Development* - [lukasMarynissen](https://github.com/lukasMarynissen)
 
-See also the list of [contributors](https://github.com/your/project/contributors) who participated in this project.
+See also the list of [contributors](https://github.com/undefined-nmd/Shoot/graphs/contributors) who participated in this project.
 
 ## License
 
