@@ -4,7 +4,7 @@ import Nav from '../components/nav'
 
 import '../sass/main.scss'
 
-const Home = () => (
+const HomePage = () => (
   <div>
     <Head>
       <title>Home</title>
@@ -87,4 +87,4 @@ const Home = () => (
   </div>
 )
 
-export default Home
+export default HomePage
