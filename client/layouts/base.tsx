@@ -2,12 +2,12 @@ import Header from '../components/header'
 
 const baseLayout = Page => {
     return () => (
-      <main className="container-fluid">
-        <div className="row">
+        <div>
             <Header />
+            <main className="container">
+                <Page />
+            </main>
         </div>
-        <Page />
-      </main>
     )
   }
   
