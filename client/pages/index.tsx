@@ -1,5 +1,10 @@
-import React from 'react'
+import * as React from 'react'
 import Head from 'next/head'
+
+// Import layout
+import baseLayout from '../layouts/base';
+
+// Import components
 import Nav from '../components/nav'
 
 import '../sass/main.scss'
@@ -87,4 +92,4 @@ const HomePage = () => (
   </div>
 )
 
-export default HomePage
+export default baseLayout(HomePage)
