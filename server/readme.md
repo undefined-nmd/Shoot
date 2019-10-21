@@ -1,55 +1,53 @@
-# Shoot API
+# Express API Starter
 
-Shoot API is the api used by the Shoot! wep app, built for use at Artevelde University College Ghent.
+Includes API Server utilities:
 
-## Getting Started
+* [morgan](https://www.npmjs.com/package/morgan)
+  * HTTP request logger middleware for node.js
+* [helmet](https://www.npmjs.com/package/helmet)
+  * Helmet helps you secure your Express apps by setting various HTTP headers. It's not a silver bullet, but it can help!
+* [dotenv](https://www.npmjs.com/package/dotenv)
+  * Dotenv is a zero-dependency module that loads environment variables from a `.env` file into `process.env`
 
-To get started, clone this repo onto your machine.
+Development utilities:
 
-### Installing
+* [nodemon](https://www.npmjs.com/package/nodemon)
+  * nodemon is a tool that helps develop node.js based applications by automatically restarting the node application when file changes in the directory are detected.
+* [eslint](https://www.npmjs.com/package/eslint)
+  * ESLint is a tool for identifying and reporting on patterns found in ECMAScript/JavaScript code.
+* [mocha](https://www.npmjs.com/package/mocha)
+  * ☕️ Simple, flexible, fun JavaScript test framework for Node.js & The Browser ☕️
+* [supertest](https://www.npmjs.com/package/supertest)
+  * HTTP assertions made easy via superagent.
+* [snyk](https://www.npmjs.com/package/snyk)
+  * Snyk helps you find, fix and monitor known vulnerabilities in Node.js npm dependencies
 
-A step by step series of examples that tell you how to get a development env running
-
-Say what the step will be
+## Setup
 
 ```
-Give the example
+npm install
 ```
 
-And repeat
+## Lint
 
 ```
-until finished
+npm run lint
 ```
 
-End with an example of getting some data out of the system or using it for a little demo
+## Test
 
-## Deployment
+```
+npm run test
+```
 
-Add additional notes about how to deploy this on a live system
+## Development
 
-## Built With
+```
+npm run dev
+```
 
-COMING SOON
+## Package Audit with snyk
 
-## Versioning
-
-We use [SemVer](http://semver.org/) for versioning. For the versions available, see the [tags on this repository](https://github.com/your/project/tags). 
-
-## Authors
-
-* **Wouter Vlaeyen** - *Development* - [Vl-Wouter](https://github.com/Vl-Wouter)
-* **Lukas Marynissen** - *Development* - [lukasMarynissen](https://github.com/lukasMarynissen)
-
-See also the list of [contributors](https://github.com/undefined-nmd/Shoot/graphs/contributors) who participated in this project.
-
-## License
-
-This project is licensed under the MIT License - see the [LICENSE.md](LICENSE.md) file for details
-
-## Acknowledgments
-
-* **Billie Thompson** - *ReadMe Template* - [PurpleBooth](https://github.com/PurpleBooth)
-* Inspiration
-* etc
-
+```
+npm run audit
+```
