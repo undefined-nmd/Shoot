@@ -1,7 +1,7 @@
 import mongoose from 'mongoose';
 
-const requestSchema = new mongoose.Schema({
-  student_id: {
+const subjectSchema = new mongoose.Schema({
+  teacher_id: {
     type: String,
     required: true,
   },
@@ -29,6 +29,6 @@ const requestSchema = new mongoose.Schema({
   user: { type: mongoose.Schema.Types.ObjectId, ref: 'User' },
 });
 
-const Request = mongoose.model('Request', requestSchema);
+const Request = mongoose.model('Request', subjectSchema);
 
 export default Request;

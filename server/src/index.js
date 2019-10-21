@@ -40,6 +40,7 @@ connectDb().then(async () => {
       models.Request.deleteMany({}),
     ]);
 
+    //seed the db
     createUsersWithRequests();
   }
 
@@ -48,35 +49,64 @@ connectDb().then(async () => {
   );
 });
 
+
+
+
 //seed
 const createUsersWithRequests = async () => {
-  const user1 = new models.User({
+  const student1 = new models.User({
     username: 'Lukas',
+    role: 'student'
   });
 
-  const user2 = new models.User({
+  const student2 = new models.User({
     username: 'Wowter',
+    role: 'student'
+  });
+
+  const teacher1 = new models.User({
+    username: 'Philippe',
+    role: 'teacher'
+  });
+
+  const teacher2 = new models.User({
+    username: 'Dieter',
+    role: 'teacher'
   });
 
   const request1 = new models.Request({
-    text: 'Wat is een Pythagoras eigenlijk?',
-    user: user1.id,
+    message: 'Wat is een Pythagoras eigenlijk?',
+    student_id: student1.id,
+    subject_id: 12,
+    upvote_count: 3,
+    request_type: 0,
+    location: {}
   });
 
   const request2 = new models.Request({
-    text: 'Waarom compiled mijn code niet?',
-    user: user2.id,
+    message: 'Waarom compiled mijn code niet?',
+    student_id: student2.id,
+    subject_id: 12,
+    upvote_count: 3,
+    request_type: 0,
+    location: {}
   });
 
   const request3 = new models.Request({
-    text: 'HELP',
-    user: user2.id,
+    message: 'HELP',
+    student_id: student2.id,
+    subject_id: 12,
+    upvote_count: 3,
+    request_type: 0,
+    location: {}
   });
 
   await request1.save();
   await request2.save();
   await request3.save();
 
-  await user1.save();
-  await user2.save();
+  await student1.save();
+  await student2.save();
+  await teacher1.save();
+  await teacher2.save();
 };
