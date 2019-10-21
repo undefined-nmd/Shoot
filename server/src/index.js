@@ -3,8 +3,9 @@ import cors from 'cors';
 import bodyParser from 'body-parser';
 import express from 'express';
 
-import models, { connectDb } from './models';
-import routes from './routes';
+// import models, { connectDb } from './models';
+import models, { connectDb } from './api/models'
+import apiV1Router from './api/routes';
 
 const app = express();
 
@@ -15,19 +16,16 @@ app.use(cors());
 app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({ extended: true }));
 
-app.use(async (req, res, next) => {
-  req.context = {
-    models,
-    me: await models.User.findByLogin('Lukas'),
-  };
-  next();
-});
+// app.use(async (req, res, next) => {
+//   req.context = {
+//     models,
+//     // me: await models.User.findByLogin('Lukas'),
+//   };
+//   // next();
+// });
 
 // Routes
-
-app.use('/session', routes.session);
-app.use('/users', routes.user);
-app.use('/requests', routes.request);
+app.use('/api', apiV1Router)
 
 // Start
 
@@ -36,12 +34,12 @@ const eraseDatabaseOnSync = true;
 connectDb().then(async () => {
   if (eraseDatabaseOnSync) {
     await Promise.all([
-      models.User.deleteMany({}),
+      // models.User.deleteMany({}),
       models.Request.deleteMany({}),
     ]);
 
     //seed the db
-    createUsersWithRequests();
+    // createUsersWithRequests();
   }
 
   app.listen(process.env.PORT, () =>
