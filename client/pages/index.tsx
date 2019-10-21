@@ -2,7 +2,9 @@ import React from 'react'
 import Head from 'next/head'
 import Nav from '../components/nav'
 
-const Home = () => (
+import '../sass/main.scss'
+
+const HomePage = () => (
   <div>
     <Head>
       <title>Home</title>
@@ -85,4 +87,4 @@ const Home = () => (
   </div>
 )
 
-export default Home
+export default HomePage
