@@ -1,9 +1,14 @@
+import Header from '../components/header'
+
 const baseLayout = Page => {
     return () => (
-      <div className="container">
+      <main className="container-fluid">
+        <div className="row">
+            <Header />
+        </div>
         <Page />
-      </div>
-    );
-  };
+      </main>
+    )
+  }
   
-  export default baseLayout;
+  export default baseLayout
