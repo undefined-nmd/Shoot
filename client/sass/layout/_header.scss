@@ -1,13 +1,24 @@
 .header {
-    display: flex;
     justify-content: space-between;
     align-items: center;
     width: 100%;
-    padding: $base-padding;
+    min-height: 12.5vh;
+    padding: $default-padding;
     background: $gradient-student;
+
+    &__logo {
+        img {
+            max-width: 80px;
+        }
+    }
 
     &__search {
         flex-grow: 1;
-        padding: 0 $base-padding;
+        padding-left: $default-padding;
+        padding-right: $default-padding;
+    }
+
+    &__filter {
+        color: #FFF;
     }
 }

@@ -1,20 +1,24 @@
 .input-wrapper {
+    z-index: 1;
     position: relative;
     width: 100%;
-    max-width: 800px;
-    margin: 0 auto;
-    padding: ($base-padding / 2) $base-padding ($base-padding / 2);
-    border-radius: 16px;
     background: #FFF;
-
+    border-radius: $default-border-radius; 
+    
     input {
-        line-height: 1.6rem;
+        padding: $default-padding / 2 $default-padding;
+        line-height: $default-line-height;
     }
 }
 
 .input__icon {
     position: absolute;
-    top: 8px;
+    top: 50%;
     right: 16px;
+    transform: translateY(-50%);
     overflow: hidden;
+
+    &--search {
+        color: lighten($color-t-secondary, 15);
+    }
 }
