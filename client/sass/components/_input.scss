@@ -1,0 +1,24 @@
+.input-wrapper {
+    z-index: 1;
+    position: relative;
+    width: 100%;
+    background: #FFF;
+    border-radius: $default-border-radius; 
+    
+    input {
+        padding: $default-padding / 2 $default-padding;
+        line-height: $default-line-height;
+    }
+}
+
+.input__icon {
+    position: absolute;
+    top: 50%;
+    right: 16px;
+    transform: translateY(-50%);
+    overflow: hidden;
+
+    &--search {
+        color: lighten($color-t-secondary, 15);
+    }
+}
