@@ -1,15 +1,16 @@
-import { SearchInput } from '../components/inputs';
+import { SearchInput } from './inputs'
+import Icon from './icon'
 
-const Header = () => (
+const Header: React.FC = () => (
     <section className="header">
         <div className="header__logo">
-            <img src="/logo.svg" alt="shoot logo" />
+            <h2>Shoot</h2>
         </div>
         <div className="header__search">
             <SearchInput />
         </div>
         <div className="header__filter">
-            <span>Filter</span>
+            <Icon name="filter" />
         </div>
     </section>
 )

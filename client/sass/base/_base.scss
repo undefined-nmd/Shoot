@@ -23,8 +23,22 @@ img {
     object-fit: cover;
 }
 
+input,
+textarea {
+    background: transparent;
+    border: none;
+    outline: none;
+}
+
+button {
+    background: none;
+    border: none;
+    outline: none;
+}
+
 .container {
     width: 100%;
     max-width: 960px;
+    margin: 0 auto;
     padding: 0 $base-padding;
 }
