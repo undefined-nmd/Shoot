@@ -3,7 +3,7 @@
     align-items: center;
     width: 100%;
     min-height: 90px;
-    padding: $default-padding;
+    padding: $padding-md;
     background: $gradient-student;
 
     &__logo {
@@ -14,8 +14,8 @@
 
     &__search {
         flex-grow: 1;
-        padding-left: $default-padding;
-        padding-right: $default-padding;
+        padding-left: $padding-md;
+        padding-right: $padding-md;
     }
 
     &__filter {

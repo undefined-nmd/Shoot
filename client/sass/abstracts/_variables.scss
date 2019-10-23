@@ -1,3 +1,6 @@
+/*
+Color Variables
+*/
 $color-s-primary: #FDAC00;
 $color-s-primary-dark: #F28907;
 $color-s-secondary: #2D2C2C;
@@ -8,7 +11,19 @@ $color-t-primary-dark: #6F00FF;
 $color-t-secondary: #2D2C2C;
 $gradient-teacher: linear-gradient($color-t-primary, $color-t-primary-dark);
 
-$default-border-radius: 32px;
-$default-padding: 1.6rem;
-$default-font: 'Lato', sans-serif;
-$default-line-height: 1.6;
+/*
+Spacing Variables
+*/
+$padding-xs: 1rem;
+$padding-md: 1.6rem;
+$padding-lg: 2.4rem;
+
+$border-radius: 32px;
+
+/*
+Font Variables
+*/
+$font-family-headings: 'Lato', sans-serif;
+$line-height: 1.6;
+
+
