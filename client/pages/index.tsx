@@ -9,7 +9,7 @@ import Nav from '../components/nav'
 
 import '@fortawesome/fontawesome-svg-core/styles.css'
 import '../sass/main.scss'
-import PostCardItem from '../components/postCardItem';
+import PostCardList from '../components/postCardList'
 
 const HomePage = () => (
   <div>
@@ -20,7 +20,7 @@ const HomePage = () => (
 
     {/* <Nav /> */}
 
-    <PostCardItem />
+    <PostCardList />
   </div>
 )
 
