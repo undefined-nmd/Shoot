@@ -1,8 +1,8 @@
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import { library } from '@fortawesome/fontawesome-svg-core'
-import { faFilter, faSearch } from '@fortawesome/free-solid-svg-icons'
+import { faFilter, faSearch, faArrowUp, faComment } from '@fortawesome/free-solid-svg-icons'
 
-library.add(faFilter, faSearch)
+library.add(faFilter, faSearch, faArrowUp, faComment)
 
 interface IconProps {
     name: any
