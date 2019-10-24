@@ -1,10 +1,11 @@
 import { SearchInput } from './inputs'
 import Icon from './icon'
+import Logo from './logo'
 
 const Header: React.FC = () => (
     <section className="header d-flex">
         <div className="header__logo d-flex-center">
-            <img src="./logo.svg" alt="Logo" />
+            <Logo />
         </div>
         <div className="header__search">
             <SearchInput />

@@ -1,6 +1,6 @@
 import Header from '../components/header'
 
-const baseLayout = Page => {
+const BaseLayout = Page => {
     return () => (
         <div>
             <Header />
@@ -11,4 +11,4 @@ const baseLayout = Page => {
     )
   }
   
-  export default baseLayout
+  export default BaseLayout
