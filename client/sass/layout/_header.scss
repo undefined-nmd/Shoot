@@ -5,6 +5,9 @@
     min-height: 90px;
     padding: $padding-md;
     background: $gradient-student;
+    position: fixed;
+    top: 0;
+    left: 0;
 
     &__logo {
         img {
