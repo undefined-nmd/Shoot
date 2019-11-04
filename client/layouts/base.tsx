@@ -13,6 +13,7 @@ import {
 library.add(faPlus, faArrowLeft, faHome, faSearch, faCalendarAlt, faUser)
 
 const baseLayout = Page => {
+
   return () => (
     <main className="container">
       <div className="row">
@@ -26,3 +27,4 @@ const baseLayout = Page => {
 }
 
 export default baseLayout
+

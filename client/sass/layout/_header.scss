@@ -1,5 +1,24 @@
 .header {
+    justify-content: space-between;
+    align-items: center;
     width: 100%;
+    min-height: 90px;
+    padding: $padding-md;
     background: $gradient-student;
-    padding: 1.6rem;
+
+    &__logo {
+        img {
+            max-width: 80px;
+        }
+    }
+
+    &__search {
+        flex-grow: 1;
+        padding-left: $padding-md;
+        padding-right: $padding-md;
+    }
+
+    &__filter {
+        color: #FFF;
+    }
 }
