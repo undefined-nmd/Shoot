@@ -1,22 +1,20 @@
 import * as React from 'react'
 import Head from 'next/head'
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 
 // Import layout
 import baseLayout from '../layouts/base';
 
-// Import components
-import Nav from '../components/nav'
-
 import '../sass/main.scss'
 
 const HomePage = () => (
-  <div>
+  <div className="page homepage">
     <Head>
       <title>Home</title>
       <link rel='icon' href='/favicon.ico' />
     </Head>
 
-    <Nav />
+
 
     <div className='hero'>
       <h1 className='title'>Welcome to Next.js!</h1>

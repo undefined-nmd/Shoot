@@ -6,7 +6,7 @@
 @import 'abstracts/mixins';
 
 // 2. Vendors
-@import 'vendors/bootstrap.min.css';
+//@import 'vendors/bootstrap.min.css';
 
 // 3. Base stuff
 @import 'base/base';
@@ -17,12 +17,15 @@
 // 4. Layout-related sections
 @import 'layout/grid';
 @import 'layout/header';
+@import 'layout/nav';
 
 // 5. Components
 @import 'components/button';
 
+
 // 6. Page-specific styles
 @import 'pages/home';
+@import 'pages/profile';
 
 // 7. Themes
 @import 'themes/lecturer';

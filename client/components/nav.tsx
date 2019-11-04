@@ -1,8 +1,13 @@
 import React from 'react'
 import Link from 'next/link'
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
+import Add from '../components/buttons/add'
+
 
 const links = [
   { href: '/', label: 'home', key: null },
+  { href: '/search', label: 'search', key: null },
+  { href: '/post', label: 'post', key: null },
   { href: '/timeline', label: 'timeline', key: null },
   { href: '/profile', label: 'profile', key: null }
 ].map(link => {
@@ -11,11 +16,16 @@ const links = [
 })
 
 const Nav = () => (
-  <nav>
+  <nav className="nav__container">
     <ul>
       {links.map(({ key, href, label }) => (
-        <li key={key}>
-          <a href={href}>{label}</a>
+        <li className="nav__item" key={key}>
+
+          {(label === "home") ? <a href={href}> <FontAwesomeIcon icon="home" /></a> : ""}
+          {(label === "search") ? <a href={href}> <FontAwesomeIcon icon="search" /></a> : ""}
+          {(label === "post") ? <a className="add__request" href={href}><Add /> </a> : ""}
+          {(label === "timeline") ? <a href={href}> <FontAwesomeIcon icon="calendar-alt" /></a> : ""}
+          {(label === "profile") ? <a href={href}> <FontAwesomeIcon icon="user" /></a> : ""}
         </li>
       ))}
     </ul>
@@ -25,25 +35,6 @@ const Nav = () => (
         margin: 0;
         font-family: -apple-system, BlinkMacSystemFont, Avenir Next, Avenir,
           Helvetica, sans-serif;
-      }
-      nav {
-        text-align: center;
-      }
-      ul {
-        display: flex;
-        justify-content: space-between;
-      }
-      nav > ul {
-        padding: 4px 16px;
-      }
-      li {
-        display: flex;
-        padding: 6px 8px;
-      }
-      a {
-        color: #067df7;
-        text-decoration: none;
-        font-size: 13px;
       }
     `}</style>
   </nav>
