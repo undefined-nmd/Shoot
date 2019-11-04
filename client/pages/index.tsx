@@ -57,6 +57,7 @@ const HomePage = () => (
       .description {
         text-align: center;
       }
+      
       .row {
         max-width: 880px;
         margin: 80px auto 40px;

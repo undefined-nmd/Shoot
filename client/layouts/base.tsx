@@ -18,7 +18,6 @@ const baseLayout = Page => {
       <div className="row">
         <Header />
       </div>
-      2222222222222222222
       <Page />
       <Nav />
 

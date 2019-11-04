@@ -8,10 +8,10 @@
     height: 50px;
 
     text-align: center;
-    border-top: 1px solid #464747;
     display: flex;
     justify-content: center;
     align-items: center;
+    box-shadow: 0 0 4px 1px rgba(0, 0, 0, 0.3)
 }
 
 
@@ -22,19 +22,21 @@
     text-decoration: none;
     font-size: 12px;
     text-align: center;
-    width: 20px;
-    height: 20px;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+
 }
 
 
 
 nav>ul {
-    padding: 4px 18px;
+    padding: 0px 18px;
     display: flex;
     justify-content: space-between;
     align-items: center;
-    width: 90%;
-
+    width: 100%;
 }
 
 li {
