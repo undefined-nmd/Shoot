@@ -28,6 +28,14 @@
     }
 }
 
+.search-control {
+    margin: 0;
+
+    input {
+        padding: $padding-xs;
+    }
+}
+
 .input__icon {
     position: absolute;
     top: 50%;

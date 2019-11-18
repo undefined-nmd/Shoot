@@ -19,6 +19,7 @@ const BaseLayout = Page => {
             <main className="container">
                 <Page />
             </main>
+            <Nav />
         </div>
     )
   }
