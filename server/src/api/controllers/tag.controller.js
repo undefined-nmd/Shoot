@@ -1,47 +1,43 @@
-import User from '../models/'
+import Tag from '../models/'
 
-class UserController {
+class TagController {
   index = async(req, res) => {
     try {
-      let users = null
-      users = await User.find().exec()
+      let tags = null
+      tags = await Tag.find().exec()
 
-      if (users === undefined || users === null) {
+      if (tags === undefined || tags === null) {
         return res.status(404).json({
-          message: "No users were found in the database"
+          message: "No tags were found in the database"
         })
       }
 
-      return res.status(200).json(users)
+      return res.status(200).json(tags)
 
     } catch (err) {
       if(err) {
         return next(err)
       }
       return res.status(500).json({
-        message: "An error occured while fetching users"
+        message: "An error occured while fetching tags"
       })
     }
   }
 
   create = async(req, res, next) => {
     try {
-      const user = new User({
-        first_name: req.body.firstName,
-        last_name: req.body.lastName,
-        email: req.body.email,
-        gender: req.body.gender,
-        profile_img: req.body.image,
+      const tag = new Tag({
+        name: req.body.name
       })
 
-      const newUser = await user.save()
-      return res.status(200).json(newUser)
+      const newTag = await tag.save()
+      return res.status(200).json(newTag)
     } catch (err) {
       if(err) {
         return next(err)
       }
       return res.status(500).json({
-        message: "An error occured while creating a user"
+        message: "An error occured while creating a tag"
       })
     }
   }
@@ -49,20 +45,20 @@ class UserController {
   show = async(req, res, next) => {
     try {
       const { id } = req.params
-      const user = await User.findById(id).exec()
+      const tag = await Tag.findById(id).exec()
 
-      if (!user) {
+      if (!tag) {
         return res.status(404).json({
           message: `Could not find a user with id ${id}`
         })
       }
-      return res.status(200).json(user)
+      return res.status(200).json(tag)
     } catch (err) {
       if(err) {
         return next(err)
       }
       return res.status(500).json({
-        message: "An error occured while fetching a user"
+        message: "An error occured while fetching a tag"
       })
     }
   }
@@ -71,11 +67,11 @@ class UserController {
     try {
       const { id } = req.params
       const userUpdate = req.body
-      const user = await User.findByIdAndUpdate(id, userUpdate, { new: true }).exec()
+      const user = await Tag.findByIdAndUpdate(id, userUpdate, { new: true }).exec()
 
       if(!user) {
         return res.status(404).json({
-          message: "Cannot find a user to update"
+          message: "Cannot find a tag to update"
         })
       }
 
@@ -85,35 +81,35 @@ class UserController {
         return next(err)
       }
       return res.status(500).json({
-        message: "An error occured while updating a user"
+        message: "An error occured while updating a tag"
       })
     }
   }
 
   destroy = (req, res, next) => {
     const { id } = req.params
-    let user = null
+    let tag = null
     try {
-      user = User.findByIdAndRemove(id).exec()
+      tag = Tag.findByIdAndRemove(id).exec()
 
-      if (!user) {
+      if (!tag) {
         return res.status(404).json({
-          message: `Cannot find user to delete: ${id}`
+          message: `Cannot find tag to delete: ${id}`
         })
       }
 
       return res.status(200).json({
-        message: `Successfully deleted user with id: ${id}`
+        message: `Successfully deleted tag with id: ${id}`
       })
     } catch (err) {
       if(err) {
         return next(err)
       }
       return res.status(500).json({
-        message: "An error occured while destorying a user"
+        message: "An error occured while destorying a tag"
       })
     }
   }
 }
 
-export default UserController
+export default TagController

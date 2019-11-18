@@ -1,10 +1,10 @@
-import User from '../models/'
+import SubjectUser from '../models/'
 
-class UserController {
+class SubjectUserController {
   index = async(req, res) => {
     try {
       let users = null
-      users = await User.find().exec()
+      users = await SubjectUser.find().exec()
 
       if (users === undefined || users === null) {
         return res.status(404).json({
@@ -26,7 +26,7 @@ class UserController {
 
   create = async(req, res, next) => {
     try {
-      const user = new User({
+      const user = new SubjectUser({
         first_name: req.body.firstName,
         last_name: req.body.lastName,
         email: req.body.email,
@@ -49,9 +49,9 @@ class UserController {
   show = async(req, res, next) => {
     try {
       const { id } = req.params
-      const user = await User.findById(id).exec()
+      const user = await SubjectUser.findById(id).exec()
 
-      if (!user) {
+      if (!item) {
         return res.status(404).json({
           message: `Could not find a user with id ${id}`
         })
@@ -71,7 +71,7 @@ class UserController {
     try {
       const { id } = req.params
       const userUpdate = req.body
-      const user = await User.findByIdAndUpdate(id, userUpdate, { new: true }).exec()
+      const user = await SubjectUser.findByIdAndUpdate(id, userUpdate, { new: true }).exec()
 
       if(!user) {
         return res.status(404).json({
@@ -94,7 +94,7 @@ class UserController {
     const { id } = req.params
     let user = null
     try {
-      user = User.findByIdAndRemove(id).exec()
+      user = SubjectUser.findByIdAndRemove(id).exec()
 
       if (!user) {
         return res.status(404).json({
@@ -111,9 +111,3 @@ class UserController {
       }
       return res.status(500).json({
         message: "An error occured while destorying a user"
-      })
-    }
-  }
-}
-
-export default UserController

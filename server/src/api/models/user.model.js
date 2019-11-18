@@ -10,6 +10,7 @@ const UserSchema = new Schema({
   score: { type: Number, min: 0 },
   profile_img: { type: String },
   role_id: { type: Schema.Types.ObjectId, ref: 'Role' },
+  subjects: [{ type: Schema.Types.ObjectId, ref: 'Subject' }]
 });
 
 export default mongoose.model('User', UserSchema);
