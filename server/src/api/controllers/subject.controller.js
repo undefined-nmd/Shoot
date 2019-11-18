@@ -29,8 +29,8 @@ class SubjectController {
   }
   
   update = async(req, res, next) => {
-    const { id } = req.params
     try {
+      const { id } = req.params
       const subjectUpdate = req.body
       console.log(req.body)
       const subject = await Subject.findByIdAndUpdate(id, subjectUpdate, {new: true}).exec()
