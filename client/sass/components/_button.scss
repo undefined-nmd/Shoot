@@ -1,11 +1,23 @@
+.btn {
+    width: 100%;
+    padding: $padding-md;
+    margin-top: $padding-lg;
+    border-radius: $border-radius-sm;
+    font-size: $font-size;
+    text-transform: uppercase;
+
+    &--primary {
+        background-color: $color-s-primary;
+        color: #FFF;
+    }
+}
+
 .button__add {
     display: flex;
     justify-content: center;
     color: white;
     width: 25px;
     height: 25px;
-
-
 }
 
 .button__add .fa {

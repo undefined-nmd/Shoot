@@ -1,13 +1,30 @@
-.input-wrapper {
+.form-control {
     z-index: 1;
     position: relative;
+    display: flex;
     width: 100%;
+    margin-top: $padding-md;
     background: #FFF;
-    border-radius: $border-radius; 
-    
+    border-radius: $border-radius-sm; 
+    box-shadow: $box-shadow;
+    color: $color-input-text;
+
+    &__icon {
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        padding: $padding-md 0 $padding-md $padding-md;
+    }
+
     input {
-        padding: $padding-md / 2 $padding-md;
-        line-height: $line-height;
+        flex: 1;
+        padding: $padding-md;
+        font-size: $font-size;
+        // line-height: $line-height;
+
+        &:focus {
+            color: $color-input-text;
+        }
     }
 }
 

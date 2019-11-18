@@ -3,16 +3,16 @@ import Head from 'next/head'
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 
 // Import layout
-import baseLayout from '../layouts/base';
+import BaseLayout from '../layouts/base';
 
 
 // Import components
 import Nav from '../components/nav'
+import PostCardList from '../components/postCardList'
 
 import '@fortawesome/fontawesome-svg-core/styles.css'
 
 import '../sass/main.scss'
-import PostCardList from '../components/postCardList'
 
 const HomePage = () => (
   <div className="page homepage">
@@ -25,4 +25,4 @@ const HomePage = () => (
   </div>
 )
 
-export default baseLayout(HomePage)
+export default BaseLayout(HomePage)

@@ -12,19 +12,15 @@ import {
 
 library.add(faPlus, faArrowLeft, faHome, faSearch, faCalendarAlt, faUser)
 
-const baseLayout = Page => {
-
-  return () => (
-    <main className="container">
-      <div className="row">
-        <Header />
-      </div>
-      <Page />
-      <Nav />
-
-    </main>
-  )
-}
-
-export default baseLayout
-
+const BaseLayout = Page => {
+    return () => (
+        <div>
+            <Header />
+            <main className="container">
+                <Page />
+            </main>
+        </div>
+    )
+  }
+  
+  export default BaseLayout
