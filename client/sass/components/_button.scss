@@ -1,0 +1,13 @@
+.btn {
+    width: 100%;
+    padding: $padding-md;
+    margin-top: $padding-lg;
+    border-radius: $border-radius-sm;
+    font-size: $font-size;
+    text-transform: uppercase;
+
+    &--primary {
+        background-color: $color-s-primary;
+        color: #FFF;
+    }
+}
