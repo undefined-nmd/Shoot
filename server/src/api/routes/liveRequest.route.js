@@ -59,7 +59,7 @@ liveRequestRouter.get('/', liveRequestController.index)
  *        description: numeric ID of the request.
  *    responses:
  *      200:
- *        description: Specific user
+ *        description: Specific request
  *        content:
  *          application/json:
  *            schema:

@@ -60,7 +60,7 @@ locationRouter.get('/', locationController.index)
  *        description: numeric ID of the location.
  *    responses:
  *      200:
- *        description: Specific user
+ *        description: Specific location
  *        content:
  *          application/json:
  *            schema:
