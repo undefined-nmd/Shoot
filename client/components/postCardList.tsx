@@ -18,11 +18,10 @@ const PostCardList = () => {
         {
             body: "Libero enim sed faucibus turpis in eu. Eget arcu dictum varius duis at consectetur lorem donec."
         },
-
     ]
 
     return (
-        <div>
+        <div> 
             {dummyData.map((post) => {
                 return <PostCardItem content={ post.body } />
             })}

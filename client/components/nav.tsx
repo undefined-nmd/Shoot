@@ -24,7 +24,7 @@ const Nav = () => (
 
           {(label === "home") ? <a href={href}> <FontAwesomeIcon icon="home" size="2x" />{label}</a> : ""}
           {(label === "search") ? <a href={href}> <FontAwesomeIcon icon="search" size="2x" />{label}</a> : ""}
-          {(label === "post") ? <a className="add__request" href={href}><Add /> </a> : ""}
+          {(label === "post") ? <a className="add__request d-flex-center" href={href}><Add /> </a> : ""}
           {(label === "timeline") ? <a href={href}> <FontAwesomeIcon icon="calendar-alt" size="2x" />{label}</a> : ""}
           {(label === "profile") ? <a href={href}> <FontAwesomeIcon icon="user" size="2x" />{label}</a> : ""}
         </li>

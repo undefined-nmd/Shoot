@@ -1,7 +1,6 @@
 .form-control {
     z-index: 1;
     position: relative;
-    display: flex;
     width: 100%;
     margin-top: $padding-md;
     background: #FFF;
@@ -10,9 +9,6 @@
     color: $color-input-text;
 
     &__icon {
-        display: flex;
-        justify-content: center;
-        align-items: center;
         padding: $padding-md 0 $padding-md $padding-md;
     }
 
