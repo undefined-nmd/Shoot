@@ -13,8 +13,8 @@ const liveRequestRouter = express.Router();
 
 /**
  * @swagger
- *
- * /api/liveRequest:
+ * 
+ * /api/v1/liveRequest:
  *  get:
  *    tags: [Live Requests]
  *    summary: Get all live requests.
@@ -46,7 +46,7 @@ liveRequestRouter.get('/', liveRequestController.index)
   .post('/', liveRequestController.create);
 /**
  * @swagger
- * /api/liveRequest/{id}:
+ * /api/v1/liveRequest/{id}:
  *  get:
  *    tags: [Live Requests]
  *    summary: Get a request by ID
