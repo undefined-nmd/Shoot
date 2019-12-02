@@ -1,7 +1,7 @@
 import express from 'express';
 import { TagController } from '../controllers';
 
-const tagController = new TagController;
+const tagController = new TagController();
 
 const tagRouter = express.Router();
 

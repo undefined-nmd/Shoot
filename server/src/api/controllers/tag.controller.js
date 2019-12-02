@@ -1,4 +1,4 @@
-import Tag from '../models/'
+import { Tag } from '../models/'
 
 class TagController {
   index = async(req, res) => {

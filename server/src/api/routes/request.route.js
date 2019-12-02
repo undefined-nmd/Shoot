@@ -1,7 +1,7 @@
 import express from 'express';
 import { RequestController } from '../controllers';
 
-const requestController = new RequestController ;
+const requestController = new RequestController();
 
 const requestRouter = express.Router();
 

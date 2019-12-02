@@ -1,4 +1,4 @@
-import liveRequest from '../models/'
+import { liveRequest } from '../models/'
 
 class liveRequestController {
   index = async(req, res) => {

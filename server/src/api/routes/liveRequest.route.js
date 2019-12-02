@@ -1,7 +1,7 @@
 import express from 'express';
 import { LiveRequestController } from '../controllers';
 
-const liveRequestController = new LiveRequestController;
+const liveRequestController = new LiveRequestController();
 const liveRequestRouter = express.Router();
 
 /**
@@ -13,7 +13,7 @@ const liveRequestRouter = express.Router();
 
 /**
  * @swagger
- * 
+ *
  * /api/liveRequest:
  *  get:
  *    tags: [Live Requests]
@@ -28,7 +28,7 @@ const liveRequestRouter = express.Router();
  *            type: array
  *            schema:
  *              $ref: '#/components/schemas/LiveRequest'
- *        
+ *
  *  post:
  *    tags: [Live Requests]
  *    summary: Create a new live request.
@@ -43,7 +43,7 @@ const liveRequestRouter = express.Router();
  *              $ref: '#/components/schemas/LiveRequest'
  */
 liveRequestRouter.get('/', liveRequestController.index)
-                .post('/', liveRequestController.create);
+  .post('/', liveRequestController.create);
 /**
  * @swagger
  * /api/liveRequest/{id}:
@@ -104,7 +104,7 @@ liveRequestRouter.get('/', liveRequestController.index)
  *                  description: Removed request with id
  */
 liveRequestRouter.get('/:id', liveRequestController.show)
-                .put('/:id', liveRequestController.update)
-                .delete('/:id', liveRequestController.destroy);
+  .put('/:id', liveRequestController.update)
+  .delete('/:id', liveRequestController.destroy);
 
 export default liveRequestRouter;

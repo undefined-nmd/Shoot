@@ -1,4 +1,4 @@
-import Subject from '../models/'
+import { Subject } from '../models/'
 
 class SubjectController {
   index = async(req, res) => {
