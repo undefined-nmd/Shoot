@@ -1,14 +1,14 @@
-const express = require('express');
+import express from 'express';
+import { RequestController } from '../controllers';
 
-const router = express.Router();
+const requestController = new RequestController ;
 
-const request_controller = require('../controllers/request.controller');
+const requestRouter = express.Router();
 
+requestRouter.get('/', requestController.index);
+requestRouter.post('/create', requestController.create);
+requestRouter.get('/:id', requestController.show);
+requestRouter.put('/:id', requestController.update);
+requestRouter.delete('/:id', requestController.destroy);
 
-router.post('/create', request_controller.create);
-router.get('/:id', request_controller.detail);
-router.put('/:id/update', request_controller.update);
-router.delete('/:id/delete', request_controller.delete);
-
-
-module.exports = router;
+export default requestRouter;

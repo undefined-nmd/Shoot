@@ -14,14 +14,13 @@ app.use(morgan('dev'));
 app.use(helmet());
 
 app.use(express.urlencoded({ extended: true }));
-app.use(express.json())
+app.use(express.json());
 
 
 app.use('/api/v1', api);
 
 app.use(middlewares.notFound);
 app.use(middlewares.errorHandler);
-
 
 
 // connect to mongdb
