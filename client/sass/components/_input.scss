@@ -1,0 +1,49 @@
+.form-control {
+    z-index: 1;
+    position: relative;
+    display: flex;
+    width: 100%;
+    margin-top: $padding-md;
+    background: #FFF;
+    border-radius: $border-radius-sm; 
+    box-shadow: $box-shadow;
+    color: $color-input-text;
+
+    &__icon {
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        padding: $padding-md 0 $padding-md $padding-md;
+    }
+
+    input {
+        flex: 1;
+        padding: $padding-md;
+        font-size: $font-size;
+        // line-height: $line-height;
+
+        &:focus {
+            color: $color-input-text;
+        }
+    }
+}
+
+.search-control {
+    margin: 0;
+
+    input {
+        padding: $padding-xs;
+    }
+}
+
+.input__icon {
+    position: absolute;
+    top: 50%;
+    right: 16px;
+    transform: translateY(-50%);
+    overflow: hidden;
+
+    &--search {
+        color: lighten($color-t-secondary, 15);
+    }
+}

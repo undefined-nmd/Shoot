@@ -1,0 +1,54 @@
+.card {
+    padding: $padding-md 0;
+    max-width: 500px;
+    @include margin--auto;
+
+    &__author {
+        padding: $padding-xs 0;
+        align-items: center;
+        
+        &-content {
+            text-transform: uppercase;
+        }
+
+        &-course {
+            color: $color-s-primary;
+            font-size: $font-size;
+        }
+        
+        &-name {
+            font-size: $font-size-sm;
+            font-weight: $font-weight-bold;
+            color: lighten($color-s-secondary, 15);
+        }
+        
+        &-thumbnail {
+            width: 40px;
+            height: 40px;
+            margin-right: $padding-md;
+            border-radius: $border-radius;
+            overflow: hidden;
+        }
+    }
+
+    &__content {
+        max-height: 15vh;
+        overflow: hidden;        
+    }
+
+    &__meta {
+        padding: $padding-md 0;
+
+        &-item {
+            padding-right: $padding-lg;
+        }
+
+        &-number {
+            margin-right: 8px;
+        }
+        
+        svg {
+            color: $color-s-secondary;
+        }
+    }
+}
