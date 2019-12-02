@@ -1,7 +1,7 @@
-import Subject from '../models/'
+import { Subject } from '../models/'
 
 class SubjectController {
-  index = async(req, res) => {
+  index = async(req, res, next) => {
     try {
       let subjects = null
       subjects = await Subject.find().exec()

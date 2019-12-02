@@ -2,6 +2,9 @@ const express = require('express');
 const morgan = require('morgan');
 const helmet = require('helmet');
 const mongoose = require('mongoose');
+const swaggerUi = require('swagger-ui-express');
+const swaggerJSDoc = require('swagger-jsdoc');
+const path = require('path');
 
 require('dotenv').config();
 
@@ -9,9 +12,26 @@ const middlewares = require('./middlewares');
 const api = require('./api');
 
 const app = express();
+const options = {
+    definition: {
+        openapi: '3.0.0', // Specification (optional, defaults to swagger: '2.0')
+        info: {
+          title: 'Shoot! API', // Title (required)
+          version: '1.0.0', // Version (required)
+          description: 'API for Shoot! @ Artevelde'
+        },
+      },
+      host: 'localhost:1234',
+      basePath: 'api/',
+      schemes: 'https',
+      // Path to the API docs
+      apis: [path.join(__dirname, './api/routes/*.js'), path.join(__dirname, './api/models/*.js')],
+}
+const swaggerSpec = swaggerJSDoc(options)
 
 app.use(morgan('dev'));
 app.use(helmet());
+app.use('/api-docs', swaggerUi.serve, swaggerUi.setup(swaggerSpec));
 
 app.use(express.urlencoded({ extended: true }));
 app.use(express.json());
