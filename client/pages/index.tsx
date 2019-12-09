@@ -5,10 +5,10 @@ import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 // Import layout
 import BaseLayout from '../layouts/base';
 
-
 // Import components
 import Nav from '../components/nav'
 import PostCardList from '../components/postCardList'
+import Drawer from '../components/drawer'
 
 import '@fortawesome/fontawesome-svg-core/styles.css'
 
@@ -22,6 +22,9 @@ const HomePage = () => (
     </Head>
     {/* <Nav /> */}
     <PostCardList />
+    <Drawer>
+      
+    </Drawer>
   </div>
 )
 
