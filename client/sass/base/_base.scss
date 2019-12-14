@@ -33,6 +33,10 @@ textarea {
     outline: none;
 }
 
+textarea {
+    resize: vertical;
+}
+
 button {
     background: none;
     border: none;

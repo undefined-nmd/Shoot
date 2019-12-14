@@ -9,12 +9,10 @@ import BaseLayout from '../layouts/base';
 import Nav from '../components/nav'
 import PostCardList from '../components/postCardList'
 import Drawer from '../components/drawer'
-import TextInput from '../components/inputs/textInput'
-import Button from '../components/buttons/button'
-
 import '@fortawesome/fontawesome-svg-core/styles.css'
 
 import '../sass/main.scss'
+import AddPostForm from '../components/forms/AddPostForm';
 
 const HomePage = () => (
   <div className="page homepage">
@@ -24,13 +22,8 @@ const HomePage = () => (
     </Head>
     {/* <Nav /> */}
     <PostCardList />
-    <Drawer visible={true}>
-      <div className="form">
-        <TextInput placeholder="What is your question" />
-        <TextInput placeholder="Subject" />
-        <TextInput placeholder="Tags" />
-        <Button label="Add Question" />
-      </div>
+    <Drawer visible={true} height="80vh">
+        <AddPostForm />
     </Drawer>
   </div>
 )
