@@ -22,7 +22,7 @@ const HomePage = () => (
     </Head>
     {/* <Nav /> */}
     <PostCardList />
-    <Drawer visible={true} height="80vh">
+    <Drawer visible>
         <AddPostForm />
     </Drawer>
   </div>

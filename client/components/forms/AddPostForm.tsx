@@ -8,7 +8,8 @@ const AddPostForm = () => {
     useEffect(() => {
         setOptions([...options, 'Web Development II', 'Multimedia', 'Mobile Development I'])
     }, [])
-  
+    
+    
     return (
         <form className="form-container">
             <TextArea label="Question" rows={5} />

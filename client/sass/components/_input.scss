@@ -2,6 +2,7 @@
     z-index: 1;
     position: relative;
     width: 100%;
+    padding: $padding-md;
     margin-top: $padding-md;
     background: #FFF;
     border-radius: $border-radius-sm; 
@@ -9,12 +10,11 @@
     color: $color-input-text;
 
     &__icon {
-        padding: $padding-md 0 $padding-md $padding-md;
+        padding-right: $padding-md;
     }
 
     input {
         flex: 1;
-        padding: $padding-md;
         font-size: $font-size;
         // line-height: $line-height;
 
@@ -22,16 +22,11 @@
             color: $color-input-text;
         }
     }
-
-    
 }
 
 .search-control {
     margin: 0;
-
-    input {
-        padding: $padding-xs;
-    }
+    padding: $padding-xs;
 }
 
 .input__icon {
