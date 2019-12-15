@@ -39,11 +39,5 @@ button {
     outline: none;
 }
 
-.container {
-    width: 100%;
-    height: 100%;
-    max-width: 960px;
-    padding: 0 $padding-md;
-    @include margin--auto;
-}
+
 
