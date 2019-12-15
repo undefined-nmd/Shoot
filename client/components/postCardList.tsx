@@ -21,7 +21,7 @@ const PostCardList = () => {
     ]
 
     return (
-        <div> 
+        <div className="card-list"> 
             {dummyData.map((post) => {
                 return <PostCardItem key={ post.body } content={ post.body } />
             })}

@@ -5,13 +5,14 @@ $color-s-primary: #FDAC00;
 $color-s-primary-dark: #F28907;
 $color-s-secondary: #2D2C2C;
 $gradient-student: linear-gradient($color-s-primary, $color-s-primary-dark);
-$color-input-text: #686767;
-
 
 $color-t-primary: #EE00FF;
 $color-t-primary-dark: #6F00FF;
 $color-t-secondary: #2D2C2C;
 $gradient-teacher: linear-gradient($color-t-primary, $color-t-primary-dark);
+
+$color-input-text: #686767;
+$color-box-shadow: #dbdbdb;
 
 /*
 * Spacing Variables
@@ -41,6 +42,6 @@ $line-height: 1.6;
 * Other
 */
 
-$box-shadow: 0 2px 4px #dbdbdb;
+$box-shadow: 0 2px 4px $color-box-shadow;
 $border-radius: 32px;
 $border-radius-sm: 5px;

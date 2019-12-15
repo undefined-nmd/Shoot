@@ -2,6 +2,11 @@
     padding: $padding-md 0;
     max-width: 500px;
     @include margin--auto;
+    border-bottom: 2px solid $color-box-shadow;
+
+    &:last-of-type {
+        border-bottom: none;
+    }
 
     &__author {
         padding: $padding-xs 0;
