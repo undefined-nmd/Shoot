@@ -23,7 +23,7 @@ const PostCardList = () => {
     return (
         <div> 
             {dummyData.map((post) => {
-                return <PostCardItem content={ post.body } />
+                return <PostCardItem key={ post.body } content={ post.body } />
             })}
         </div>
     )
