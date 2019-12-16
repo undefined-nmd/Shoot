@@ -25,11 +25,17 @@ const { Schema } = mongoose;
  *        subject_id:
  *          type: number
  *          description: ID of subject
+ *        tags:
+ *          type: array
+ *          items:
+ *            type: string
+ *            description: Tag for the post
  *      example:
  *        student_id: 1
  *        message: What does this thing mean?
  *        upvote_count: 7
  *        subject_id: 10
+ *        tags: [test, frontend]
  */
 const RequestSchema = new Schema({
   student_id: { type: Schema.Types.ObjectId, required: true, ref: 'User' },
