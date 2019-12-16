@@ -1,7 +1,7 @@
 import { Role } from '../models/'
 
 class RoleController {
-  index = async(req, res) => {
+  index = async(req, res, next) => {
     try {
       let roles = null
       roles = await Role.find().exec()

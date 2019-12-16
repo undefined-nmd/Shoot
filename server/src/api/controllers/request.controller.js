@@ -2,7 +2,7 @@ import { Request } from '../models'
 
 class RequestController {
 
-  index = async(req, res) => {
+  index = async(req, res, next) => {
     try {
       let requests = null
       requests = await Request.find().exec()

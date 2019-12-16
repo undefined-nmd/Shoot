@@ -1,7 +1,7 @@
-import { User } from '../models/'
+import { User } from '../models'
 
 class UserController {
-  index = async(req, res) => {
+  index = async(req, res, next) => {
     try {
       let users = null
       users = await User.find().exec()
