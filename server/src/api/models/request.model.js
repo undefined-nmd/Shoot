@@ -28,8 +28,8 @@ const { Schema } = mongoose;
  *        tags:
  *          type: array
  *          items:
- *            type: string
- *            description: Tag for the post
+ *            $ref: #/components/schemas/Tag
+ *
  *      example:
  *        student_id: 1
  *        message: What does this thing mean?
