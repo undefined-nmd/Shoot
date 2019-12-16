@@ -1,7 +1,7 @@
 import { liveRequest } from '../models/'
 
 class liveRequestController {
-  index = async(req, res) => {
+  index = async(req, res, next) => {
     try {
       let liveRequests = null
       liveRequests = await liveRequest.find().exec()
