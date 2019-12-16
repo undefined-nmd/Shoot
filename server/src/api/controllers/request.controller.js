@@ -1,4 +1,4 @@
-import { Request } from '../models/request.model'
+import { Request } from '../models'
 
 class RequestController {
 
