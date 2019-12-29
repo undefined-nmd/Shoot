@@ -12,7 +12,6 @@ import '@fortawesome/fontawesome-svg-core/styles.css'
 import '../sass/main.scss'
 
 const HomePage = (props) => {
-  console.log(props.name)
   return (
     <div className="page homepage">
       <Head>
@@ -26,12 +25,10 @@ const HomePage = (props) => {
 
 HomePage.getInitialProps = async () => {
   const res = await axios.get(`http://localhost:1234/api/v1/request`)
-  const data = await res
-
-  console.log(data)
+  const data = await res.data
 
   return {
-    name: 'Test'
+    request: data
   }
 }
 
