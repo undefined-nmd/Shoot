@@ -1,6 +1,8 @@
 import * as React from 'react'
 import Head from 'next/head'
-import axios from 'axios'
+// import axios from 'axios'
+
+import getRequests from '../services/api'
 
 // Import layout
 import BaseLayout from '../layouts/base';
@@ -10,8 +12,10 @@ import PostCardList from '../components/postCardList'
 
 import '@fortawesome/fontawesome-svg-core/styles.css'
 import '../sass/main.scss'
+import API from '../services/api';
 
 const HomePage = (props) => {
+  console.log(props.requests)
   return (
     <div className="page homepage">
       <Head>
@@ -24,11 +28,10 @@ const HomePage = (props) => {
 }
 
 HomePage.getInitialProps = async () => {
-  const res = await axios.get(`http://localhost:1234/api/v1/request`)
-  const data = await res.data
+  const data = await API.getRequests()
 
   return {
-    request: data
+    requests: data
   }
 }
 
