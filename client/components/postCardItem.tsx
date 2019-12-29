@@ -2,10 +2,10 @@ import * as React from 'react'
 import Icon from "./icon"
 
 interface PostCardProps {
-    content?: String
+    post?: any
 }
 
-const PostCardItem: React.FC<PostCardProps> = ({ content }) => (
+const PostCardItem: React.FC<PostCardProps> = ({ post }) => (
     <section className="card">
         <div className="card__author d-flex">
             <figure className="card__author-thumbnail">
@@ -17,7 +17,7 @@ const PostCardItem: React.FC<PostCardProps> = ({ content }) => (
             </div>
         </div>
         <div className="card__content">
-            <p>{ content }</p>
+            <p>{ post.message }</p>
         </div>
         <div className="card__meta d-flex">
             <div className="card__meta-item">
