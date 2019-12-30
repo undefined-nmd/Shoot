@@ -14,7 +14,7 @@ const subjectRouter = express.Router();
 
 /**
  * @swagger
- * 
+ *
  * /api/v1/subject:
  *  get:
  *    tags: [Subjects]
@@ -29,7 +29,7 @@ const subjectRouter = express.Router();
  *            type: array
  *            schema:
  *              $ref: '#/components/schemas/Subject'
- *        
+ *
  *  post:
  *    tags: [Subjects]
  *    summary: Create a subject.
@@ -44,7 +44,7 @@ const subjectRouter = express.Router();
  *              $ref: '#/components/schemas/Subject'
  */
 subjectRouter.get('/', subjectController.index)
-  .post('/create', subjectController.create);
+  .post('/', subjectController.create);
 /**
  * @swagger
  * /api/v1/subject/{id}:

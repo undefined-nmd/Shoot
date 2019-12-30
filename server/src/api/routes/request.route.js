@@ -13,7 +13,7 @@ const requestRouter = express.Router();
 
 /**
  * @swagger
- * 
+ *
  * /api/v1/request:
  *  get:
  *    tags: [Requests]
@@ -28,7 +28,7 @@ const requestRouter = express.Router();
  *            type: array
  *            schema:
  *              $ref: '#/components/schemas/Request'
- *        
+ *
  *  post:
  *    tags: [Requests]
  *    summary: Create a new request.
@@ -43,7 +43,7 @@ const requestRouter = express.Router();
  *              $ref: '#/components/schemas/Request'
  */
 requestRouter.get('/', requestController.index)
-            .post('/create', requestController.create);
+  .post('/', requestController.create);
 /**
  * @swagger
  * /api/v1/request/{id}:
@@ -104,7 +104,7 @@ requestRouter.get('/', requestController.index)
  *                  description: Removed request with id
  */
 requestRouter.get('/:id', requestController.show)
-            .put('/:id', requestController.update)
-            .delete('/:id', requestController.destroy);
+  .put('/:id', requestController.update)
+  .delete('/:id', requestController.destroy);
 
 export default requestRouter;

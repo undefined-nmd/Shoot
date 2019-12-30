@@ -13,7 +13,7 @@ const userRouter = express.Router();
 
 /**
  * @swagger
- * 
+ *
  * /api/v1/user:
  *  get:
  *    tags: [Users]
@@ -28,7 +28,7 @@ const userRouter = express.Router();
  *            type: array
  *            schema:
  *              $ref: '#/components/schemas/User'
- *        
+ *
  *  post:
  *    tags: [Users]
  *    summary: Create a user.

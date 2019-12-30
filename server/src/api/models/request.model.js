@@ -14,7 +14,7 @@ const { Schema } = mongoose;
  *        - subject_id
  *      properties:
  *        student_id:
- *          type: number
+ *          type: string
  *          description: ID of sending student
  *        message:
  *          type: string
@@ -23,13 +23,19 @@ const { Schema } = mongoose;
  *          type: number
  *          description: amount of votes (defaults at 0)
  *        subject_id:
- *          type: number
+ *          type: string
  *          description: ID of subject
+ *        tags:
+ *          type: array
+ *          items:
+ *            $ref: #/components/schemas/Tag
+ *
  *      example:
- *        student_id: 1
+ *        student_id: 5dad6bf132df1e35dc34b14f
  *        message: What does this thing mean?
  *        upvote_count: 7
- *        subject_id: 10
+ *        subject_id: 5e09f95a1c9d44000029b1e0
+ *        tags: [test, frontend]
  */
 const RequestSchema = new Schema({
   student_id: { type: Schema.Types.ObjectId, required: true, ref: 'User' },

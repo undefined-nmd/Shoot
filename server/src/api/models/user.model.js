@@ -32,7 +32,7 @@ const { Schema } = mongoose;
  *          type: string
  *          description: link to profile image
  *        role_id:
- *          type: number
+ *          type: string
  *          description: id of role applied to the user
  *        subjects:
  *          type: array
@@ -43,9 +43,9 @@ const { Schema } = mongoose;
  *        email: 'jan.janssens@provider.be'
  *        score: 120
  *        profile_img: './images/users/1/avatar.jpg'
- *        role_id: 1
- *        subjects: [1, 3, 4]
- *        
+ *        role_id: 5e0a00d302353a2b14e06aca
+ *        subjects: [5e09f95a1c9d44000029b1e0, 5e0a071b1c9d440000ada964]
+ *
  */
 const UserSchema = new Schema({
   first_name: { type: String, required: true, max: 64 },

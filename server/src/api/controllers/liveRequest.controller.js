@@ -27,7 +27,7 @@ class liveRequestController {
   create = async(req, res, next) => {
     try {
       const liveRequests = new liveRequest({
-        student_id: req.body.studentId,
+        student_id: req.body.student_id,
         message: req.body.message,
         location: req.body.location,
         subject_id: req.body.subject_id

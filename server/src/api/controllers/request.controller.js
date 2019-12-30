@@ -28,7 +28,7 @@ class RequestController {
   create = async(req, res, next) => {
     try {
       const request = new Request({
-        student_id: req.body.user_id,
+        student_id: req.body.student_id,
         message: req.body.message,
         subject_id: req.body.subject_id
       })

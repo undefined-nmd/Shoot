@@ -26,7 +26,7 @@ class LocationController {
 
   create = async(req, res, next) => {
     try {
-      const location = new User({
+      const location = new Location({
         name: req.body.name,
       })
 

@@ -13,7 +13,7 @@ const roleRouter = express.Router();
 
 /**
  * @swagger
- * 
+ *
  * /api/v1/role:
  *  get:
  *    tags: [Roles]
@@ -28,7 +28,7 @@ const roleRouter = express.Router();
  *            type: array
  *            schema:
  *              $ref: '#/components/schemas/Role'
- *        
+ *
  *  post:
  *    tags: [Roles]
  *    summary: Create a role.
@@ -43,7 +43,7 @@ const roleRouter = express.Router();
  *              $ref: '#/components/schemas/Role'
  */
 roleRouter.get('/', roleController.index)
-  .post('/create', roleController.create);
+  .post('/', roleController.create);
 /**
  * @swagger
  * /api/v1/role/{id}:

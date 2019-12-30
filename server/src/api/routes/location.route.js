@@ -14,7 +14,7 @@ const locationRouter = express.Router();
 
 /**
  * @swagger
- * 
+ *
  * /api/v1/location:
  *  get:
  *    tags: [Locations]
@@ -29,7 +29,7 @@ const locationRouter = express.Router();
  *            type: array
  *            schema:
  *              $ref: '#/components/schemas/Location'
- *        
+ *
  *  post:
  *    tags: [Locations]
  *    summary: Create a location.
@@ -44,7 +44,7 @@ const locationRouter = express.Router();
  *              $ref: '#/components/schemas/Location'
  */
 locationRouter.get('/', locationController.index)
-              .post('/create', locationController.create)
+  .post('/', locationController.create);
 /**
  * @swagger
  * /api/v1/location/{id}:
@@ -105,7 +105,7 @@ locationRouter.get('/', locationController.index)
  *                  description: Removed location with id
  */
 locationRouter.get('/:id', locationController.show)
-              .put('/:id', locationController.update)
-              .delete('/:id', locationController.destroy)
+  .put('/:id', locationController.update)
+  .delete('/:id', locationController.destroy);
 
 export default locationRouter;

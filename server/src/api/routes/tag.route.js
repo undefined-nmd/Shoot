@@ -14,7 +14,7 @@ const tagRouter = express.Router();
 
 /**
  * @swagger
- * 
+ *
  * /api/v1/tag:
  *  get:
  *    tags: [Tags]
@@ -29,7 +29,7 @@ const tagRouter = express.Router();
  *            type: array
  *            schema:
  *              $ref: '#/components/schemas/Tag'
- *        
+ *
  *  post:
  *    tags: [Tags]
  *    summary: Create a tag.
@@ -44,7 +44,7 @@ const tagRouter = express.Router();
  *              $ref: '#/components/schemas/Tag'
  */
 tagRouter.get('/', tagController.index)
-  .post('/create', tagController.create);
+  .post('/', tagController.create);
 /**
  * @swagger
  * /api/v1/tag/{id}:

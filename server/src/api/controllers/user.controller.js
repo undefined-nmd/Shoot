@@ -27,11 +27,12 @@ class UserController {
   create = async(req, res, next) => {
     try {
       const user = new User({
-        first_name: req.body.firstName,
-        last_name: req.body.lastName,
+        first_name: req.body.first_name,
+        last_name: req.body.last_name,
         email: req.body.email,
         gender: req.body.gender,
-        profile_img: req.body.image,
+        profile_img: req.body.profile_img,
+        role_id: req.body.role_id,
       })
 
       const newUser = await user.save()
