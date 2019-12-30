@@ -4,7 +4,7 @@ import Head from 'next/head'
 import API from '../services/api'
 
 // Import layout
-import BaseLayout from '../layouts/base';
+import BaseLayout from '../layouts/base'
 
 // Import components
 import PostCardList from '../components/postCardList'
