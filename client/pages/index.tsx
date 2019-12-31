@@ -1,13 +1,14 @@
 import * as React from 'react'
 import Head from 'next/head'
 
-import API from '../services/api'
-
 // Import layout
 import BaseLayout from '../layouts/base'
 
 // Import components
 import RequestCardList from '../components/requestCardList'
+
+// Import services
+import { RequestService } from '../services'
 
 import '@fortawesome/fontawesome-svg-core/styles.css'
 import '../sass/main.scss'
@@ -26,7 +27,7 @@ const HomePage = (props) => {
 }
 
 HomePage.getInitialProps = async () => {
-  const requestData = await API.getRequests()
+  const requestData = await RequestService.getRequests()
   
   return {
     requests: requestData
