@@ -1,11 +1,11 @@
 import * as React from 'react'
 import Icon from "./icon"
 
-interface PostCardProps {
+interface RequestCardProps {
     request?: any
 }
 
-const PostCardItem: React.FC<PostCardProps> = ({ request }) => {
+const RequestCardItem: React.FC<RequestCardProps> = ({ request }) => {
     const getFullName = () => {
         return request.student_id.first_name + ' ' + request.student_id.last_name
     }
@@ -38,4 +38,4 @@ const PostCardItem: React.FC<PostCardProps> = ({ request }) => {
     )
 }
 
-export default PostCardItem
+export default RequestCardItem

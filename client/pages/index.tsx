@@ -7,7 +7,7 @@ import API from '../services/api'
 import BaseLayout from '../layouts/base'
 
 // Import components
-import PostCardList from '../components/postCardList'
+import RequestCardList from '../components/requestCardList'
 
 import '@fortawesome/fontawesome-svg-core/styles.css'
 import '../sass/main.scss'
@@ -20,7 +20,7 @@ const HomePage = (props) => {
         <title>Home</title>
         <link rel='icon' href='/favicon.ico' />
       </Head>
-      <PostCardList requests={props.requests} />
+      <RequestCardList requests={props.requests} />
     </div>
   )
 }

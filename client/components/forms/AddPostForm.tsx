@@ -2,7 +2,7 @@ import { useState, useEffect } from 'react'
 import { TextInput, SelectInput, TextArea } from "../inputs"
 import Button from "../buttons/button"
 
-const AddPostForm = () => {
+const AddRequestForm = () => {
     const [options, setOptions] = useState([])
 
     useEffect(() => {
@@ -20,4 +20,4 @@ const AddPostForm = () => {
     )
 }
 
-export default AddPostForm
+export default AddRequestForm
