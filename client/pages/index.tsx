@@ -13,7 +13,6 @@ import { RequestService } from '../services'
 import '@fortawesome/fontawesome-svg-core/styles.css'
 import '../sass/main.scss'
 
-
 const HomePage = (props) => {
   return (
     <div className="page homepage">

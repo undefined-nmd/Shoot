@@ -16,16 +16,15 @@ const links = [
 })
 
 const Nav = () => (
-  <nav className="nav__container">
+  <nav className="nav__container d-flex-center">
     <ul>
       {links.map(({ key, href, label }) => (
         <li className="nav__item" key={key}>
-
-          {(label === "home") ? <a href={href}> <FontAwesomeIcon icon="home" size="2x" />{label}</a> : ""}
-          {(label === "search") ? <a href={href}> <FontAwesomeIcon icon="search" size="2x" />{label}</a> : ""}
-          {(label === "request") ? <a className="add__request d-flex-center" href={href}><Add /> </a> : ""}
-          {(label === "timeline") ? <a href={href}> <FontAwesomeIcon icon="calendar-alt" size="2x" />{label}</a> : ""}
-          {(label === "profile") ? <a href={href}> <FontAwesomeIcon icon="user" size="2x" />{label}</a> : ""}
+          {(label === "home") ? <a href={href}><FontAwesomeIcon icon="home" size="2x" /></a> : ""}
+          {(label === "search") ? <a href={href}> <FontAwesomeIcon icon="search" size="2x" /></a> : ""}
+          {(label === "request") ? <a className="add__request d-flex-center" href={href}><Add /></a> : ""}
+          {(label === "timeline") ? <a href={href}> <FontAwesomeIcon icon="calendar-alt" size="2x" /></a> : ""}
+          {(label === "profile") ? <a href={href}> <FontAwesomeIcon icon="user" size="2x" /></a> : ""}
         </li>
       ))}
     </ul>
