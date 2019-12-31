@@ -1,14 +1,15 @@
 import PostCardItem from "./postCardItem"
 
 interface PostCardListProps {
-    posts: Array<any>
+    requests: Array<any>
 }
 
 const PostCardList: React.FC<PostCardListProps> = (props) => {
+    console.log(props.requests)
     return (
         <div className="card-list"> 
-            {props.posts.map((post) => {
-                return <PostCardItem key={ post._id } post={post} />
+            {props.requests.map((request) => {
+                return <PostCardItem key={ request._id } request={ request } />
             })}
         </div>
     )

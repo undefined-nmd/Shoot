@@ -46,6 +46,12 @@ class API {
         const data = await res.data
         return data
     }
+
+    static async getUserById(id: String) {
+        const res = await _axiosInstance.get(`user/${id}`)
+        const data = await res.data
+        return data
+    }
 }
 
 export default API

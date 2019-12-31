@@ -20,16 +20,16 @@ const HomePage = (props) => {
         <title>Home</title>
         <link rel='icon' href='/favicon.ico' />
       </Head>
-      <PostCardList posts={props.requests} />
+      <PostCardList requests={props.requests} />
     </div>
   )
 }
 
 HomePage.getInitialProps = async () => {
-  const data = await API.getRequests()
-
+  const requestData = await API.getRequests()
+  
   return {
-    requests: data
+    requests: requestData
   }
 }
 
