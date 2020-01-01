@@ -22,7 +22,7 @@ const HomePage = (props) => {
       </Head>
       <RequestCardList requests={props.requests} />
     </div>
-  )
+  );
 }
 
 HomePage.getInitialProps = async () => {

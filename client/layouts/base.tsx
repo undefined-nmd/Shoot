@@ -1,6 +1,8 @@
-import Header from '../components/header'
 // Import components
 import Nav from '../components/nav'
+import Header from '../components/header'
+import Drawer from '../components/drawer'
+import AddPostForm from '../components/forms/AddPostForm'
 
 //import icons
 import {
@@ -10,7 +12,7 @@ import {
   library
 } from '@fortawesome/fontawesome-svg-core'
 
-import { Component } from 'react'
+import { useState, Component } from 'react'
 
 library.add(faPlus, faArrowLeft, faHome, faSearch, faCalendarAlt, faUser)
 
@@ -18,7 +20,14 @@ library.add(faPlus, faArrowLeft, faHome, faSearch, faCalendarAlt, faUser)
 ** High Order Component that passes getInitialProps
 */
 const BaseLayout = Page => {
-  return class WithUserLayout extends Component {
+  return class WithUserLayout extends Component<{}, { showDrawer: Boolean }> {
+    constructor(props) {
+      super(props)
+      this.state = {
+        showDrawer: false
+      }
+    }
+
     static async getInitialProps(ctx) {
       let pageProps = {}
 
@@ -27,7 +36,7 @@ const BaseLayout = Page => {
           pageProps = await Page.getInitialProps(ctx)
         } 
       } catch (err) {
-        throw new Error(`Cannot invoke getInitalProps of ${Page}`)
+        throw new Error(`Cannot invoke getInitalProps of ${ Page }`)
       }
 
       return pageProps
@@ -38,9 +47,14 @@ const BaseLayout = Page => {
         <div>
             <Header />
             <main className="container">
-                <Page {...this.props} />
+                <Page { ...this.props } />
             </main>
             <Nav />
+            {this.state.showDrawer ? 
+              (<Drawer visible={ this.state.showDrawer }>
+                <AddPostForm  />
+              </Drawer>) :  null
+            }
         </div>
       )
     }
