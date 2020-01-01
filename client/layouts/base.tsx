@@ -1,3 +1,5 @@
+import { Component } from 'react'
+
 // Import components
 import Nav from '../components/nav'
 import Header from '../components/header'
@@ -5,16 +7,10 @@ import Drawer from '../components/drawer'
 import AddPostForm from '../components/forms/AddPostForm'
 
 //import icons
-import {
-  faPlus, faArrowLeft, faHome, faSearch, faCalendarAlt, faUser,
-} from '@fortawesome/free-solid-svg-icons'
-import {
-  library
-} from '@fortawesome/fontawesome-svg-core'
+import { faPlus, faArrowLeft, faHome, faSearch, faCalendarAlt, faUser, faTimes } from '@fortawesome/free-solid-svg-icons'
+import { library } from '@fortawesome/fontawesome-svg-core'
 
-import { useState, Component } from 'react'
-
-library.add(faPlus, faArrowLeft, faHome, faSearch, faCalendarAlt, faUser)
+library.add(faPlus, faArrowLeft, faHome, faSearch, faCalendarAlt, faUser, faTimes)
 
 /*
 ** High Order Component that passes getInitialProps

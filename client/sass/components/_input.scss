@@ -1,6 +1,9 @@
 .form-control {
     z-index: 1;
     position: relative;
+    display: flex;
+    align-items: flex-start;
+    flex-wrap: wrap;
     width: 100%;
     padding: $padding-md;
     margin-top: $padding-md;
