@@ -5,6 +5,7 @@ import tagRouter from './tag.route';
 import liveRequestRouter from './liveRequest.route';
 import userRouter from './user.route';
 import roleRouter from './role.route';
+import commentRouter from './comment.route';
 
 const express = require('express');
 
@@ -17,6 +18,7 @@ router.use('/tag', tagRouter);
 router.use('/role', roleRouter);
 router.use('/liveRequest', liveRequestRouter);
 router.use('/user', userRouter);
+router.use('/comment', commentRouter);
 
 
 // const routes = { Request };

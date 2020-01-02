@@ -5,6 +5,7 @@ import LiveRequestController from './liveRequest.controller';
 import TagController from './tag.controller';
 import RoleController from './role.controller';
 import UserController from './user.controller';
+import CommentController from './comment.controller';
 
 export {
   SubjectController,
@@ -14,4 +15,5 @@ export {
   TagController,
   RoleController,
   UserController,
+  CommentController,
 };

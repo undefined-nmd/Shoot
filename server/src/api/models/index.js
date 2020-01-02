@@ -5,6 +5,7 @@ import Role from './role.model';
 import Subject from './subject.model';
 import Tag from './tag.model';
 import User from './user.model';
+import Comment from './comment.model';
 
 
 export {
@@ -14,5 +15,6 @@ export {
   Role,
   Subject,
   Tag,
-  User
+  User,
+  Comment
 };
