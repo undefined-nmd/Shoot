@@ -5,9 +5,10 @@ const SelectInput = (props) => (
         }
         <select
             className="form-control"
+            defaultValue={props.placeholder}
             {...props}
         >
-            <option value="" disabled selected>{props.placeholder}</option>
+            <option value={props.placeholder} disabled>{props.placeholder}</option>
             {props.options.map(option => {
                 return (
                     <option 

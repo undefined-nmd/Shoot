@@ -5,7 +5,7 @@ class RequestController {
   index = async(req, res, next) => {
     try {
       let requests = null
-      requests = await Request.find().exec()
+      requests = await Request.find().populate('student_id', 'first_name last_name profile_img').populate('subject_id', 'name').exec()
 
       if (requests === undefined || requests === null) {
         return res.status(404).json({

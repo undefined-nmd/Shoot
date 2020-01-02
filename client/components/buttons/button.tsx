@@ -1,5 +1,5 @@
 const Button = (props) => (
-    <button className="btn btn--primary">
+    <button type="submit" className="btn btn--primary" {...props}>
         {props.label}
     </button>
 )
