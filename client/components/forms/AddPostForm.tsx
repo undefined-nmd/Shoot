@@ -8,7 +8,7 @@ const AddRequestForm = () => {
     const [options, setOptions] = useState([])
     // Temporary hardcoded user ID
     const [currentUser, setCurrentUser] = useState('5e0a5c0fb2a65d540c6f7998')
-    const [inputs, setInputs] = useState({})
+    const [inputs, setInputs] = useState<any>({}) 
 
     useEffect(() => {
         setOptions([...options, 'Web Development II', 'Multimedia', 'Mobile Development I'])
@@ -19,15 +19,12 @@ const AddRequestForm = () => {
 
     const handleSubmit = (e) => {
         e.preventDefault() 
-        
-        const request = {
-            message: 'Help mij CORS',
-            student_id: '5e0a5c0fb2a65d540c6f7998',
-            subject_id: '5e0a5e2cb2a65d540c6f79a6'
-        }   
 
-        RequestService.createRequest(JSON.stringify(request))
-        RequestService.createRequest(request)
+        RequestService.createRequest({
+            student_id: inputs.student_id,
+            message: inputs.message,
+            subject_id: '5e0a5e2cb2a65d540c6f79a6'            
+        })
     }
     
     const handleInputChange = (e) => {

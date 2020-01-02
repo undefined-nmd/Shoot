@@ -48,7 +48,7 @@ const BaseLayout = Page => {
             <Nav />
             {this.state.showDrawer ? 
               (<Drawer visible={ this.state.showDrawer }>
-                <AddPostForm  />
+                <AddPostForm />
               </Drawer>) :  null
             }
         </div>

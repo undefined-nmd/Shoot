@@ -1,11 +1,11 @@
 import { useState, useEffect, CSSProperties } from 'react'
 
 interface DrawerProps {
-    height?: String,
+    height?: string,
     visible: Boolean
 }
 
-const Drawer = (props) => {
+const Drawer: React.FC<DrawerProps> = (props) => {
     const [showSheet, setShowSheet] = useState<Boolean>(props.visible)
 
     const handleClick = () => {

@@ -8,7 +8,7 @@ import BaseLayout from '../layouts/base'
 import RequestCardList from '../components/requestCardList'
 
 // Import services
-import { RequestService } from '../services'
+import { RequestService, SubjectService } from '../services'
 
 import '@fortawesome/fontawesome-svg-core/styles.css'
 import '../sass/main.scss'
@@ -26,10 +26,12 @@ const HomePage = (props) => {
 }
 
 HomePage.getInitialProps = async () => {
-  const requestData = await RequestService.getRequests()
-  
+  const requests = await RequestService.getRequests()
+  const subjects = await SubjectService.getSubjects()
+
   return {
-    requests: requestData
+    requests,
+    subjects
   }
 }
 
