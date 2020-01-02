@@ -5,6 +5,7 @@ const mongoose = require('mongoose');
 const swaggerUi = require('swagger-ui-express');
 const swaggerJSDoc = require('swagger-jsdoc');
 const path = require('path');
+const cors = require('cors');
 
 require('dotenv').config();
 
@@ -13,22 +14,23 @@ const api = require('./api');
 
 const app = express();
 const options = {
-    definition: {
-        openapi: '3.0.0', // Specification (optional, defaults to swagger: '2.0')
-        info: {
-          title: 'Shoot! API', // Title (required)
-          version: '1.0.0', // Version (required)
-          description: 'API for Shoot! @ Artevelde'
-        },
-      },
-      host: 'localhost:1234',
-      basePath: 'api/',
-      schemes: 'https',
-      // Path to the API docs
-      apis: [path.join(__dirname, './api/routes/*.js'), path.join(__dirname, './api/models/*.js')],
-}
-const swaggerSpec = swaggerJSDoc(options)
+  definition: {
+    openapi: '3.0.0', // Specification (optional, defaults to swagger: '2.0')
+    info: {
+      title: 'Shoot! API', // Title (required)
+      version: '1.0.0', // Version (required)
+      description: 'API for Shoot! @ Artevelde'
+    },
+  },
+  host: 'localhost:1234',
+  basePath: 'api/',
+  schemes: 'https',
+  // Path to the API docs
+  apis: [path.join(__dirname, './api/routes/*.js'), path.join(__dirname, './api/models/*.js')],
+};
+const swaggerSpec = swaggerJSDoc(options);
 
+app.use(cors());
 app.use(morgan('dev'));
 app.use(helmet());
 app.use('/api-docs', swaggerUi.serve, swaggerUi.setup(swaggerSpec));
@@ -53,7 +55,7 @@ db.on('error', console.error.bind(console, 'MongoDB connection error:'));
 const port = 1234;
 
 app.listen(port, () => {
-    console.log('Server is up and running on port numner ' + port);
+  console.log(`Server is up and running on port numner ${port}`);
 });
 
 module.exports = app;
