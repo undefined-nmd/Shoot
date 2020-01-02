@@ -1,4 +1,4 @@
-import * as React from 'react'
+import { useState } from 'react'
 import Head from 'next/head'
 
 // Import layout

@@ -20,7 +20,7 @@ const BaseLayout = Page => {
     constructor(props) {
       super(props)
       this.state = {
-        showDrawer: false
+        showDrawer: true
       }
     }
 

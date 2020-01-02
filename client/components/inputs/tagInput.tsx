@@ -1,9 +1,11 @@
-import { useState } from 'react'
+import { useState, ChangeEvent } from 'react'
 
 import Tag from "../tag";
 
 interface TagInputProps {
-    selectedTags: any 
+    selectedTags: any,
+    name: string,
+    onChange(event: ChangeEvent<HTMLInputElement>): void
 }
 
 const TagInput: React.FC<TagInputProps> = (props) => {
@@ -34,8 +36,11 @@ const TagInput: React.FC<TagInputProps> = (props) => {
                 </ul>
                 <input 
                     type="text"
+                    id={props.name}
                     placeholder="Press enter to add a tag" 
                     onKeyUp={(event) => addTags(event)}
+                    onChange={props.onChange}
+                    {...props}
                 />
             </div>
         </div>

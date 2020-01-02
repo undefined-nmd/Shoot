@@ -11,6 +11,8 @@ const TextArea = (props) => (
         }
         <textarea 
             className="form-control"
+            rows={props}
+            id={props.name}
             {...props}
         />
     </div>
