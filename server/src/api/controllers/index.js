@@ -6,6 +6,7 @@ import TagController from './tag.controller';
 import RoleController from './role.controller';
 import UserController from './user.controller';
 import CommentController from './comment.controller';
+import VoteController from './vote.controller';
 
 export {
   SubjectController,
@@ -16,4 +17,5 @@ export {
   RoleController,
   UserController,
   CommentController,
+  VoteController
 };

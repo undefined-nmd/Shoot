@@ -6,7 +6,7 @@ import Subject from './subject.model';
 import Tag from './tag.model';
 import User from './user.model';
 import Comment from './comment.model';
-
+import Vote from './vote.model';
 
 export {
   Request,
@@ -16,5 +16,6 @@ export {
   Subject,
   Tag,
   User,
-  Comment
+  Comment,
+  Vote
 };
