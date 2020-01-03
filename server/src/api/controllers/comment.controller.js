@@ -70,7 +70,7 @@ class CommentController {
     try {
       const { id } = req.params
       const commentUpdate = req.body
-      const comment = await Commeny.findByIdAndUpdate(id, commentUpdate, { new: true }).exec()
+      const comment = await Comment.findByIdAndUpdate(id, commentUpdate, { new: true }).exec()
 
       if(!comment) {
         return res.status(404).json({
