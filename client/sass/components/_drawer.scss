@@ -6,11 +6,11 @@
     width: 100%;
     height: auto;
     max-height: 100vh;
-    overflow: auto;
+    overflow-y: hidden;
     background-color: #FFF;
     border-radius: 20px 20px 0 0;
     transition: bottom .6s ease-in-out;
-
+    
     &__content {
         padding: $padding-md;
         border-radius: 20px 20px 0 0;

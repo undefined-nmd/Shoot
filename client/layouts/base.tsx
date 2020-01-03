@@ -20,7 +20,8 @@ const BaseLayout = Page => {
     constructor(props) {
       super(props)
       this.state = {
-        showDrawer: true
+        showDrawer: false
+
       }
     }
 
@@ -38,6 +39,12 @@ const BaseLayout = Page => {
       return pageProps
     }
 
+    toggleDrawer = () => {
+      this.setState({
+        showDrawer: !this.state.showDrawer
+      })
+    }
+
     render() {
       return (
         <div>
@@ -45,12 +52,10 @@ const BaseLayout = Page => {
             <main className="container">
                 <Page { ...this.props } />
             </main>
-            <Nav />
-            {this.state.showDrawer ? 
-              (<Drawer visible={ this.state.showDrawer }>
-                <AddPostForm />
-              </Drawer>) :  null
-            }
+            <Nav onToggleDrawer={this.toggleDrawer} />
+            <Drawer visible={ this.state.showDrawer } onToggleDrawer={this.toggleDrawer}>
+              <AddPostForm />
+            </Drawer>
         </div>
       )
     }

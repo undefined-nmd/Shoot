@@ -8,7 +8,7 @@ import BaseLayout from '../layouts/base'
 import RequestCardList from '../components/requestCardList'
 
 // Import services
-import { RequestService, SubjectService } from '../services'
+import { RequestService, SubjectService, CommentService } from '../services'
 
 import '@fortawesome/fontawesome-svg-core/styles.css'
 import '../sass/main.scss'
@@ -20,7 +20,7 @@ const HomePage = (props) => {
         <title>Home</title>
         <link rel='icon' href='/favicon.ico' />
       </Head>
-      <RequestCardList requests={props.requests} />
+      <RequestCardList requests={props.requests} comments={props.comments} />
     </div>
   );
 }
@@ -28,10 +28,12 @@ const HomePage = (props) => {
 HomePage.getInitialProps = async () => {
   const requests = await RequestService.getRequests()
   const subjects = await SubjectService.getSubjects()
+  const comments = await CommentService.getComments()
 
   return {
     requests,
-    subjects
+    subjects,
+    comments
   }
 }
 
