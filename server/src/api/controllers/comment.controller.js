@@ -28,6 +28,7 @@ class CommentController {
     try {
       const comment = new Comment({
         student_id: req.body.student_id,
+        request_id: req.body.request_id,
         message: req.body.message,
         upvote_count: req.body.upvote_count
       })
@@ -49,7 +50,7 @@ class CommentController {
       const { id } = req.params
       const comment = await Comment.findById(id).exec()
 
-      if (!item) {
+      if (!comment) {
         return res.status(404).json({
           message: `Could not find a comment with id ${id}`
         })

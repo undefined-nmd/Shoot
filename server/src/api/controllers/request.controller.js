@@ -50,7 +50,7 @@ class RequestController {
       const { id } = req.params
       const request = await Request.findById(id).exec()
 
-      if (!item) {
+      if (!request) {
         return res.status(404).json({
           message: `Could not find a request with id ${id}`
         })

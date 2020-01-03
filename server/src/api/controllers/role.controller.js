@@ -47,7 +47,7 @@ class RoleController {
       const { id } = req.params
       const role = await Role.findById(id).exec()
 
-      if (!item) {
+      if (!role) {
         return res.status(404).json({
           message: `Could not find a role with id ${id}`
         })
