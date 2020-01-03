@@ -1,4 +1,4 @@
-import { _axiosInstance } from './api'
+import { _axiosInstance } from './api.service'
 
 class CommentService {
     static async getComments() {

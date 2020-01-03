@@ -6,6 +6,7 @@ import liveRequestRouter from './liveRequest.route';
 import userRouter from './user.route';
 import roleRouter from './role.route';
 import commentRouter from './comment.route';
+import voteRouter from './vote.route';
 
 const express = require('express');
 
@@ -19,7 +20,7 @@ router.use('/role', roleRouter);
 router.use('/liveRequest', liveRequestRouter);
 router.use('/user', userRouter);
 router.use('/comment', commentRouter);
-
+router.use('/vote', voteRouter)
 
 // const routes = { Request };
 
