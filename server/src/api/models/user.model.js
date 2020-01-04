@@ -12,6 +12,7 @@ const { Schema } = mongoose;
  *        - first_name
  *        - last_name
  *        - email
+ *         - password
  *        - profile_img
  *        - role_id
  *      properties:
@@ -25,6 +26,10 @@ const { Schema } = mongoose;
  *          type: string
  *          format: email
  *          description: email of user, needs to be unique
+ *        password:
+ *          type: string
+ *          format: password
+ *          description: user password
  *        score:
  *          type: number
  *          description: current use score.
@@ -41,6 +46,7 @@ const { Schema } = mongoose;
  *        first_name: Jan
  *        last_name: Janssens
  *        email: 'jan.janssens@provider.be'
+ *        password: 'secret'
  *        score: 120
  *        profile_img: './images/users/1/avatar.jpg'
  *        role_id: 5e0a00d302353a2b14e06aca
@@ -51,6 +57,7 @@ const UserSchema = new Schema({
   first_name: { type: String, required: true, max: 64 },
   last_name: { type: String, required: true, max: 64 },
   email: { type: String, required: true },
+  password: { type: String, required: true },
   score: { type: Number, min: 0 },
   profile_img: { type: String, required: true },
   role_id: { type: Schema.Types.ObjectId, required: true, ref: 'Role' },

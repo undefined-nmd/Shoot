@@ -6,8 +6,10 @@ const swaggerUi = require('swagger-ui-express');
 const swaggerJSDoc = require('swagger-jsdoc');
 const path = require('path');
 const cors = require('cors');
+const passport = require('passport');
 
 require('dotenv').config();
+require('./config/passport')(passport);
 
 const middlewares = require('./middlewares');
 const api = require('./api');
@@ -34,6 +36,8 @@ app.use(cors());
 app.use(morgan('dev'));
 app.use(helmet());
 app.use('/api-docs', swaggerUi.serve, swaggerUi.setup(swaggerSpec));
+
+app.use(passport.initialize());
 
 app.use(express.urlencoded({ extended: true }));
 app.use(express.json());

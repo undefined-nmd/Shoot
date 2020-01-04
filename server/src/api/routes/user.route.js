@@ -42,8 +42,7 @@ const userRouter = express.Router();
  *            schema:
  *              $ref: '#/components/schemas/User'
  */
-userRouter.get('/', userController.index)
-  .post('/', userController.create);
+userRouter.get('/', userController.index);
 /**
  * @swagger
  * /api/v1/user/{id}:
