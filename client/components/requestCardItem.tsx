@@ -2,14 +2,14 @@ import * as React from 'react'
 import Icon from "./icon"
 
 interface RequestCardProps {
-    request?: any
+    request?: any,
+    comments?: any
 }
 
-const RequestCardItem: React.FC<RequestCardProps> = ({ request }) => {
+const RequestCardItem: React.FC<RequestCardProps> = ({ request, comments }) => {
     const getFullName = () => {
         return request.student_id.first_name + ' ' + request.student_id.last_name
     }
-
     return (
         <section className="card">
             <div className="card__author d-flex">
@@ -29,10 +29,12 @@ const RequestCardItem: React.FC<RequestCardProps> = ({ request }) => {
                     <span className="card__meta-number">{ request.upvote_count }</span>
                     <Icon name="arrow-up" />
                 </div>
-                <div className="card__meta-item">
-                    <span className="card__meta-number">10</span>
-                    <Icon name="comment" />
-                </div>
+                {comments && 
+                    <div className="card__meta-item">
+                        <span className="card__meta-number">{ comments.length }</span>
+                        <Icon name="comment" />
+                    </div>
+                }   
             </div>
         </section>
     )

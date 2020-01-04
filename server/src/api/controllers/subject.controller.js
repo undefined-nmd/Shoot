@@ -48,7 +48,7 @@ class SubjectController {
       const { id } = req.params
       const subject = await Subject.findById(id).exec()
 
-      if (!item) {
+      if (!subject) {
         return res.status(404).json({
           message: `Could not find a subject with id ${id}`
         })

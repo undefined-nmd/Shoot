@@ -47,7 +47,7 @@ class LocationController {
       const { id } = req.params
       const location = await Location.findById(id).exec()
 
-      if (!item) {
+      if (!location) {
         return res.status(404).json({
           message: `Could not find a location with id ${id}`
         })

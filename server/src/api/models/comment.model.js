@@ -30,6 +30,7 @@ const { Schema } = mongoose;
  */
 const CommentSchema = new Schema({
   student_id: { type: Schema.Types.ObjectId, required: true, ref: 'User' },
+  request_id: { type: Schema.Types.ObjectId, required: true, ref: 'Request' },
   message: { type: String, required: true, max: 1000 },
   upvote_count: { type: Number, min: 0, default: 0 },
 });

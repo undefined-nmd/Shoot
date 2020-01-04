@@ -7,6 +7,8 @@ import userRouter from './user.route';
 import roleRouter from './role.route';
 import commentRouter from './comment.route';
 import authRouter from './auth.route';
+import voteRouter from './vote.route';
+
 
 const express = require('express');
 const passport = require('passport');
@@ -21,6 +23,8 @@ router.use('/role', passport.authenticate('jwt', { session: false }), roleRouter
 router.use('/liveRequest', passport.authenticate('jwt', { session: false }), liveRequestRouter);
 router.use('/user', passport.authenticate('jwt', { session: false }), userRouter);
 router.use('/comment', passport.authenticate('jwt', { session: false }), commentRouter);
+router.use('/vote', passport.authenticate('jwt', { session: false }), voteRouter);
 router.use('/auth', authRouter);
+
 
 module.exports = router;
