@@ -1,4 +1,5 @@
 import { Component } from 'react'
+import Router from 'next/router'
 
 // Import components
 import Nav from '../components/nav'
@@ -6,7 +7,10 @@ import Header from '../components/header'
 import Drawer from '../components/drawer'
 import AddPostForm from '../components/forms/AddPostForm'
 
-//import icons
+// Import services
+import { AuthService } from '../services'
+
+// Import icons
 import { faPlus, faArrowLeft, faHome, faSearch, faCalendarAlt, faUser, faTimes } from '@fortawesome/free-solid-svg-icons'
 import { library } from '@fortawesome/fontawesome-svg-core'
 
@@ -21,7 +25,12 @@ const BaseLayout = Page => {
       super(props)
       this.state = {
         showDrawer: false
+      }
+    }
 
+    componentDidMount() {
+      if(!AuthService.isAuthenticated()) {
+        Router.push('/login')
       }
     }
 
@@ -33,7 +42,7 @@ const BaseLayout = Page => {
           pageProps = await Page.getInitialProps(ctx)
         } 
       } catch (err) {
-        throw new Error(`Cannot invoke getInitalProps of ${ Page }`)
+        console.log(err)
       }
 
       return pageProps
@@ -49,7 +58,7 @@ const BaseLayout = Page => {
       return (
         <div>
             <Header />
-            <main className="container">
+            <main className="container--spacing">
                 <Page { ...this.props } />
             </main>
             <Nav onToggleDrawer={this.toggleDrawer} />

@@ -20,7 +20,9 @@ const HomePage = (props) => {
         <title>Home</title>
         <link rel='icon' href='/favicon.ico' />
       </Head>
-      <RequestCardList requests={props.requests} comments={props.comments} />
+      {props.request && (
+        <RequestCardList requests={props.requests} comments={props.comments} />
+      )}
     </div>
   );
 }
