@@ -1,28 +1,53 @@
 import { _axiosInstance } from './api.service'
+import Cookies from 'js-cookie'
+import jwtDecode from 'jwt-decode'
+
+export type DecodedToken = {
+    readonly email: string
+    readonly exp: number
+}
+
+const TOKEN_STRING: string = 'token'
 
 class AuthService {
+    readonly decodedToken: DecodedToken
+
     static async login(body: Object) {
         const res = await _axiosInstance.post('auth/login', body)
-        const { token } = res.data
-        this.setToken(token) 
-        return token
+        this.setToken(res.data.token)
     }
 
     static logout() {
-        localStorage.removeItem('token')
+        Cookies.remove(TOKEN_STRING)
     }
 
-    static isAuthenticated() {
+    static getDecodedToken() {
         const token = this.getToken()
-        return token && token !== null
+
+        if(token && token !== null && token !== undefined) {
+            const decodedToken: DecodedToken = jwtDecode(token)
+            return decodedToken
+        }
+    }
+    
+    static isAuthenticated(): boolean {
+        return this.getToken() !== undefined && this.getToken() !== null
+    }
+
+    static expiresAt(): Date {
+        return new Date(this.getDecodedToken().exp * 1000)
+    }
+
+    static isExpired(): boolean {
+        return new Date > this.expiresAt()
     }
 
     static getToken() {
-        return localStorage.getItem('token')
+        return Cookies.get(TOKEN_STRING)
     }
 
     static setToken(token: string) {
-        localStorage.setItem('token', token)
+        Cookies.set(TOKEN_STRING, token, { expires: 1 })
     }
 }
 

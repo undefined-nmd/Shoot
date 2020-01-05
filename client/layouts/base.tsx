@@ -1,5 +1,6 @@
 import { Component } from 'react'
 import Router from 'next/router'
+import cookie from 'cookie'
 
 // Import components
 import Nav from '../components/nav'
@@ -9,10 +10,12 @@ import AddPostForm from '../components/forms/AddPostForm'
 
 // Import services
 import { AuthService } from '../services'
+import { _axiosInstance } from '../services/api.service'
 
 // Import icons
 import { faPlus, faArrowLeft, faHome, faSearch, faCalendarAlt, faUser, faTimes } from '@fortawesome/free-solid-svg-icons'
 import { library } from '@fortawesome/fontawesome-svg-core'
+import axios from 'axios';
 
 library.add(faPlus, faArrowLeft, faHome, faSearch, faCalendarAlt, faUser, faTimes)
 
@@ -37,15 +40,20 @@ const BaseLayout = Page => {
     static async getInitialProps(ctx) {
       let pageProps = {}
 
+      const cookies = cookie.parse(ctx.req.headers.cookie)
+      _axiosInstance.defaults.headers.common['Authorization'] = `Bearer ${cookies.token}`
+
       try {
         if (Page.getInitialProps) {
           pageProps = await Page.getInitialProps(ctx)
         } 
       } catch (err) {
-        console.log(err)
+        console.log(`Couldn't fetch page props from ${Page.getInitialProps}`)
       }
 
-      return pageProps
+      return {
+        ...pageProps
+      }
     }
 
     toggleDrawer = () => {

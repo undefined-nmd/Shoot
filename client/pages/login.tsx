@@ -14,13 +14,12 @@ import { AuthService } from '../services'
 
 import '../sass/main.scss'
 
-
 const LoginPage = () => {
     const [inputs, setInputs] = useState<any>({})
 
     const handleSubmit = (e) => {
         e.preventDefault()
-        AuthService.login(inputs).then(res => {
+        AuthService.login(inputs).then(() => {
             Router.push('/')  
         })
     }
