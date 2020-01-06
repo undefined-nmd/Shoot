@@ -1,28 +1,40 @@
-import * as React from 'react'
+import { useState } from 'react'
 import Head from 'next/head'
-import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 
 // Import layout
-import BaseLayout from '../layouts/base';
-
+import BaseLayout from '../layouts/base'
 
 // Import components
-import Nav from '../components/nav'
-import PostCardList from '../components/postCardList'
+import RequestCardList from '../components/requestCardList'
+
+// Import services
+import { RequestService, SubjectService, CommentService } from '../services'
 
 import '@fortawesome/fontawesome-svg-core/styles.css'
-
 import '../sass/main.scss'
 
-const HomePage = () => (
-  <div className="page homepage">
-    <Head>
-      <title>Home</title>
-      <link rel='icon' href='/favicon.ico' />
-    </Head>
-    {/* <Nav /> */}
-    <PostCardList />
-  </div>
-)
+const HomePage = (props) => {
+  return (
+    <div className="page homepage">
+      <Head>
+        <title>Home</title>
+        <link rel='icon' href='/favicon.ico' />
+      </Head>
+      {props.requests && 
+        <RequestCardList requests={props.requests} comments={props.comments} />
+      }
+    </div>
+  );
+}
+
+HomePage.getInitialProps = async () => {
+    const [requests, subjects, comments] = await Promise.all([RequestService.getRequests(), SubjectService.getSubjects(), CommentService.getComments()])
+
+    return {
+      requests,
+      subjects,
+      comments
+    }
+}
 
 export default BaseLayout(HomePage)

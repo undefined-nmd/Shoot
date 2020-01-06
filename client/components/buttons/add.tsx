@@ -16,7 +16,8 @@ class Add extends React.Component<AddProps, AddState> {
         return (
             <div className="button__add">
                 <FontAwesomeIcon icon="plus" size="2x" />
-            </div>);
+            </div>
+        )
     }
 }
 

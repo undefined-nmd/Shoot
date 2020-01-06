@@ -1,5 +1,9 @@
-const Button = (props) => (
-    <button className="btn btn--primary">
+interface ButtonProps {
+    label: string
+}
+
+const Button: React.FC<ButtonProps> = (props) => (
+    <button type="submit" className="btn btn--primary" {...props}>
         {props.label}
     </button>
 )

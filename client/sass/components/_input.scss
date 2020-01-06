@@ -2,7 +2,10 @@
     z-index: 1;
     position: relative;
     display: flex;
+    align-items: flex-start;
+    flex-wrap: wrap;
     width: 100%;
+    padding: $padding-md;
     margin-top: $padding-md;
     background: #FFF;
     border-radius: $border-radius-sm; 
@@ -10,15 +13,11 @@
     color: $color-input-text;
 
     &__icon {
-        display: flex;
-        justify-content: center;
-        align-items: center;
-        padding: $padding-md 0 $padding-md $padding-md;
+        padding-right: $padding-md;
     }
 
     input {
         flex: 1;
-        padding: $padding-md;
         font-size: $font-size;
         // line-height: $line-height;
 
@@ -30,10 +29,8 @@
 
 .search-control {
     margin: 0;
-
-    input {
-        padding: $padding-xs;
-    }
+    padding: $padding-xs;
+    box-shadow: none;
 }
 
 .input__icon {
