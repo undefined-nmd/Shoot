@@ -13,17 +13,15 @@ class AuthService {
     readonly decodedToken: DecodedToken
 
     static async login(body: Object) {
-        const res = await _axiosInstance.post('auth/login', body)
-        this.setToken(res.data.token)
+        const { data } = await _axiosInstance.post('auth/login', body)
+        this.setToken(data.token)
     }
 
     static logout() {
         Cookies.remove(TOKEN_STRING)
     }
 
-    static getDecodedToken() {
-        const token = this.getToken()
-
+    static getDecodedToken(token: string) {
         if(token && token !== null && token !== undefined) {
             const decodedToken: DecodedToken = jwtDecode(token)
             return decodedToken
@@ -35,7 +33,7 @@ class AuthService {
     }
 
     static expiresAt(): Date {
-        return new Date(this.getDecodedToken().exp * 1000)
+        return new Date(this.getDecodedToken(this.getToken()).exp * 1000)
     }
 
     static isExpired(): boolean {

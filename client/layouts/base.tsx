@@ -1,6 +1,5 @@
 import { Component } from 'react'
 import Router from 'next/router'
-import cookie from 'cookie'
 
 // Import components
 import Nav from '../components/nav'
@@ -10,12 +9,12 @@ import AddPostForm from '../components/forms/AddPostForm'
 
 // Import services
 import { AuthService } from '../services'
-import { _axiosInstance } from '../services/api.service'
+import { _axiosInstance, setAuthorizationHeader } from '../services/api.service'
+import { parseCookie } from '../utils/helper'
 
 // Import icons
 import { faPlus, faArrowLeft, faHome, faSearch, faCalendarAlt, faUser, faTimes } from '@fortawesome/free-solid-svg-icons'
 import { library } from '@fortawesome/fontawesome-svg-core'
-import axios from 'axios';
 
 library.add(faPlus, faArrowLeft, faHome, faSearch, faCalendarAlt, faUser, faTimes)
 
@@ -23,7 +22,7 @@ library.add(faPlus, faArrowLeft, faHome, faSearch, faCalendarAlt, faUser, faTime
 ** High Order Component that passes getInitialProps
 */
 const BaseLayout = Page => {
-  return class WithUserLayout extends Component<{}, { showDrawer: Boolean }> {
+  return class WithUserLayout extends Component<{}, { showDrawer: boolean }> {
     constructor(props) {
       super(props)
       this.state = {
@@ -40,8 +39,8 @@ const BaseLayout = Page => {
     static async getInitialProps(ctx) {
       let pageProps = {}
 
-      const cookies = cookie.parse(ctx.req.headers.cookie)
-      _axiosInstance.defaults.headers.common['Authorization'] = `Bearer ${cookies.token}`
+      const cookies = parseCookie(ctx)
+      setAuthorizationHeader(cookies.token)
 
       try {
         if (Page.getInitialProps) {
@@ -52,7 +51,8 @@ const BaseLayout = Page => {
       }
 
       return {
-        ...pageProps
+        ...pageProps,
+        currentUser: AuthService.getDecodedToken(cookies.token)
       }
     }
 
