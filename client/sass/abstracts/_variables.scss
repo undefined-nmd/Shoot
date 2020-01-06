@@ -24,7 +24,7 @@ $padding-lg: 2.4rem;
 /*
 * Font Variables
 */
-$font-family: 'Lato', sans-serif;
+$font-family: 'Lato',sans-serif;
 
 $font-size-xs: 1.2rem;
 $font-size-sm: 1.4rem;
@@ -42,6 +42,6 @@ $line-height: 1.6;
 * Other
 */
 
-$box-shadow: 0 2px 4px $color-box-shadow;
-$border-radius: 32px;
+$box-shadow: 0 1px 0 #EFEFEF;
+$border-radius: 50%;
 $border-radius-sm: 5px;
