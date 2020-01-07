@@ -132,6 +132,41 @@ class RequestController {
     }
   }
 
+  search = async(req, res, next) => {
+    try {
+
+      let requests = null
+
+      if(req.query.searchQuery){
+          requests = await Request.find({$text: {$search: req.query.searchQuery}})
+          .populate('student_id', 'first_name last_name profile_img')
+          .populate('subject_id', 'name')
+          .exec()
+      }else{
+        return res.status(404).json({
+          message: "No search string was provided"
+        })
+      }
+      
+
+      if (requests === undefined || requests === null) {
+        return res.status(404).json({
+          message: "No requests were found in the database"
+        })
+      }
+
+      return res.status(200).json(requests)
+
+    } catch (err) {
+      if(err) {
+        return next(err)
+      }
+      return res.status(500).json({
+        message: "An error occured while fetching requests"
+      })
+    }
+  }
+
 }
 
 export default RequestController

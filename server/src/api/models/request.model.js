@@ -45,4 +45,7 @@ const RequestSchema = new Schema({
   tags: [{ type: Schema.Types.ObjectId, ref: 'Tag' }]
 });
 
+RequestSchema.index({ message: 'text' });
+
+
 export default mongoose.model('Request', RequestSchema);

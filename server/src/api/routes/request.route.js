@@ -17,6 +17,12 @@ const requestRouter = express.Router();
  * /api/v1/request:
  *  get:
  *    tags: [Requests]
+ *    parameters:
+ *      - name: page
+ *        description: Optional parameter for pagination
+ *        in: query
+ *        required: false
+ *        type: int
  *    summary: Get all requests.
  *    produces:
  *      - application/json
@@ -44,6 +50,33 @@ const requestRouter = express.Router();
  */
 requestRouter.get('/', requestController.index)
   .post('/', requestController.create);
+
+/**
+ * @swagger
+ *
+ * /api/v1/request/search:
+ *  get:
+ *    tags: [Requests]
+ *    parameters:
+ *      - name: searchQuery
+ *        description: String that is being searched for.
+ *        in: query
+ *        required: true
+ *        type: string
+ *    summary: Get all requests whose message matches the searchQuery parameter. ( /api/v1/request/search?seachQuery=WOT )
+ *    produces:
+ *      - application/json
+ *    responses:
+ *      200:
+ *        description: Search results
+ *        content:
+ *          application/json:
+ *            type: array
+ *            schema:
+ *              $ref: '#/components/schemas/Request'
+ *
+ */
+requestRouter.get('/search', requestController.search);
 /**
  * @swagger
  * /api/v1/request/{id}:
