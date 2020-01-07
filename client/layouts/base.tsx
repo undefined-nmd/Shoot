@@ -6,6 +6,7 @@ import Nav from '../components/nav'
 import Header from '../components/header'
 import Drawer from '../components/drawer'
 import AddPostForm from '../components/forms/AddPostForm'
+import FilterForm from '../components/forms/FilterForm'
 
 // Import services
 import { AuthService } from '../services'
@@ -22,11 +23,12 @@ library.add(faPlus, faArrowLeft, faHome, faSearch, faCalendarAlt, faUser, faTime
 ** High Order Component that passes getInitialProps
 */
 const BaseLayout = Page => {
-  return class WithUserLayout extends Component<{}, { showDrawer: boolean }> {
+  return class WithUserLayout extends Component<{}, { showDrawer: boolean, isFilter: boolean }> {
     constructor(props) {
       super(props)
       this.state = {
-        showDrawer: false
+        showDrawer: false,
+        isFilter: false
       }
     }
 
@@ -62,16 +64,28 @@ const BaseLayout = Page => {
       })
     }
 
+    renderDrawerContent = () => {
+      
+    }
+
     render() {
+      let drawerContent
+
+      if(this.state.isFilter) {
+        drawerContent = <FilterForm />
+      } else {
+        drawerContent = <AddPostForm />
+      }
+
       return (
         <div>
-            <Header />
+            <Header onToggleFilter={this.toggleDrawer} />
             <main className="container--spacing">
                 <Page { ...this.props } />
             </main>
             <Nav onToggleDrawer={this.toggleDrawer} />
             <Drawer visible={ this.state.showDrawer } onToggleDrawer={this.toggleDrawer}>
-              <AddPostForm />
+              {drawerContent}
             </Drawer>
         </div>
       )

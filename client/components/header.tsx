@@ -2,7 +2,7 @@ import { SearchInput } from './inputs'
 import Icon from './icon'
 import Logo from './logo'
 
-const Header: React.FC = () => (
+const Header = ({ onToggleFilter }) => (
     <section className="header d-flex">
         <div className="header__logo d-flex-center">
             <Logo />
@@ -10,7 +10,7 @@ const Header: React.FC = () => (
         <div className="header__search">
             <SearchInput />
         </div>
-        <div className="header__filter">
+        <div className="header__filter" onClick={onToggleFilter}>
             <Icon name="filter" />
         </div>
     </section>

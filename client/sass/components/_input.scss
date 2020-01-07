@@ -44,3 +44,10 @@
         color: lighten($color-t-secondary, 15);
     }
 }
+
+.radio-control {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin: $padding-lg 0;
+}
