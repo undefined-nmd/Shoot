@@ -2,10 +2,28 @@ import { Request } from '../models'
 
 class RequestController {
 
+  constructor(){
+    this.requestsPerPage = 10;
+  }
+
   index = async(req, res, next) => {
     try {
+
       let requests = null
-      requests = await Request.find().populate('student_id', 'first_name last_name profile_img').populate('subject_id', 'name').exec()
+
+      if(req.query.page){
+        requests = await Request.find()
+          .limit(this.requestsPerPage)
+          .skip(this.requestsPerPage * req.query.page)
+          .populate('student_id', 'first_name last_name profile_img')
+          .populate('subject_id', 'name')
+          .exec()
+      }else{
+        requests = await Request.find()
+        .populate('student_id', 'first_name last_name profile_img')
+        .populate('subject_id', 'name')
+        .exec()
+      }
 
       if (requests === undefined || requests === null) {
         return res.status(404).json({
