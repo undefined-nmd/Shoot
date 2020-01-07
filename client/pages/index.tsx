@@ -20,21 +20,21 @@ const HomePage = (props) => {
         <title>Home</title>
         <link rel='icon' href='/favicon.ico' />
       </Head>
-      <RequestCardList requests={props.requests} comments={props.comments} />
+      {props.requests && 
+        <RequestCardList requests={props.requests} comments={props.comments} />
+      }
     </div>
   );
 }
 
 HomePage.getInitialProps = async () => {
-  const requests = await RequestService.getRequests()
-  const subjects = await SubjectService.getSubjects()
-  const comments = await CommentService.getComments()
+    const [requests, subjects, comments] = await Promise.all([RequestService.getRequests(), SubjectService.getSubjects(), CommentService.getComments()])
 
-  return {
-    requests,
-    subjects,
-    comments
-  }
+    return {
+      requests,
+      subjects,
+      comments
+    }
 }
 
 export default BaseLayout(HomePage)

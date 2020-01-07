@@ -149,7 +149,7 @@ class UserController {
               jwt.sign({
                 id: user.id,
                 email: user.email
-              }, secret, { expiresIn: 36000 },
+              }, secret, { expiresIn: "24h" },
                 (err, token) => {
                   if (err) {
                     res.status(500).json({ error: "Error signing token", raw: err }); 

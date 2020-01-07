@@ -1,6 +1,7 @@
 import { useState, useEffect } from 'react'
 import { SelectInput } from "../inputs"
 import Button from "../buttons/button"
+import RadioInput from '../inputs/radioInput';
 
 const FilterForm = () => {
     const [subjects, setSubjects] = useState([])
@@ -11,8 +12,12 @@ const FilterForm = () => {
         setSortTypes([...sortTypes, 'Popular', 'Latest', 'Recent'])
     }, [])
     
+    const handleSubmit = (e) => {
+        e.preventDefault()
+    }
+
     return (
-        <form className="form-container">
+        <form onSubmit={handleSubmit} className="form-container">
             <SelectInput label="Filter" placeholder="Choose subject" options={subjects}/>
             <SelectInput label="Sort" placeholder="Choose sorting type" options={sortTypes}/>
             <Button label="Apply filters" />

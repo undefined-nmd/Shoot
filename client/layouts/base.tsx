@@ -1,12 +1,19 @@
 import { Component } from 'react'
+import Router from 'next/router'
 
 // Import components
 import Nav from '../components/nav'
 import Header from '../components/header'
 import Drawer from '../components/drawer'
 import AddPostForm from '../components/forms/AddPostForm'
+import FilterForm from '../components/forms/FilterForm'
 
-//import icons
+// Import services
+import { AuthService } from '../services'
+import { _axiosInstance, setAuthorizationHeader } from '../services/api.service'
+import { parseCookie } from '../utils/helper'
+
+// Import icons
 import { faPlus, faArrowLeft, faHome, faSearch, faCalendarAlt, faUser, faTimes } from '@fortawesome/free-solid-svg-icons'
 import { library } from '@fortawesome/fontawesome-svg-core'
 
@@ -16,27 +23,39 @@ library.add(faPlus, faArrowLeft, faHome, faSearch, faCalendarAlt, faUser, faTime
 ** High Order Component that passes getInitialProps
 */
 const BaseLayout = Page => {
-  return class WithUserLayout extends Component<{}, { showDrawer: Boolean }> {
+  return class WithUserLayout extends Component<{}, { showDrawer: boolean, isFilter: boolean }> {
     constructor(props) {
       super(props)
       this.state = {
-        showDrawer: false
+        showDrawer: false,
+        isFilter: false
+      }
+    }
 
+    componentDidMount() {
+      if(!AuthService.isAuthenticated()) {
+        Router.push('/login')
       }
     }
 
     static async getInitialProps(ctx) {
       let pageProps = {}
 
+      const cookies = parseCookie(ctx)
+      setAuthorizationHeader(cookies.token)
+
       try {
         if (Page.getInitialProps) {
           pageProps = await Page.getInitialProps(ctx)
         } 
       } catch (err) {
-        throw new Error(`Cannot invoke getInitalProps of ${ Page }`)
+        console.log(`Couldn't fetch page props from ${Page.getInitialProps}`)
       }
 
-      return pageProps
+      return {
+        ...pageProps,
+        currentUser: AuthService.getDecodedToken(cookies.token)
+      }
     }
 
     toggleDrawer = () => {
@@ -45,16 +64,28 @@ const BaseLayout = Page => {
       })
     }
 
+    renderDrawerContent = () => {
+      
+    }
+
     render() {
+      let drawerContent
+
+      if(this.state.isFilter) {
+        drawerContent = <FilterForm />
+      } else {
+        drawerContent = <AddPostForm />
+      }
+
       return (
         <div>
-            <Header />
-            <main className="container">
+            <Header onToggleFilter={this.toggleDrawer} />
+            <main className="container--spacing">
                 <Page { ...this.props } />
             </main>
             <Nav onToggleDrawer={this.toggleDrawer} />
             <Drawer visible={ this.state.showDrawer } onToggleDrawer={this.toggleDrawer}>
-              <AddPostForm />
+              {drawerContent}
             </Drawer>
         </div>
       )
