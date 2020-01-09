@@ -2,10 +2,28 @@ import { Request } from '../models'
 
 class RequestController {
 
+  constructor(){
+    this.requestsPerPage = 10;
+  }
+
   index = async(req, res, next) => {
     try {
+
       let requests = null
-      requests = await Request.find().populate('student_id', 'first_name last_name profile_img').populate('subject_id', 'name').exec()
+
+      if(req.query.page){
+        requests = await Request.find()
+          .limit(this.requestsPerPage)
+          .skip(this.requestsPerPage * req.query.page)
+          .populate('student_id', 'first_name last_name profile_img')
+          .populate('subject_id', 'name')
+          .exec()
+      }else{
+        requests = await Request.find()
+        .populate('student_id', 'first_name last_name profile_img')
+        .populate('subject_id', 'name')
+        .exec()
+      }
 
       if (requests === undefined || requests === null) {
         return res.status(404).json({
@@ -110,6 +128,41 @@ class RequestController {
       }
       return res.status(500).json({
         message: "An error occured while updating a request"
+      })
+    }
+  }
+
+  search = async(req, res, next) => {
+    try {
+
+      let requests = null
+
+      if(req.query.searchQuery){
+          requests = await Request.find({$text: {$search: req.query.searchQuery}})
+          .populate('student_id', 'first_name last_name profile_img')
+          .populate('subject_id', 'name')
+          .exec()
+      }else{
+        return res.status(404).json({
+          message: "No search string was provided"
+        })
+      }
+      
+
+      if (requests === undefined || requests === null) {
+        return res.status(404).json({
+          message: "No requests were found in the database"
+        })
+      }
+
+      return res.status(200).json(requests)
+
+    } catch (err) {
+      if(err) {
+        return next(err)
+      }
+      return res.status(500).json({
+        message: "An error occured while fetching requests"
       })
     }
   }
