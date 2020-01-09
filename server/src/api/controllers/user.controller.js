@@ -136,12 +136,11 @@ class UserController {
 
   login = (req, res, next) => {
     const { email, password } = req.body;
-
+    
     User.findOne({ email })
       .then(user => {
         if (!user) {
-            errors.email = "No account found with this email address";
-            return res.status(404).json(errors);
+            return res.status(404).send({ message: "Auth Failed", error: "No account found with this email address" });
         }
         bcrypt.compare(password, user.password)
         .then(match => {
@@ -152,13 +151,12 @@ class UserController {
               }, secret, { expiresIn: "24h" },
                 (err, token) => {
                   if (err) {
-                    res.status(500).json({ error: "Error signing token", raw: err }); 
+                    res.status(500).json({ message: "Error signing token", raw: err }); 
                   }
                   res.status(200).json({ message: 'Auth Success', token });
               });      
             } else {
-              errors.password = "Password is incorrect";                        
-              res.status(400).json({ message: 'Auth Failed', errors: errors });
+              res.status(400).json({ message: 'Auth Failed', error: "Password is incorrect" });
             }
         });
     });

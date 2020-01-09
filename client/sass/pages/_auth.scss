@@ -9,11 +9,12 @@
         margin-bottom: $padding-lg * 2;
         
         img {
-            width: 200px;
+            width: 250px;
         }
     }
     
     &__form {
         width: 100%;
+        max-width: 450px;
     }
 }

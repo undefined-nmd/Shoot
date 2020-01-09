@@ -1,4 +1,5 @@
 import axios from 'axios'
+import { AuthService } from '.';
 
 // Default Axios Instance
 export const _axiosInstance = axios.create({

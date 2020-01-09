@@ -23,7 +23,7 @@ library.add(faPlus, faArrowLeft, faHome, faSearch, faCalendarAlt, faUser, faTime
 ** High Order Component that passes getInitialProps
 */
 const BaseLayout = Page => {
-  return class WithUserLayout extends Component<{}, { showDrawer: boolean, isFilter: boolean }> {
+  return class WithUserLayout extends Component<{ cookie: string }, { showDrawer: boolean, isFilter: boolean }> {
     constructor(props) {
       super(props)
       this.state = {
@@ -33,9 +33,7 @@ const BaseLayout = Page => {
     }
 
     componentDidMount() {
-      if(!AuthService.isAuthenticated()) {
-        Router.push('/login')
-      }
+      AuthService.isAuthenticated() ? setAuthorizationHeader(this.props.cookie) : Router.push('/login')
     }
 
     static async getInitialProps(ctx) {
@@ -54,6 +52,7 @@ const BaseLayout = Page => {
 
       return {
         ...pageProps,
+        cookie: cookies.token,
         currentUser: AuthService.getDecodedToken(cookies.token)
       }
     }
