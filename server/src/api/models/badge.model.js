@@ -24,7 +24,7 @@ const { Schema } = mongoose;
  *          description: Score required to receive badge
  *      example:
  *        name: Fresh start
- *        image: {link}/assets/badges/freshStart.svg
+ *        image: link/images/badges/freshStart.svg
  *        score: 100
  */
 const BadgeSchema = new Schema({
