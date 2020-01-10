@@ -16,7 +16,7 @@ const BadgeScore = ({badges}: BadgeScoreProps) => {
     useEffect(() => setTotalScore(calculateTotalScore), [])
     
     return (
-        <span className="badge__score">{totalScore}</span>
+        <span className="badge__score">Total score: {totalScore}</span>
     )
 }
 
