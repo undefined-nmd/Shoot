@@ -1,7 +1,7 @@
 interface TextAreaProps {
-    name: String,
-    label?: String,
-    rows: Number,
+    name: string,
+    label?: string,
+    rows: number,
 }
 
 const TextArea = (props) => (

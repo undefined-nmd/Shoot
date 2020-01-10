@@ -7,7 +7,7 @@ class TagService {
         return data
     }
 
-    static async getTagById(id: String) {
+    static async getTagById(id: string) {
         const res = await _axiosInstance.get(`tag/${id}`)
         const data = await res.data
         return data
@@ -17,11 +17,11 @@ class TagService {
         return _axiosInstance.post(`tag`, body) 
     }
 
-    static async updateTag(id: String, body: Object) {
+    static async updateTag(id: string, body: Object) {
         return _axiosInstance.put(`tag/${id}`, body)
     } 
 
-    static async deleteTag(id: String) {
+    static async deleteTag(id: string) {
         return _axiosInstance.delete(`tag/${id}`)
     }
 }

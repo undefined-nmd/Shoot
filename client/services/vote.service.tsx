@@ -7,7 +7,7 @@ class VoteService {
         return data
     }
 
-    static async getVoteById(id: String) {
+    static async getVoteById(id: string) {
         const res = await _axiosInstance.get(`vote/${id}`)
         const data = await res.data
         return data
@@ -17,11 +17,11 @@ class VoteService {
         return _axiosInstance.post(`vote`, body) 
     }
 
-    static async updateVote(id: String, body: Object) {
+    static async updateVote(id: string, body: Object) {
         return _axiosInstance.put(`vote/${id}`, body)
     } 
 
-    static async deleteVote(id: String) {
+    static async deleteVote(id: string) {
         return _axiosInstance.delete(`vote/${id}`)
     }
 }

@@ -7,7 +7,7 @@ class RequestService {
         return data
     }
 
-    static async getRequestById(id: String) {
+    static async getRequestById(id: string) {
         const res = await _axiosInstance.get(`request/${id}`)
         const data = await res.data
         return data
@@ -17,11 +17,11 @@ class RequestService {
         return _axiosInstance.post(`request`, body) 
     }
 
-    static async updateRequest(id: String, body: Object) {
+    static async updateRequest(id: string, body: Object) {
         return _axiosInstance.put(`request/${id}`, body)
     } 
 
-    static async deleteRequest(id: String) {
+    static async deleteRequest(id: string) {
         return _axiosInstance.delete(`request/${id}`)
     }
 }

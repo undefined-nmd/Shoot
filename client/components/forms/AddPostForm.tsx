@@ -16,7 +16,7 @@ const AddRequestForm = () => {
         setInputs({...inputs, student_id: currentUser})
     }, [])
     
-    const selectedTags = (tags: String[]) => console.log(tags)
+    const selectedTags = (tags: string[]) => console.log(tags)
 
     const handleSubmit = (e) => {
         e.preventDefault() 
