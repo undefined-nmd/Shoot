@@ -7,6 +7,7 @@ import Tag from './tag.model';
 import User from './user.model';
 import Comment from './comment.model';
 import Vote from './vote.model';
+import Badge from './badge.model';
 
 export {
   Request,
@@ -17,5 +18,6 @@ export {
   Tag,
   User,
   Comment,
-  Vote
+  Vote,
+  Badge
 };
