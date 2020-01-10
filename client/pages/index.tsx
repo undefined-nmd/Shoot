@@ -29,8 +29,8 @@ const HomePage = (props) => {
 
 HomePage.getInitialProps = async () => {
     const [requests, subjects, comments] = await Promise.all([
-      RequestService.getRequests(), 
-      SubjectService.getSubjects(), 
+      RequestService.getRequests(),
+      SubjectService.getSubjects(),
       CommentService.getComments()
     ])
 

@@ -20,7 +20,6 @@ class ProfilePage extends Component<ProfilePageProps, ProfilePageState> {
     state = { userId: this.props.userId }
     render() {
         return (
-
             <div className="page profilepage">
                 <div className="profile">
                     <div className="profile__image">

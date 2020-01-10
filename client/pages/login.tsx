@@ -21,9 +21,6 @@ const LoginPage = () => {
         e.preventDefault()
         AuthService.login(inputs).then(() => {
             Router.push('/')  
-        }).catch(err => {
-            const { data } = err.response
-            console.log(data)
         })
     }
     
