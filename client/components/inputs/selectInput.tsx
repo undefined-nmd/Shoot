@@ -1,9 +1,10 @@
 const SelectInput = (props) => (
     <div className="form-group">
-        {props.label && 
+        {props.label &&
             <label htmlFor={props.name} className="form-label">{props.label}</label>
         }
         <select
+            onChange={props.onChange}
             className="form-control"
             defaultValue={props.placeholder}
             {...props}
@@ -11,17 +12,17 @@ const SelectInput = (props) => (
             <option value={props.placeholder} disabled>{props.placeholder}</option>
             {props.options.map(option => {
                 return (
-                    <option 
-                        key={option} 
-                        value={option} 
-                        label={option}
+                    <option
+                        key={option._id}
+                        value={option._id}
+                        label={option.name}
                     >
-                        {option}
+                        {option.name}
                     </option>
                 )
             })}
         </select>
-    </div>    
+    </div>
 )
 
 export default SelectInput
