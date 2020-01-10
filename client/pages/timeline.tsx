@@ -21,7 +21,6 @@ const TimeLinePage = (props) => {
                 let date = new Date(parseInt(timestamp, 16) * 1000)
                 // let nextRequestCardItemDate = new Date(request[i + 1].date)
 
-                console.log(date)
                 if (i === 0) {
                     newYear = date.getFullYear()
                     return (
