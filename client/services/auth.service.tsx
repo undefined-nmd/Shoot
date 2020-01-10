@@ -1,8 +1,10 @@
 import { _axiosInstance } from './api.service'
 import Cookies from 'js-cookie'
 import jwtDecode from 'jwt-decode'
+import Router from 'next/router'
 
 export type DecodedToken = {
+    readonly id: string
     readonly email: string
     readonly exp: number
 }
@@ -19,6 +21,7 @@ class AuthService {
 
     static logout() {
         Cookies.remove(TOKEN_STRING)
+        Router.push('/login')
     }
 
     static getDecodedToken(token: string) {
