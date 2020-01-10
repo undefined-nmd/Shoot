@@ -54,8 +54,7 @@ const BaseLayout = Page => {
 
       return {
         ...pageProps,
-        cookie: cookies.token,
-        currentUser: AuthService.getDecodedToken(cookies.token)
+        cookie: cookies.token
       }
     }
 
@@ -81,7 +80,7 @@ const BaseLayout = Page => {
       return (
         <div>
           <Header onToggleFilter={this.toggleDrawer} />
-          <main className="container--spacing">
+          <main className="container container--spacing">
             <Page {...this.props} />
           </main>
           <Nav onToggleDrawer={this.toggleDrawer} />
