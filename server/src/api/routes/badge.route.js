@@ -101,8 +101,8 @@ badgeRouter
  *                  description: Removed badge with id
  */
 badgeRouter
-  .get('/:id', BadgeController.show)
-  .put('/:id', BadgeController.update)
+  .get('/:id', badgeController.show)
+  .put('/:id', badgeController.update)
   .delete('/:id', badgeController.destroy);
 
 export default badgeRouter;

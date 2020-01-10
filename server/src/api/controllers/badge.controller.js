@@ -89,11 +89,11 @@ class BadgeController {
     }
   }
 
-  destroy = (req, res, next) => {
+  destroy = async (req, res, next) => {
     try {
       const { id } = req.params
       let badge = null
-      badge = Badge.findByIdAndRemove(id).exec()
+      badge = await Badge.findByIdAndRemove(id).exec()
 
       if (!badge) {
         return res.status(404).json({
