@@ -10,13 +10,15 @@ export interface TimeLinePageProps {
 }
 
 export interface TimeLinePageState {
-
+    year: 2001
 }
 
 class TimeLinePage extends React.Component<TimeLinePageProps, TimeLinePageState> {
-    state = { year: 2001 }
+
     render() {
-        return (<div>TIme Line</div>);
+        return (<div className="page profilepage" >
+            TIme Line</div>
+        );
     }
 }
 

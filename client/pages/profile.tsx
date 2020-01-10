@@ -6,7 +6,6 @@ import Badge from '../components/badge'
 
 // Import layout
 import baseLayout from '../layouts/base';
-import '../sass/main.scss'
 
 export interface ProfilePageProps {
     userId: "Nawang"

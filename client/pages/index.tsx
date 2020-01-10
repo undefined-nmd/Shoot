@@ -11,7 +11,7 @@ import RequestCardList from '../components/requestCardList'
 import { RequestService, SubjectService, CommentService } from '../services'
 
 import '@fortawesome/fontawesome-svg-core/styles.css'
-import '../sass/main.scss'
+
 
 const HomePage = (props) => {
   return (

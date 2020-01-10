@@ -17,6 +17,8 @@ import { parseCookie } from '../utils/helper'
 import { faPlus, faArrowLeft, faHome, faSearch, faCalendarAlt, faUser, faTimes } from '@fortawesome/free-solid-svg-icons'
 import { library } from '@fortawesome/fontawesome-svg-core'
 
+import '../sass/main.scss'
+
 library.add(faPlus, faArrowLeft, faHome, faSearch, faCalendarAlt, faUser, faTimes)
 
 /*
@@ -45,7 +47,7 @@ const BaseLayout = Page => {
       try {
         if (Page.getInitialProps) {
           pageProps = await Page.getInitialProps(ctx)
-        } 
+        }
       } catch (err) {
         console.log(`Couldn't fetch page props from ${Page.getInitialProps}`)
       }
@@ -64,13 +66,13 @@ const BaseLayout = Page => {
     }
 
     renderDrawerContent = () => {
-      
+
     }
 
     render() {
       let drawerContent
 
-      if(this.state.isFilter) {
+      if (this.state.isFilter) {
         drawerContent = <FilterForm />
       } else {
         drawerContent = <AddPostForm />
@@ -78,14 +80,14 @@ const BaseLayout = Page => {
 
       return (
         <div>
-            <Header onToggleFilter={this.toggleDrawer} />
-            <main className="container--spacing">
-                <Page { ...this.props } />
-            </main>
-            <Nav onToggleDrawer={this.toggleDrawer} />
-            <Drawer visible={ this.state.showDrawer } onToggleDrawer={this.toggleDrawer}>
-              {drawerContent}
-            </Drawer>
+          <Header onToggleFilter={this.toggleDrawer} />
+          <main className="container--spacing">
+            <Page {...this.props} />
+          </main>
+          <Nav onToggleDrawer={this.toggleDrawer} />
+          <Drawer visible={this.state.showDrawer} onToggleDrawer={this.toggleDrawer}>
+            {drawerContent}
+          </Drawer>
         </div>
       )
     }
