@@ -15,7 +15,7 @@ const Header = ({ onToggleFilter }) => {
         searchInput.addEventListener('click', (e) => {
             e.preventDefault();
             if (logo !== null) {
-                logo.remove()
+                logo.classList.add("remove")
             }
         })
 

@@ -13,11 +13,6 @@ const FilterForm = () => {
 
 
     useEffect(() => {
-        //TODO: if no sorting from backend
-        // Cookies.set('SUBJECT', selectedSubject.toString(), { expires: 1 })
-        // Cookies.set('SORT', selectedSort.toString(), { expires: 1 })
-
-
         SubjectService.getSubjects().then((data) => {
             setSubjects(data)
         })
