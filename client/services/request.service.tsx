@@ -13,13 +13,19 @@ class RequestService {
         return data
     }
 
+    static async getRequestsBySearch(searchTerm: String) {
+        const res = await _axiosInstance.get(`request/search?searchQuery=${searchTerm}`)
+        const data = await res.data
+        return data
+    }
+
     static async createRequest(body: Object) {
-        return _axiosInstance.post(`request`, body) 
+        return _axiosInstance.post(`request`, body)
     }
 
     static async updateRequest(id: string, body: Object) {
         return _axiosInstance.put(`request/${id}`, body)
-    } 
+    }
 
     static async deleteRequest(id: string) {
         return _axiosInstance.delete(`request/${id}`)

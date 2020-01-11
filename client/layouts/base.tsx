@@ -30,7 +30,7 @@ const BaseLayout = Page => {
       super(props)
       this.state = {
         showDrawer: false,
-        isFilter: false
+        isFilter: true
       }
     }
 
@@ -58,9 +58,24 @@ const BaseLayout = Page => {
       }
     }
 
+
     toggleDrawer = () => {
       this.setState({
-        showDrawer: !this.state.showDrawer
+        showDrawer: !this.state.showDrawer,
+      })
+    }
+
+    toggleFilterDrawer = () => {
+      this.setState({
+        showDrawer: !this.state.showDrawer,
+        isFilter: true,
+      })
+    }
+
+    toggleAddRequestDrawer = () => {
+      this.setState({
+        showDrawer: !this.state.showDrawer,
+        isFilter: false,
       })
     }
 
@@ -79,11 +94,11 @@ const BaseLayout = Page => {
 
       return (
         <div>
-          <Header onToggleFilter={this.toggleDrawer} />
+          <Header onToggleFilter={this.toggleFilterDrawer} />
           <main className="container container--spacing">
             <Page {...this.props} />
           </main>
-          <Nav onToggleDrawer={this.toggleDrawer} />
+          <Nav onToggleDrawer={this.toggleAddRequestDrawer} />
           <Drawer visible={this.state.showDrawer} onToggleDrawer={this.toggleDrawer}>
             {drawerContent}
           </Drawer>

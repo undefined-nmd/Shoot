@@ -1,9 +1,10 @@
 interface ButtonProps {
-    label: string
+    label: string,
+    onClick: (event: React.MouseEvent<HTMLButtonElement>) => void
 }
 
 const Button: React.FC<ButtonProps> = (props) => (
-    <button type="submit" className="btn btn--primary" {...props}>
+    <button type="submit" onClick={props.onClick} className="btn btn--primary" {...props}>
         {props.label}
     </button>
 )
