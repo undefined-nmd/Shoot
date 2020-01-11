@@ -9,21 +9,41 @@ class RequestController {
   index = async(req, res, next) => {
     try {
 
-      let requests = null
+      //let requests = null
+      let query = Request.find();
 
       if(req.query.page){
-        requests = await Request.find()
-          .limit(this.requestsPerPage)
-          .skip(this.requestsPerPage * req.query.page)
-          .populate('student_id', 'first_name last_name profile_img')
-          .populate('subject_id', 'name')
-          .exec()
-      }else{
-        requests = await Request.find()
-        .populate('student_id', 'first_name last_name profile_img')
-        .populate('subject_id', 'name')
-        .exec()
+          query.limit(this.requestsPerPage)
+            .skip(this.requestsPerPage * req.query.page);          
       }
+
+      if(req.query.subject){
+          query.where('subject_id', req.query.subject);      
+      }
+
+      if(req.query.student){
+        query.where('student_id', req.query.student);      
+    }
+
+      if(req.query.sort){
+        switch (req.query.sort) {
+          case "popular":
+            query.sort([['upvoteCount', 1]]);
+            break;
+          case "latest":
+              query.sort([['_id', -1]]);
+              break;
+          default:
+            break;
+        }    
+    }
+
+      query.populate('student_id', 'first_name last_name profile_img')
+        .populate('subject_id', 'name');
+
+      const requests = await query.exec();
+
+      console.log(requests);
 
       if (requests === undefined || requests === null) {
         return res.status(404).json({
