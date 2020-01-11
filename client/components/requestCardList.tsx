@@ -12,8 +12,8 @@ const RequestCardList: React.FC<RequestCardListProps> = (props) => {
     return (
         <div className="card-list"> 
             {props.requests.map((request) => {
-                const filteredComments = props.comments.filter(comment => comment.request_id === request._id)
-                const filteredVote = props.upvotes.filter(upvote => upvote.request_id === request._id)
+                let filteredComments = props.comments.filter(comment => comment.request_id === request._id)
+                let filteredVote = props.upvotes.filter(upvote => upvote.request_id === request._id)
 
                 return (
                     <RequestCardItem 
