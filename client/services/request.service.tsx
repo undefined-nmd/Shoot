@@ -19,6 +19,12 @@ class RequestService {
         return data
     }
 
+    static async getRequestsByFilter(subjectId: String = '', sort: String = '', student: String = '', page: String = '') {
+        const res = await _axiosInstance.get(`request?subject=${subjectId}&sort=${sort}&student=${student}&page=${page}`)
+        const data = await res.data
+        return data
+    }
+
     static async createRequest(body: Object) {
         return _axiosInstance.post(`request`, body)
     }

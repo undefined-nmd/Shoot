@@ -7,7 +7,7 @@ import Cookies from 'js-cookie'
 
 const FilterForm = () => {
     const [subjects, setSubjects] = useState([])
-    const [sortTypes, setSortTypes] = useState([{ _id: 100006, name: 'Popular' }, { _id: 100005, name: 'Latest' }])
+    const [sortTypes, setSortTypes] = useState([{ _id: 'upvotes', name: 'Popular' }, { _id: 'latest', name: 'Latest' }, { _id: 'popular', name: 'Latest & Popular' }])
     const [selectedSubject, setSelectedSubject] = useState()
     const [selectedSort, setSelectedSort] = useState()
 

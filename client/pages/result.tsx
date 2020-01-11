@@ -22,82 +22,24 @@ const ResultPage = (props) => {
     const [isFilter, setIsFilter] = useState(false)
     const [requests, setRequests] = useState(props.requests)
 
-    //TODO: if no sorting from backend
-    // const subjectId = Cookies.get("SUBJECT")
-    // const sort = Cookies.get("SORT")
-
-
-    //TODO: if no sorting from backend
-    // useEffect(() => {
-
-    //     if (subjectId !== "0" && sort !== "0") {
-
-    //         const filteredRequests = []
-
-    //         props.requests.forEach(request => {
-    //             if (request.subject_id._id.toString() === subjectId) {
-    //                 console.log(request.subject_id)
-    //                 filteredRequests.push(request)
-    //             }
-    //         });
-    //         setRequests(filteredRequests);
-    //     }
-    // }, [])
-
-
     useEffect(() => {
 
         let subjectId = getParameterURL(window.location.href, 'subjectId')
         let sort = getParameterURL(window.location.href, 'sort')
         let searchTerm = getParameterURL(window.location.href, 'searchTerm')
-        console.log(searchTerm)
 
-        if (subjectId !== "0" && sort !== "0" && searchTerm === null) {
-            const filteredRequests = []
-            props.requests.forEach(request => {
-                if (request.subject_id._id.toString() === subjectId) {
-                    // console.log(request.subject_id)
-                    filteredRequests.push(request)
-                }
-            });
-            setRequests(filteredRequests)
-        }
 
-        if (subjectId === "0" && sort !== "0") {
-            const filteredRequests = []
-            props.requests.forEach(request => {
-                if (request.subject_id._id.toString() === subjectId) {
-                    // console.log(request.subject_id)
-                    filteredRequests.push(request)
-                }
-            });
-            setRequests(filteredRequests)
-        }
-
-        if (subjectId !== "0" && sort === "0") {
-            const filteredRequests = []
-            props.requests.forEach(request => {
-                if (request.subject_id._id.toString() === subjectId) {
-                    // console.log(request.subject_id)
-                    filteredRequests.push(request)
-                }
-            });
-            setRequests(filteredRequests)
+        if (searchTerm === null) {
+            RequestService.getRequestsByFilter(subjectId, sort).then((requests) => {
+                setRequests(requests)
+            })
         }
 
         if (searchTerm !== null) {
-            const filteredRequests = []
-
             RequestService.getRequestsBySearch(searchTerm).then((requests) => {
                 setRequests(requests)
             })
-
-
         }
-
-
-
-
 
     }, [])
 
