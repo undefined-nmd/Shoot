@@ -19,13 +19,13 @@ export type User = {
     score?: number,
     role_id: string,
     study: string
-    subjects?: Array<string>
-    badges?: Array<Badge>
+    subjects?: string[]
+    badges?: Badge[]
 }
 
 interface ProfilePageProps {
     user?: User,
-    badges?: Array<Badge>
+    badges?: Badge[]
 }
 
 const ProfilePage: NextPage = ({ user }: ProfilePageProps) => {

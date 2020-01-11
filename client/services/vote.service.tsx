@@ -7,6 +7,12 @@ class VoteService {
         return data
     }
 
+    static async getVotesByStudent(studentId: string) {
+        const res = await _axiosInstance.get(`vote?student=${studentId}`)
+        const data = await res.data
+        return data
+    }
+
     static async getVoteById(id: string) {
         const res = await _axiosInstance.get(`vote/${id}`)
         const data = await res.data

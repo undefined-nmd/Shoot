@@ -8,13 +8,13 @@ import BaseLayout from '../layouts/base'
 import RequestCardList from '../components/requestCardList'
 
 // Import services
-import { RequestService, SubjectService, CommentService } from '../services'
+import { RequestService, SubjectService, CommentService, VoteService, AuthService } from '../services'
 
 import '@fortawesome/fontawesome-svg-core/styles.css'
+import { parseCookie } from '../utils/helper';
 
 
 const HomePage = (props) => {
-
   return (
     <div className="page homepage">
       <Head>
@@ -22,17 +22,26 @@ const HomePage = (props) => {
         <link rel='icon' href='/favicon.ico' />
       </Head>
       {props.requests &&
-        <RequestCardList requests={props.requests} comments={props.comments} />
+        <RequestCardList 
+          requests={props.requests} 
+          comments={props.comments} 
+          upvotes={props.upvotes} 
+          user={props.user}
+        />
       }
     </div>
   );
 }
 
-HomePage.getInitialProps = async () => {
-  let [requests, subjects, comments] = await Promise.all([
+HomePage.getInitialProps = async (ctx) => {
+  const cookies = parseCookie(ctx)
+  const decodedToken = await AuthService.getDecodedToken(cookies.token)
+  
+  let [requests, subjects, comments, upvotes] = await Promise.all([
     RequestService.getRequests(),
     SubjectService.getSubjects(),
-    CommentService.getComments()
+    CommentService.getComments(),
+    VoteService.getVotesByStudent(decodedToken.id)
   ])
 
   requests = requests.reverse()
@@ -40,7 +49,9 @@ HomePage.getInitialProps = async () => {
   return {
     requests,
     subjects,
-    comments
+    comments,
+    upvotes,
+    user: decodedToken
   }
 }
 

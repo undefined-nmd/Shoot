@@ -1,15 +1,20 @@
 import * as React from 'react'
 import Icon from "./icon"
+import Upvote from './upvote'
+import { DecodedToken } from '../services/auth.service'
 
 interface RequestCardProps {
     request?: any,
-    comments?: any
+    comments?: any,
+    upvote?: any,
+    user: DecodedToken
 }
 
-const RequestCardItem: React.FC<RequestCardProps> = ({ request, comments }) => {
+const RequestCardItem: React.FC<RequestCardProps> = ({ request, comments, upvote, user }) => {
     const getFullName = () => {
         return request.student_id.first_name + ' ' + request.student_id.last_name
     }
+
     return (
         <section className="card">
             <div className="card__author d-flex">
@@ -26,8 +31,12 @@ const RequestCardItem: React.FC<RequestCardProps> = ({ request, comments }) => {
             </div>
             <div className="card__meta d-flex">
                 <div className="card__meta-item">
-                    <span className="card__meta-number">{ request.upvote_count }</span>
-                    <Icon name="arrow-up" />
+                    <Upvote
+                        requestId={request._id}
+                        userId={user.id}
+                        upvote={upvote}
+                        count={request.upvote_count}
+                    />
                 </div>
                 {comments && 
                     <div className="card__meta-item">

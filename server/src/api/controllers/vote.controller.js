@@ -32,7 +32,7 @@ class VoteController {
   create = async(req, res, next) => {
     try {
       const vote = new Vote({
-        student_id: req.body_student_id,
+        student_id: req.body.student_id,
         request_id: req.body.request_id
       })
 
