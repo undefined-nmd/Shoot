@@ -31,6 +31,11 @@ class VoteController {
         request_id: req.body.request_id
       })
 
+      const duplicate = (await Vote.findOne({student_id: vote.student_id, request_id: request_id})).exec();
+      if (duplicate) return res.status(400).json({
+        message: "Vote already exists in database"
+      })
+
       const newVote = await vote.save()
       return res.status(200).json(newVote)
     } catch (err) {
