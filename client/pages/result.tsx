@@ -21,7 +21,7 @@ const ResultPage = (props) => {
 
     const [isFilter, setIsFilter] = useState(false)
 
-
+    //TODO: if no sorting from backend
     // const subjectId = Cookies.get("SUBJECT")
     // const sort = Cookies.get("SORT")
 
