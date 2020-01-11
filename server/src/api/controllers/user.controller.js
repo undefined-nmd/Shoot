@@ -42,7 +42,7 @@ class UserController {
         last_name: req.body.last_name,
         email: req.body.email,
         password: req.body.password,
-        gender: req.body.gender,
+        study: req.body.study,
         profile_img: req.body.profile_img,
         role_id: req.body.role_id,
       })
