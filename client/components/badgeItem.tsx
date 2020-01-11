@@ -1,5 +1,5 @@
 export type Badge = {
-    id: string
+    id: string;
     name: string;
     image: string;
     score: number;

@@ -67,7 +67,7 @@ class UserController {
   show = async(req, res, next) => {
     try {
       const { id } = req.params
-      const user = await User.findById(id).exec()
+      const user = await User.findById(id).populate('badges').exec()
 
       if (!user) {
         return res.status(404).json({

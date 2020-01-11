@@ -15,10 +15,12 @@ export type User = {
     first_name: string,
     last_name: string,
     profile_img: string
-    email: string,
-    score: number,
+    email?: string,
+    score?: number,
     role_id: string,
-    subjects: Array<string>
+    study: string
+    subjects?: Array<string>
+    badges?: Array<Badge>
 }
 
 interface ProfilePageProps {
@@ -26,7 +28,7 @@ interface ProfilePageProps {
     badges?: Array<Badge>
 }
 
-const ProfilePage: NextPage = ({ user, badges }: ProfilePageProps) => {
+const ProfilePage: NextPage = ({ user }: ProfilePageProps) => {
     const getFullName = () => {
         return user.first_name + ' ' + user.last_name
     }
@@ -39,10 +41,10 @@ const ProfilePage: NextPage = ({ user, badges }: ProfilePageProps) => {
                 </div>
                 <section className="profile__info">
                     <div className="profile__name">{getFullName() || ''}</div>
-                    <div className="profile__major">New Media Development</div>
+                    <div className="profile__major">{user.study}</div>
                     <div className="profile__badges">
-                        <BadgeScore badges={badges} />
-                        <BadgeList badges={badges} />
+                        <BadgeScore badges={user.badges} />
+                        <BadgeList badges={user.badges} />
                     </div>
                 </section>
                 <a className="btn btn--primary" onClick={() => AuthService.logout()}>Log out</a>
@@ -56,37 +58,8 @@ ProfilePage.getInitialProps = async (ctx: any) => {
     const decodedToken = await AuthService.getDecodedToken(cookies.token)
     const user = await UserService.getUserById(decodedToken.id)
 
-    // Hardcoded for now
-    const badges = [
-        {
-            id: 10,
-            title: 'Learner',
-            image: 'https://randomuser.me/api/portraits/men/10.jpg',
-            score: 3
-        },
-        {
-            id: 11,
-            title: 'Learner',
-            image: 'https://randomuser.me/api/portraits/men/10.jpg',
-            score: 4
-        },
-        {
-            id: 12,
-            title: 'Learner',
-            image: 'https://randomuser.me/api/portraits/men/10.jpg',
-            score: 7
-        },
-        {
-            id: 13,
-            title: 'Learner',
-            image: 'https://randomuser.me/api/portraits/men/10.jpg',
-            score: 6
-        }
-    ]
-
     return { 
-        user,
-        badges
+        user
     }
 }
 

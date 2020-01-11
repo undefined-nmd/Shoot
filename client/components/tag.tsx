@@ -2,7 +2,7 @@ import * as React from 'react'
 import Icon from "./icon";
 
 interface TagProps {
-    name: String,
+    name: string,
     removeHandler?: Function
 }
 
