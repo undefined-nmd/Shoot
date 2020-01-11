@@ -2,10 +2,10 @@ import RequestCardItem from "./requestCardItem"
 import { DecodedToken } from "../services/auth.service"
 
 interface RequestCardListProps {
-    requests: Array<any>,
-    comments: Array<any>,
-    upvotes: Array<any>,
-    user: DecodedToken
+    requests: any[],
+    comments?: any[],
+    upvotes?: any[],
+    user?: DecodedToken
 }
 
 const RequestCardList: React.FC<RequestCardListProps> = (props) => {
