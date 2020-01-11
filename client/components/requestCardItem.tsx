@@ -1,5 +1,6 @@
 import * as React from 'react'
 import Icon from "./icon"
+import Upvote from './upvote'
 
 interface RequestCardProps {
     request?: any,
@@ -25,10 +26,11 @@ const RequestCardItem: React.FC<RequestCardProps> = ({ request, comments }) => {
                 <p>{ request.message }</p>
             </div>
             <div className="card__meta d-flex">
-                <div className="card__meta-item">
-                    <span className="card__meta-number">{ request.upvote_count }</span>
-                    <Icon name="arrow-up" />
-                </div>
+                {request.upvote_count && 
+                    <div className="card__meta-item">
+                        <Upvote count={ request.upvote_count } />
+                    </div>
+                }
                 {comments && 
                     <div className="card__meta-item">
                         <span className="card__meta-number">{ comments.length }</span>
