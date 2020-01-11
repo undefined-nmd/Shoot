@@ -12,6 +12,7 @@ import { RequestService, SubjectService, CommentService, VoteService, AuthServic
 
 import '@fortawesome/fontawesome-svg-core/styles.css'
 import { parseCookie } from '../utils/helper';
+import CommentListWrapper from '../components/commentListWrapper';
 
 
 const HomePage = (props) => {
@@ -29,6 +30,7 @@ const HomePage = (props) => {
           user={props.user}
         />
       }
+      <CommentListWrapper comments={props.comments} />
     </div>
   );
 }
