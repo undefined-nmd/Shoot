@@ -20,13 +20,14 @@ const ResultPage = (props) => {
 
 
     const [isFilter, setIsFilter] = useState(false)
+    const [requests, setRequests] = useState(props.requests)
 
-
+    //TODO: if no sorting from backend
     // const subjectId = Cookies.get("SUBJECT")
     // const sort = Cookies.get("SORT")
 
-    const [requests, setRequests] = useState(props.requests)
 
+    //TODO: if no sorting from backend
     // useEffect(() => {
 
     //     if (subjectId !== "0" && sort !== "0") {
@@ -86,13 +87,12 @@ const ResultPage = (props) => {
 
         if (searchTerm !== null) {
             const filteredRequests = []
-            props.requests.forEach(request => {
-                if (request.subject_id._id.toString() === subjectId) {
-                    // console.log(request.subject_id)
-                    filteredRequests.push(request)
-                }
-            });
-            setRequests(filteredRequests)
+
+            RequestService.getRequestsBySearch(searchTerm).then((requests) => {
+                setRequests(requests)
+            })
+
+
         }
 
 
