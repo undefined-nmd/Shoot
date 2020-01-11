@@ -18,6 +18,7 @@ import { faPlus, faArrowLeft, faHome, faSearch, faCalendarAlt, faUser, faTimes }
 import { library } from '@fortawesome/fontawesome-svg-core'
 
 import '../sass/main.scss'
+import { DecodedToken } from '../services/auth.service'
 
 library.add(faPlus, faArrowLeft, faHome, faSearch, faCalendarAlt, faUser, faTimes)
 
@@ -25,7 +26,7 @@ library.add(faPlus, faArrowLeft, faHome, faSearch, faCalendarAlt, faUser, faTime
 ** High Order Component that passes getInitialProps
 */
 const BaseLayout = Page => {
-  return class WithUserLayout extends Component<{ cookie: string }, { showDrawer: boolean, isFilter: boolean }> {
+  return class WithUserLayout extends Component<{ cookie: string, user: DecodedToken }, { showDrawer: boolean, isFilter: boolean }> {
     constructor(props) {
       super(props)
       this.state = {
@@ -44,6 +45,8 @@ const BaseLayout = Page => {
       const cookies = parseCookie(ctx)
       setAuthorizationHeader(cookies.token)
 
+      const decodedToken = await AuthService.getDecodedToken(cookies.token)
+
       try {
         if (Page.getInitialProps) {
           pageProps = await Page.getInitialProps(ctx)
@@ -54,7 +57,8 @@ const BaseLayout = Page => {
 
       return {
         ...pageProps,
-        cookie: cookies.token
+        cookie: cookies.token,
+        user: decodedToken
       }
     }
 
@@ -89,7 +93,7 @@ const BaseLayout = Page => {
       if (this.state.isFilter) {
         drawerContent = <FilterForm />
       } else {
-        drawerContent = <AddPostForm />
+        drawerContent = <AddPostForm user={this.props.user} />
       }
 
       return (

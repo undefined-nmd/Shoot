@@ -15,7 +15,6 @@ import '@fortawesome/fontawesome-svg-core/styles.css'
 
 const HomePage = (props) => {
 
-
   return (
     <div className="page homepage">
       <Head>
@@ -30,11 +29,13 @@ const HomePage = (props) => {
 }
 
 HomePage.getInitialProps = async () => {
-  const [requests, subjects, comments] = await Promise.all([
+  let [requests, subjects, comments] = await Promise.all([
     RequestService.getRequests(),
     SubjectService.getSubjects(),
     CommentService.getComments()
   ])
+
+  requests = requests.reverse()
 
   return {
     requests,

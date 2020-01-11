@@ -2,17 +2,19 @@ import { useState, useEffect } from 'react'
 import { TextInput, SelectInput, TextArea, TagInput } from "../inputs"
 import Button from "../buttons/button"
 
-import { RequestService } from '../../services'
+import { RequestService, SubjectService, VoteService, AuthService } from '../../services'
 import { _axiosInstance } from '../../services/api.service';
 
-const AddRequestForm = () => {
+const AddRequestForm = ({ user }) => {
     const [options, setOptions] = useState([])
     // Temporary hardcoded user ID
-    const [currentUser, setCurrentUser] = useState('5e0a5c0fb2a65d540c6f7998')
+    const [currentUser, setCurrentUser] = useState(user.id)
     const [inputs, setInputs] = useState<any>({})
 
     useEffect(() => {
-        setOptions([...options, 'Web Development II', 'Multimedia', 'Mobile Development I'])
+        SubjectService.getSubjects().then((data) => {
+            setOptions(data)
+        })
         setInputs({ ...inputs, student_id: currentUser })
     }, [])
 
@@ -24,7 +26,7 @@ const AddRequestForm = () => {
         RequestService.createRequest({
             student_id: inputs.student_id,
             message: inputs.message,
-            subject_id: '5e0a5e2cb2a65d540c6f79a6'
+            subject_id: inputs.subject
         })
     }
 
