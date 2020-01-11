@@ -1,7 +1,7 @@
 import * as React from 'react'
 import Icon from "./icon"
 import Upvote from './upvote'
-import { VoteService } from '../services';
+import { VoteService, RequestService } from '../services';
 import { User } from '../pages/profile';
 import { DecodedToken } from '../services/auth.service';
 
@@ -13,7 +13,7 @@ interface RequestCardProps {
 }
 
 const RequestCardItem: React.FC<RequestCardProps> = ({ request, comments, upvote, user }) => {
-    const [vote, setVote] = React.useState(upvote)
+    const [hasVoted, setHasVoted] = React.useState(false)
 
     const getFullName = () => {
         return request.student_id.first_name + ' ' + request.student_id.last_name
@@ -21,11 +21,33 @@ const RequestCardItem: React.FC<RequestCardProps> = ({ request, comments, upvote
 
     const updateVote = () => {
         if(upvote.length) {
-            VoteService.deleteVote(upvote[0]._id)
+            VoteService.deleteVote(upvote[0]._id).then(() => {
+                setHasVoted(true)
+                updateVoteCountOnDelete()
+            })
         } else {
             VoteService.createVote({
                 student_id: user.id,
                 request_id: request._id
+            }).then(() => { 
+                setHasVoted(true) 
+                updateVoteCountOnAdd()
+            })
+        }
+    }
+
+    const updateVoteCountOnDelete = () => {
+        if(!hasVoted) {
+            RequestService.updateRequest(request._id, {
+                upvote_count: request.upvote_count - 1 
+            })
+        }
+    }
+
+    const updateVoteCountOnAdd = () => {
+        if(!hasVoted) {
+            RequestService.updateRequest(request._id, {
+                upvote_count: request.upvote_count + 1 
             })
         }
     }
@@ -48,7 +70,7 @@ const RequestCardItem: React.FC<RequestCardProps> = ({ request, comments, upvote
                 <div className="card__meta-item">
                     <Upvote 
                         handleVote={ updateVote }
-                        upvote={ vote }
+                        upvote={ upvote }
                         count={ request.upvote_count }
                     />
                 </div>
