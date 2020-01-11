@@ -8,17 +8,16 @@ import BaseLayout from '../layouts/base'
 import RequestCardList from '../components/requestCardList'
 
 // Import services
-import { RequestService, SubjectService, CommentService } from '../services'
+import { RequestService, SubjectService, CommentService, VoteService, AuthService } from '../services'
 import Cookies from 'js-cookie'
 import '@fortawesome/fontawesome-svg-core/styles.css'
 
 
 import getParameterURL from '../utils/getParameterURL'
+import { parseCookie } from '../utils/helper';
 
 
 const ResultPage = (props) => {
-
-
     const [isFilter, setIsFilter] = useState(false)
     const [requests, setRequests] = useState(props.requests)
 
@@ -51,17 +50,21 @@ const ResultPage = (props) => {
                 <link rel='icon' href='/favicon.ico' />
             </Head>
             {requests &&
-                <RequestCardList requests={requests} comments={props.comments} />
+                <RequestCardList requests={requests} comments={props.comments} upvotes={props.upvotes} user={props.user} />
             }
         </div>
     );
 }
 
-ResultPage.getInitialProps = async () => {
-    let [requests, subjects, comments] = await Promise.all([
+ResultPage.getInitialProps = async (ctx) => {
+    const cookies = parseCookie(ctx)
+    const decodedToken = await AuthService.getDecodedToken(cookies.token)
+
+    let [requests, subjects, comments, upvotes] = await Promise.all([
         RequestService.getRequests(),
         SubjectService.getSubjects(),
-        CommentService.getComments()
+        CommentService.getComments(),
+        VoteService.getVotesByStudent(decodedToken.id)
     ])
 
 
@@ -69,7 +72,9 @@ ResultPage.getInitialProps = async () => {
     return {
         requests,
         subjects,
-        comments
+        comments,
+        upvotes,
+        user: decodedToken
     }
 }
 
