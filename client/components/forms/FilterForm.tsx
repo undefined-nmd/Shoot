@@ -8,14 +8,14 @@ import Cookies from 'js-cookie'
 const FilterForm = () => {
     const [subjects, setSubjects] = useState([])
     const [sortTypes, setSortTypes] = useState([{ _id: 100006, name: 'Popular' }, { _id: 100005, name: 'Latest' }])
-    const [selectedSubject, setSelectedSubject] = useState(0)
-    const [selectedSort, setSelectedSort] = useState(0)
+    const [selectedSubject, setSelectedSubject] = useState()
+    const [selectedSort, setSelectedSort] = useState()
 
 
     useEffect(() => {
 
-        Cookies.set('SUBJECT', selectedSubject.toString(), { expires: 1 })
-        Cookies.set('SORT', selectedSort.toString(), { expires: 1 })
+        // Cookies.set('SUBJECT', selectedSubject.toString(), { expires: 1 })
+        // Cookies.set('SORT', selectedSort.toString(), { expires: 1 })
 
 
         SubjectService.getSubjects().then((data) => {

@@ -4,9 +4,12 @@ let getParameterURL = (urlString, parameter, defaultValue = "0") => {
     let parameterValue = defaultValue
 
     let url = new URL(urlString);
-    parameterValue = url.searchParams.get(parameter);
 
 
+
+    if (url.searchParams.get(parameter) !== "undefined") {
+        parameterValue = url.searchParams.get(parameter);
+    }
 
     return parameterValue
 

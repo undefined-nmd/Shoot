@@ -48,8 +48,10 @@ const ResultPage = (props) => {
 
         let subjectId = getParameterURL(window.location.href, 'subjectId')
         let sort = getParameterURL(window.location.href, 'sort')
+        let searchTerm = getParameterURL(window.location.href, 'searchTerm')
+        console.log(searchTerm)
 
-        if (subjectId !== "0" && sort !== "0") {
+        if (subjectId !== "0" && sort !== "0" && searchTerm === null) {
             const filteredRequests = []
             props.requests.forEach(request => {
                 if (request.subject_id._id.toString() === subjectId) {
@@ -59,6 +61,43 @@ const ResultPage = (props) => {
             });
             setRequests(filteredRequests)
         }
+
+        if (subjectId === "0" && sort !== "0") {
+            const filteredRequests = []
+            props.requests.forEach(request => {
+                if (request.subject_id._id.toString() === subjectId) {
+                    // console.log(request.subject_id)
+                    filteredRequests.push(request)
+                }
+            });
+            setRequests(filteredRequests)
+        }
+
+        if (subjectId !== "0" && sort === "0") {
+            const filteredRequests = []
+            props.requests.forEach(request => {
+                if (request.subject_id._id.toString() === subjectId) {
+                    // console.log(request.subject_id)
+                    filteredRequests.push(request)
+                }
+            });
+            setRequests(filteredRequests)
+        }
+
+        if (searchTerm !== null) {
+            const filteredRequests = []
+            props.requests.forEach(request => {
+                if (request.subject_id._id.toString() === subjectId) {
+                    // console.log(request.subject_id)
+                    filteredRequests.push(request)
+                }
+            });
+            setRequests(filteredRequests)
+        }
+
+
+
+
 
     }, [])
 
