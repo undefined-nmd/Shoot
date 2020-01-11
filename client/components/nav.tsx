@@ -1,4 +1,4 @@
-import React from 'react'
+import React, { useState, useEffect } from 'react'
 import Link from 'next/link'
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import Add from '../components/buttons/add'
@@ -15,20 +15,43 @@ const links = [
   return link
 })
 
-const Nav = (props) => (
-  <nav className="nav__container d-flex-center">
-    <ul>
-      {links.map(({ key, href, label }) => (
-        <li className="nav__item" key={key}>
-          {(label === "home") ? <a href={href}><FontAwesomeIcon icon="home" size="2x" /></a> : ""}
-          {(label === "search") ? <a href={href}> <FontAwesomeIcon icon="search" size="2x" /></a> : ""}
-          {(label === "request") ? <a className="add__request d-flex-center" onClick={props.onToggleDrawer}><Add /></a> : ""}
-          {(label === "timeline") ? <a href={href}> <FontAwesomeIcon icon="calendar-alt" size="2x" /></a> : ""}
-          {(label === "profile") ? <a href={href}> <FontAwesomeIcon icon="user" size="2x" /></a> : ""}
-        </li>
-      ))}
-    </ul>
-  </nav>
-)
+
+const Nav = (props) => {
+
+  useEffect(() => {
+
+
+  }, [])
+
+  const searchClick = (e) => {
+
+    e.preventDefault();
+    //remove logo when click on search input
+    let searchInput = document.getElementsByClassName("header__search")[0];
+    let logo = document.getElementById("header-logo");
+
+    if (logo !== null) {
+      logo.remove()
+    }
+
+  }
+
+
+  return (
+    <nav className="nav__container d-flex-center">
+      <ul>
+        {links.map(({ key, href, label }) => (
+          <li className="nav__item" key={key}>
+            {(label === "home") ? <a href={href}><FontAwesomeIcon icon="home" size="2x" /></a> : ""}
+            {(label === "search") ? <a onClick={e => searchClick(e)}> <FontAwesomeIcon icon="search" size="2x" /></a> : ""}
+            {(label === "request") ? <a className="add__request d-flex-center" onClick={props.onToggleDrawer}><Add /></a> : ""}
+            {(label === "timeline") ? <a href={href}> <FontAwesomeIcon icon="calendar-alt" size="2x" /></a> : ""}
+            {(label === "profile") ? <a href={href}> <FontAwesomeIcon icon="user" size="2x" /></a> : ""}
+          </li>
+        ))}
+      </ul>
+    </nav>
+  )
+}
 
 export default Nav

@@ -17,7 +17,6 @@ const Header = ({ onToggleFilter }) => {
             if (logo !== null) {
                 logo.remove()
             }
-
         })
 
 
