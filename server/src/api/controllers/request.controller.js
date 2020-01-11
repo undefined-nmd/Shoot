@@ -9,7 +9,6 @@ class RequestController {
   index = async(req, res, next) => {
     try {
 
-      //let requests = null
       let query = Request.find();
 
       if(req.query.page){
@@ -27,7 +26,7 @@ class RequestController {
 
       if(req.query.sort){
         switch (req.query.sort) {
-          case "popular":
+          case "upvotes":
             query.sort([['upvoteCount', 1]]);
             break;
           case "latest":
@@ -43,13 +42,25 @@ class RequestController {
 
       const requests = await query.exec();
 
-      console.log(requests);
-
       if (requests === undefined || requests === null) {
         return res.status(404).json({
           message: "No requests were found in the database"
         })
       }
+
+      //calculate the 'hotness' of each request when sorting by popular
+      /*
+      if(req.query.sort == 'popular'){
+        //console.log(requests);
+        requests.forEach(request => {
+          let createdAt = new Date(request._id.getTimestamp());
+          //the age of the request, in hours
+          let age = (new Date() - createdAt)/3600000;
+          request.hotness = (1/age)*(request.upvote_count+1)
+        });
+        console.log(requests[0].hotness);
+      }
+      */
 
       return res.status(200).json(requests)
 
