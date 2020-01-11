@@ -8,17 +8,20 @@
     min-height: 80px;
     padding: $padding-md;
     background: $gradient-student;
-    
+
     &__logo {
         img {
             max-width: 80px;
         }
+
+
     }
 
     &__search {
         flex-grow: 1;
         padding-left: $padding-md;
         padding-right: $padding-md;
+        transition: width 2.5s linear;
     }
 
     &__filter {

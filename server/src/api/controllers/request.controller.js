@@ -9,27 +9,58 @@ class RequestController {
   index = async(req, res, next) => {
     try {
 
-      let requests = null
+      let query = Request.find();
 
       if(req.query.page){
-        requests = await Request.find()
-          .limit(this.requestsPerPage)
-          .skip(this.requestsPerPage * req.query.page)
-          .populate('student_id', 'first_name last_name profile_img')
-          .populate('subject_id', 'name')
-          .exec()
-      }else{
-        requests = await Request.find()
-        .populate('student_id', 'first_name last_name profile_img')
-        .populate('subject_id', 'name')
-        .exec()
+          query.limit(this.requestsPerPage)
+            .skip(this.requestsPerPage * req.query.page);          
       }
+
+      if(req.query.subject){
+          query.where('subject_id', req.query.subject);      
+      }
+
+      if(req.query.student){
+        query.where('student_id', req.query.student);      
+    }
+
+      if(req.query.sort){
+        switch (req.query.sort) {
+          case "upvotes":
+            query.sort([['upvoteCount', 1]]);
+            break;
+          case "latest":
+              query.sort([['_id', -1]]);
+              break;
+          default:
+            break;
+        }    
+    }
+
+      query.populate('student_id', 'first_name last_name profile_img')
+        .populate('subject_id', 'name');
+
+      const requests = await query.exec();
 
       if (requests === undefined || requests === null) {
         return res.status(404).json({
           message: "No requests were found in the database"
         })
       }
+
+      //calculate the 'hotness' of each request when sorting by popular
+      /*
+      if(req.query.sort == 'popular'){
+        //console.log(requests);
+        requests.forEach(request => {
+          let createdAt = new Date(request._id.getTimestamp());
+          //the age of the request, in hours
+          let age = (new Date() - createdAt)/3600000;
+          request.hotness = (1/age)*(request.upvote_count+1)
+        });
+        console.log(requests[0].hotness);
+      }
+      */
 
       return res.status(200).json(requests)
 
