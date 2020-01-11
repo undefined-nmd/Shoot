@@ -36,13 +36,15 @@ const HomePage = (props) => {
 HomePage.getInitialProps = async (ctx) => {
   const cookies = parseCookie(ctx)
   const decodedToken = await AuthService.getDecodedToken(cookies.token)
-
-  const [requests, subjects, comments, upvotes] = await Promise.all([
+  
+  let [requests, subjects, comments, upvotes] = await Promise.all([
     RequestService.getRequests(),
     SubjectService.getSubjects(),
     CommentService.getComments(),
     VoteService.getVotesByStudent(decodedToken.id)
   ])
+
+  requests = requests.reverse()
 
   return {
     requests,

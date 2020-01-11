@@ -6,6 +6,8 @@ import Logo from './logo'
 const Header = ({ onToggleFilter }) => {
 
 
+
+
     useEffect(() => {
 
         //remove logo when click on search input
@@ -15,7 +17,7 @@ const Header = ({ onToggleFilter }) => {
         searchInput.addEventListener('click', (e) => {
             e.preventDefault();
             if (logo !== null) {
-                logo.remove()
+                logo.classList.add("remove")
             }
         })
 

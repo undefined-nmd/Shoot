@@ -29,9 +29,8 @@ const Nav = (props) => {
     //remove logo when click on search input
     let searchInput = document.getElementsByClassName("header__search")[0];
     let logo = document.getElementById("header-logo");
-
     if (logo !== null) {
-      logo.remove()
+      logo.classList.add("remove")
     }
 
   }

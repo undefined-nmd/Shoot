@@ -6,7 +6,7 @@ let sortRequestsByDate = async (requests, sortType = "ASC") => {
     requests.forEach(request => {
         console.log(request)
     });
-    return "bitches be crazy"
+    return "Bitches be crazy"
 
 }
 
