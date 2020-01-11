@@ -13,7 +13,7 @@ class RequestService {
         return data
     }
 
-    static async getRequestBySearch(searchTerm: String) {
+    static async getRequestsBySearch(searchTerm: String) {
         const res = await _axiosInstance.get(`request/search?searchQuery=${searchTerm}`)
         const data = await res.data
         return data

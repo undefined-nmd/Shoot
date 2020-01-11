@@ -86,13 +86,12 @@ const ResultPage = (props) => {
 
         if (searchTerm !== null) {
             const filteredRequests = []
-            props.requests.forEach(request => {
-                if (request.subject_id._id.toString() === subjectId) {
-                    // console.log(request.subject_id)
-                    filteredRequests.push(request)
-                }
-            });
-            setRequests(filteredRequests)
+
+            RequestService.getRequestsBySearch(searchTerm).then((requests) => {
+                setRequests(requests)
+            })
+
+
         }
 
 

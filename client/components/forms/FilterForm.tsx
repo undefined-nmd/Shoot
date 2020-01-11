@@ -25,7 +25,6 @@ const FilterForm = () => {
 
     const handleSubmit = (e) => {
         e.preventDefault()
-
         return location.href = 'http://localhost:3000/result?subjectId=' + selectedSubject + '&sort=' + selectedSort;
     }
 
