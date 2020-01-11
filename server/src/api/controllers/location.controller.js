@@ -28,6 +28,7 @@ class LocationController {
     try {
       const location = new Location({
         name: req.body.name,
+        coordinates: req.body.coordinates
       })
 
       const newLocation = await location.save()
