@@ -3,15 +3,10 @@ import { Vote } from '../models/'
 class VoteController {
   index = async(req, res) => {
     try {
-      //let votes = null
       let query = Vote.find();
 
       if(req.query.student){
         query.where('student_id', req.query.student);      
-      }
-
-      if(req.query.request){
-        query.where('request_id', req.query.request);      
       }
 
       const votes = await query.exec();

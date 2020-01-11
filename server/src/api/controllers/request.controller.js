@@ -48,20 +48,18 @@ class RequestController {
         })
       }
 
-      //calculate the 'hotness' of each request when sorting by popular
-      /*
+      //calculate the 'popularity' of each request when sorting by popular
       if(req.query.sort == 'popular'){
-        //console.log(requests);
         requests.forEach(request => {
           let createdAt = new Date(request._id.getTimestamp());
           //the age of the request, in hours
           let age = (new Date() - createdAt)/3600000;
-          request.hotness = (1/age)*(request.upvote_count+1)
+          //calculate popularity by age and upvote_count
+          request.popularity = (1/age)*(request.upvote_count+1);
         });
-        console.log(requests[0].hotness);
+        requests.sort(function(a, b){return b.popularity-a.popularity});
       }
-      */
-
+      
       return res.status(200).json(requests)
 
     } catch (err) {
