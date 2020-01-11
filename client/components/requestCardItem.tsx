@@ -1,16 +1,35 @@
 import * as React from 'react'
 import Icon from "./icon"
 import Upvote from './upvote'
+import { VoteService } from '../services';
+import { User } from '../pages/profile';
+import { DecodedToken } from '../services/auth.service';
 
 interface RequestCardProps {
     request?: any,
-    comments?: any
+    comments?: any,
+    upvote?: any,
+    user: DecodedToken
 }
 
-const RequestCardItem: React.FC<RequestCardProps> = ({ request, comments }) => {
+const RequestCardItem: React.FC<RequestCardProps> = ({ request, comments, upvote, user }) => {
+    const [vote, setVote] = React.useState(upvote)
+
     const getFullName = () => {
         return request.student_id.first_name + ' ' + request.student_id.last_name
     }
+
+    const updateVote = () => {
+        if(upvote.length) {
+            VoteService.deleteVote(upvote[0]._id)
+        } else {
+            VoteService.createVote({
+                student_id: user.id,
+                request_id: request._id
+            })
+        }
+    }
+
     return (
         <section className="card">
             <div className="card__author d-flex">
@@ -26,11 +45,13 @@ const RequestCardItem: React.FC<RequestCardProps> = ({ request, comments }) => {
                 <p>{ request.message }</p>
             </div>
             <div className="card__meta d-flex">
-                {request.upvote_count && 
-                    <div className="card__meta-item">
-                        <Upvote count={ request.upvote_count } />
-                    </div>
-                }
+                <div className="card__meta-item">
+                    <Upvote 
+                        handleVote={ updateVote }
+                        upvote={ vote }
+                        count={ request.upvote_count }
+                    />
+                </div>
                 {comments && 
                     <div className="card__meta-item">
                         <span className="card__meta-number">{ comments.length }</span>

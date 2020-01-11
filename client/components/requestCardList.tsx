@@ -1,8 +1,11 @@
 import RequestCardItem from "./requestCardItem"
+import { DecodedToken } from "../services/auth.service"
 
 interface RequestCardListProps {
     requests: Array<any>,
-    comments: Array<any>
+    comments: Array<any>,
+    upvotes: Array<any>,
+    user: DecodedToken
 }
 
 const RequestCardList: React.FC<RequestCardListProps> = (props) => {
@@ -10,8 +13,16 @@ const RequestCardList: React.FC<RequestCardListProps> = (props) => {
         <div className="card-list"> 
             {props.requests.map((request) => {
                 const filteredComments = props.comments.filter(comment => comment.request_id === request._id)
+                const filteredVote = props.upvotes.filter(upvote => upvote.request_id === request._id)
+
                 return (
-                    <RequestCardItem key={ request._id } request={ request } comments={ filteredComments } />
+                    <RequestCardItem 
+                        key={ request._id }
+                        request={ request }
+                        comments={ filteredComments }
+                        upvote={ filteredVote }
+                        user={ props.user }
+                    />
                 )
             })}
         </div>
