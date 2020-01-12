@@ -27,6 +27,7 @@ const LivePage = (props) => {
                     comments={props.comments}
                     upvotes={props.upvotes}
                     user={props.user}
+                    live={true}
                 />
             }
         </div>
