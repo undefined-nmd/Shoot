@@ -18,24 +18,6 @@ const links = [
 
 const Nav = (props) => {
 
-  useEffect(() => {
-
-
-  }, [])
-
-  const searchClick = (e) => {
-
-    e.preventDefault();
-    //remove logo when click on search input
-    let searchInput = document.getElementsByClassName("header__search")[0];
-    let logo = document.getElementById("header-logo");
-    if (logo !== null) {
-      logo.classList.add("remove")
-    }
-
-  }
-
-
   return (
     <nav className="nav__container d-flex-center">
       <ul>

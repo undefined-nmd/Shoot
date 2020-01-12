@@ -2,23 +2,15 @@ import React, { Component } from 'react'
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 
 
-export interface AddProps {
 
-}
+let Add = ({ size = '2x' }) => {
 
-export interface AddState {
+    return (
+        <div className="button__add">
+            <FontAwesomeIcon icon="plus" size={size} />
+        </div>
+    )
 
-}
-
-class Add extends React.Component<AddProps, AddState> {
-
-    render() {
-        return (
-            <div className="button__add">
-                <FontAwesomeIcon icon="plus" size="2x" />
-            </div>
-        )
-    }
 }
 
 export default Add;

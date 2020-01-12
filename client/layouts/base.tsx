@@ -3,6 +3,7 @@ import Router from 'next/router'
 
 // Import components
 import Nav from '../components/nav'
+import DesktopNav from '../components/Desktopnav'
 import Header from '../components/header'
 import Drawer from '../components/drawer'
 import AddPostForm from '../components/forms/AddPostForm'
@@ -102,7 +103,8 @@ const BaseLayout = Page => {
           <main className="container container--spacing">
             <Page {...this.props} />
           </main>
-          <Nav onToggleDrawer={this.toggleAddRequestDrawer} />
+          <DesktopNav onToggleDrawer={this.toggleAddRequestDrawer} />
+          {/* <Nav onToggleDrawer={this.toggleAddRequestDrawer} /> */}
           <Drawer visible={this.state.showDrawer} onToggleDrawer={this.toggleDrawer}>
             {drawerContent}
           </Drawer>
