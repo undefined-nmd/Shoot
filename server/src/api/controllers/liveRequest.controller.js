@@ -5,7 +5,7 @@ class liveRequestController {
   index = async(req, res, next) => {
     try {
       let liveRequests = null
-      liveRequests = await liveRequest.find().exec()
+      liveRequests = await liveRequest.find().populate('location').exec()
 
       if (liveRequests === undefined || liveRequests === null) {
         return res.status(404).json({
