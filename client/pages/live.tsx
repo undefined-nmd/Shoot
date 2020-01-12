@@ -37,17 +37,17 @@ LivePage.getInitialProps = async (ctx) => {
     const cookies = parseCookie(ctx)
     const decodedToken = await AuthService.getDecodedToken(cookies.token)
 
-    let [liveRequests, subjects, comments, upvotes] = await Promise.all([
+    let [requests, subjects, comments, upvotes] = await Promise.all([
         LiveRequestService.getLiveRequests(),
         SubjectService.getSubjects(),
         CommentService.getComments(),
         VoteService.getVotesByStudent(decodedToken.id)
     ])
 
-    liveRequests = liveRequests.reverse()
+    requests = requests.reverse()
 
     return {
-        liveRequests,
+        requests,
         subjects,
         comments,
         upvotes,
