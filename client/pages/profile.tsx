@@ -9,7 +9,7 @@ import { Badge } from '../components/badgeItem'
 
 import { UserService, AuthService } from '../services'
 
-import { parseCookie } from '../utils/helper'
+import { parseCookie, getFullName } from '../utils/helper'
 
 export type User = {
     first_name: string,
@@ -29,10 +29,6 @@ interface ProfilePageProps {
 }
 
 const ProfilePage: NextPage = ({ user }: ProfilePageProps) => {
-    const getFullName = () => {
-        return user.first_name + ' ' + user.last_name
-    }
-    
     return (
         <div className="page profilepage">
             <div className="profile">
@@ -40,7 +36,7 @@ const ProfilePage: NextPage = ({ user }: ProfilePageProps) => {
                     <img src={user.profile_img} alt="profile image" />
                 </div>
                 <section className="profile__info">
-                    <div className="profile__name">{getFullName() || ''}</div>
+                    <div className="profile__name">{getFullName(user.first_name, user.last_name) || ''}</div>
                     <div className="profile__major">{user.study}</div>
                     <div className="profile__badges">
                         <BadgeScore badges={user.badges} />

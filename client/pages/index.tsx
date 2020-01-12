@@ -11,8 +11,7 @@ import RequestCardList from '../components/requestCardList'
 import { RequestService, SubjectService, CommentService, VoteService, AuthService } from '../services'
 
 import '@fortawesome/fontawesome-svg-core/styles.css'
-import { parseCookie } from '../utils/helper';
-import CommentListWrapper from '../components/commentListWrapper';
+import { parseCookie } from '../utils/helper'
 
 
 const HomePage = (props) => {
@@ -30,7 +29,6 @@ const HomePage = (props) => {
           user={props.user}
         />
       }
-      <CommentListWrapper comments={props.comments} />
     </div>
   );
 }

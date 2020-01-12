@@ -1,11 +1,37 @@
-.comments-list {
-    &__wrapper {
-        z-index: 999;
-        position: fixed;
-        top: 0;
+.comment-item {
+    display: flex;
+    margin: $padding-lg 0;
+
+    &__content {
+        padding: 0 0 0 $padding-xs;
+        flex: 1;
+
+        p {
+            padding-right: $padding-lg;
+        }
+    }
+
+    &__author {
+        margin-top: 0;
+    }
+
+    &__top {
+        display: flex;
+        justify-content: space-between;
+    }
+
+    &__timestamp {
+        color: $color-s-secondary;
+        font-size: 14px;
+    }
+}
+
+.comment {
+    &__form {
+        position: absolute;
+        bottom: 0;
         left: 0;
         width: 100%;
-        height: 100vh;
-        background: #FFF;
+        padding: $padding-md;
     }
 }

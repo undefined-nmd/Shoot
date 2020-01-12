@@ -1,23 +1,23 @@
 import React, { useState } from 'react'
 import Drawer from "./drawer"
 import CommentList from "./commentList"
+import { Comment } from './commentItem'
 import CommentForm from './forms/commentForm'
+import { DecodedToken } from '../services/auth.service'
 
 interface CommentListWrapperProps {
-    comments: any[]
+    open: boolean,
+    requestId: string,
+    comments: Comment[],
+    user: DecodedToken,
+    onHandleDrawer(): void
 }
 
-const CommentListWrapper = ({ comments }: CommentListWrapperProps) => {
-    const [showDrawer, setShowDrawer] = useState(true)
-
-    const toggleDrawer = () => {
-        console.log('Toggle Drawer')
-    }
-
+const CommentListWrapper = ({ comments, requestId, user, open, onHandleDrawer }: CommentListWrapperProps) => {
     return (
-        <Drawer visible={showDrawer} onToggleDrawer={() => console.log('Toggle')} height="90vh">
+        <Drawer visible={open} onToggleDrawer={onHandleDrawer} height="95vh">
             <CommentList comments={comments} />
-            <CommentForm />
+            <CommentForm user={user} requestId={requestId} />
         </Drawer>
     )
 }

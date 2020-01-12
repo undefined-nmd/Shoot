@@ -1,22 +1,9 @@
 import Icon from '../icon'
-import { useState, useEffect } from 'react'
 
-const CommentInput = () => {
-
-    const [searchTerm, setSearchTerm] = useState()
-
-    const handleOnChange = (e) => {
-        setSearchTerm(e.target.value)
-    }
-
-    const handleSearch = (e) => {
-        e.preventDefault()
-        return location.href = 'http://localhost:3000/result?searchTerm=' + searchTerm;
-    }
-
+const CommentInput = (props) => {
     return (
         <div className="form-control">
-            <input type="text" placeholder="Add a comment" onChange={() => console.log('Clicked')} />
+            <input type="text" placeholder="Add a comment" onChange={() => console.log('Clicked')} {...props} />
             <div className="input__icon">
                 <div onClick={() => console.log('Clicked')} className="input__icon--comment">
                     <Icon name="paper-plane" />
