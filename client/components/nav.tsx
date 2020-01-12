@@ -6,7 +6,7 @@ import '@fortawesome/fontawesome-svg-core/styles.css'
 
 const links = [
   { href: '/', label: 'home', key: null },
-  { href: '/search', label: 'search', key: null },
+  { href: '/live', label: 'live', key: null },
   { href: '/request', label: 'request', key: null },
   { href: '/timeline', label: 'timeline', key: null },
   { href: '/profile', label: 'profile', key: null }
@@ -42,7 +42,7 @@ const Nav = (props) => {
         {links.map(({ key, href, label }) => (
           <li className="nav__item" key={key}>
             {(label === "home") ? <a href={href}><FontAwesomeIcon icon="home" size="2x" /></a> : ""}
-            {(label === "search") ? <a onClick={e => searchClick(e)}> <FontAwesomeIcon icon="search" size="2x" /></a> : ""}
+            {(label === "live") ? <a href={href}><FontAwesomeIcon icon="bolt" size="2x" /></a> : ""}
             {(label === "request") ? <a className="add__request d-flex-center" onClick={props.onToggleDrawer}><Add /></a> : ""}
             {(label === "timeline") ? <a href={href}> <FontAwesomeIcon icon="calendar-alt" size="2x" /></a> : ""}
             {(label === "profile") ? <a href={href}> <FontAwesomeIcon icon="user" size="2x" /></a> : ""}
