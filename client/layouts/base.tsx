@@ -37,6 +37,7 @@ const BaseLayout = Page => {
 
     componentDidMount() {
       AuthService.isAuthenticated() ? setAuthorizationHeader(this.props.cookie) : Router.push('/login')
+      console.log(this.props)
     }
 
     static async getInitialProps(ctx) {
