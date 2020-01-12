@@ -19,7 +19,9 @@ const Drawer: React.FC<DrawerProps> = (props) => {
     return (
         <div className={(props.visible ? 'drawer__backdrop' : '')}>
             <div className={'drawer ' + (props.visible ? '' : 'slideOut')} style={styles.drawer}>
-                <div className="drawer__indicator" onClick={props.onToggleDrawer}></div>
+                <div className="drawer__head d-flex-center">
+                    <div className="drawer__indicator" onClick={props.onToggleDrawer}></div>
+                </div>
                 <div className="drawer__content">
                     {props.children}
                 </div>

@@ -33,6 +33,10 @@
     box-shadow: none;
 }
 
+.comment-control {
+    background-color: #f1f1f1;
+}
+
 .input__icon {
     position: absolute;
     top: 50%;
@@ -41,7 +45,7 @@
     overflow: hidden;
 
     &--search, &--comment {
-        color: lighten($color-t-secondary, 15);
+        color: lighten($color-t-secondary, 25);
     }
 }
 
