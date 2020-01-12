@@ -1,6 +1,14 @@
+.comment-list {
+    padding-bottom: $padding-md;
+}
+
 .comment-item {
     display: flex;
     margin: $padding-lg 0;
+
+    &:first-child {
+        margin-top: 0;
+    }
 
     &__content {
         padding: 0 0 0 $padding-xs;
@@ -32,6 +40,5 @@
         bottom: 0;
         left: 0;
         width: 100%;
-        padding: $padding-md;
     }
 }
