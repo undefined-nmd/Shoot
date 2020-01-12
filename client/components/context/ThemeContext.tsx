@@ -1,8 +1,5 @@
 import { createContext } from 'react'
 
-const ThemeContext = createContext({
-    isLecturer: false,
-    toggleTheme: () => {}
-})
+const ThemeContext = createContext({})
 
 export default ThemeContext

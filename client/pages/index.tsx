@@ -12,15 +12,22 @@ import { RequestService, SubjectService, CommentService, VoteService, AuthServic
 
 import '@fortawesome/fontawesome-svg-core/styles.css'
 import { parseCookie } from '../utils/helper'
+import AuthContext from '../components/context/AuthContext';
 
 
 const HomePage = (props) => {
+  console.log(props)
   return (
     <div className="page homepage">
       <Head>
         <title>Home</title>
         <link rel='icon' href='/favicon.ico' />
       </Head>
+      {/* <AuthContext.Consumer>
+        {value => {
+          console.log(value)
+        }}
+      </AuthContext.Consumer> */}
       {props.requests &&
         <RequestCardList 
           requests={props.requests} 

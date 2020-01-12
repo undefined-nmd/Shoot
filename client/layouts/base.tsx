@@ -55,7 +55,6 @@ const BaseLayout = Page => {
       } catch (err) {
         console.log(`Couldn't fetch page props from ${Page.getInitialProps}`)
       }
-
       return {
         ...pageProps,
         cookie: cookies.token,

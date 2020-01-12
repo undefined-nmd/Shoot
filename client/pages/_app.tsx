@@ -1,28 +1,23 @@
-import App from 'next/app'
-import ThemeContext from '../components/context/ThemeContext';
+import App, { AppContext } from 'next/app'
+import ThemeContext from '../components/context/ThemeContext'
+import AuthContext from '../components/context/AuthContext'
 
-interface CustomAppProps {
+const CustomApp = ({ Component, pageProps }) => {
+    return (
+        <Component {...pageProps} />
+    )
 }
 
-interface CustomAppState {
-    theme: boolean
-}
+CustomApp.getInitialProps = async ({ Component, ctx }) => {
+    let pageProps = {}
 
-class CustomApp extends App<CustomAppProps, {}, CustomAppState> {
-    constructor(props) {
-        super(props)
-        this.state = {
-            theme: true, 
-        }
+    pageProps = await Component.getInitialProps(ctx)
+
+    const data = {
+        name: "fldksfkldsf"
     }
-    render() {
-        const { Component, pageProps } = this.props
-        return (
-            <ThemeContext.Provider value={{ theme: this.state.theme }}>
-                <Component {...pageProps} />
-            </ThemeContext.Provider>
-        )
-    }
+
+    return { ...pageProps, data }
 }
 
 export default CustomApp
