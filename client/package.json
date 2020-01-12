@@ -25,7 +25,8 @@
     "react-bottom-sheet": "^1.1.1",
     "react-dom": "16.10.2",
     "react-timeago": "^4.4.0",
-    "styled-components": "^4.4.1"
+    "styled-components": "^4.4.1",
+    "validator": "^12.1.0"
   },
   "devDependencies": {
     "@types/js-cookie": "^2.2.4",
