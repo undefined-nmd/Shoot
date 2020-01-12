@@ -40,7 +40,7 @@
     transform: translateY(-50%);
     overflow: hidden;
 
-    &--search {
+    &--search, &--comment {
         color: lighten($color-t-secondary, 15);
     }
 }

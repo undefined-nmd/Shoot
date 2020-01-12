@@ -1,3 +1,4 @@
+import * as React from 'react'
 import RequestCardItem from "./requestCardItem"
 import { DecodedToken } from "../services/auth.service"
 
@@ -17,11 +18,11 @@ const RequestCardList: React.FC<RequestCardListProps> = (props) => {
 
                 return (
                     <RequestCardItem 
-                        key={ request._id }
-                        request={ request }
-                        comments={ filteredComments }
-                        upvote={ filteredVote }
-                        user={ props.user }
+                        key={request._id}
+                        request={request}
+                        comments={filteredComments}
+                        upvote={filteredVote}
+                        user={props.user}
                     />
                 )
             })}
