@@ -41,8 +41,7 @@ const LoginPage = () => {
             setErrors(errors)
         }
 
-        console.log(inputs)
-        console.log(nerrors)
+        return isValid
     }
     
     return (
