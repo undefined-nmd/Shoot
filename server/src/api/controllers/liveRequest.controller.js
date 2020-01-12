@@ -5,7 +5,7 @@ class liveRequestController {
   index = async(req, res, next) => {
     try {
       let liveRequests = null
-      liveRequests = await liveRequest.find().populate('location').exec()
+      liveRequests = await liveRequest.find().populate('location').populate('student_id', 'first_name last_name profile_img').populate('subject_id', 'name').exec()
 
       if (liveRequests === undefined || liveRequests === null) {
         return res.status(404).json({
@@ -49,7 +49,7 @@ class liveRequestController {
   show = async(req, res, next) => {
     try {
       const { id } = req.params
-      const liveRequest = await liveRequest.findById(id).exec()
+      const liveRequest = await liveRequest.findById(id).populate('location').populate('student_id', 'first_name last_name profile_img').populate('subject_id', 'name').exec()
 
       if (!liveRequest) {
         return res.status(404).json({

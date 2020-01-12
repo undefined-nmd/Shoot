@@ -4,7 +4,7 @@ class CommentController {
   index = async(req, res, next) => {
     try {
       let comments = null
-      comments = await Comment.find().exec()
+      comments = await Comment.find().populate('student_id', 'first_name last_name profile_img').exec()
 
       if (comments === undefined || comments === null) {
         return res.status(404).json({

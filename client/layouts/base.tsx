@@ -14,13 +14,13 @@ import { _axiosInstance, setAuthorizationHeader } from '../services/api.service'
 import { parseCookie } from '../utils/helper'
 
 // Import icons
-import { faPlus, faArrowLeft, faHome, faSearch, faCalendarAlt, faUser, faTimes, faBolt } from '@fortawesome/free-solid-svg-icons'
+import { faPlus, faArrowLeft, faHome, faSearch, faCalendarAlt, faUser, faTimes, faPaperPlane, faBolt } from '@fortawesome/free-solid-svg-icons'
 import { library } from '@fortawesome/fontawesome-svg-core'
 
 import '../sass/main.scss'
 import { DecodedToken } from '../services/auth.service'
 
-library.add(faPlus, faArrowLeft, faHome, faSearch, faCalendarAlt, faUser, faTimes, faBolt)
+library.add(faPlus, faArrowLeft, faHome, faSearch, faCalendarAlt, faUser, faTimes, faPaperPlane, faBolt)
 
 /*
 ** High Order Component that passes getInitialProps

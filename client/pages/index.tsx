@@ -11,7 +11,7 @@ import RequestCardList from '../components/requestCardList'
 import { RequestService, SubjectService, CommentService, VoteService, AuthService } from '../services'
 
 import '@fortawesome/fontawesome-svg-core/styles.css'
-import { parseCookie } from '../utils/helper';
+import { parseCookie } from '../utils/helper'
 
 
 const HomePage = (props) => {
