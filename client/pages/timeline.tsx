@@ -1,10 +1,12 @@
 import React from 'react'
 // Import layout
 import baseLayout from '../layouts/base';
-import { RequestService, SubjectService, CommentService } from '../services'
 import Head from 'next/head'
 import RequestCardItem from "../components/requestCardItem"
 
+// Import services
+import { RequestService, SubjectService, CommentService, VoteService, AuthService } from '../services'
+import { parseCookie } from '../utils/helper';
 
 const TimeLinePage = (props) => {
 
@@ -15,7 +17,7 @@ const TimeLinePage = (props) => {
             {props.requests.map((request, i) => {
 
                 const filteredComments = props.comments.filter(comment => comment.request_id === request._id)
-
+                const filteredVote = props.upvotes.filter(upvote => upvote.request_id === request._id)
                 //check for date
                 const timestamp = request._id.toString().substring(0, 8)
                 let date = new Date(parseInt(timestamp, 16) * 1000)
@@ -26,7 +28,7 @@ const TimeLinePage = (props) => {
                     return (
                         <div key={request._id} className="card__line">
                             <div className="titles__year">{date.getFullYear()}</div>
-                            <RequestCardItem key={request._id} request={request} comments={filteredComments} />
+                            <RequestCardItem key={request._id} request={request} comments={filteredComments} upvote={filteredVote} user={props.user} />
                         </div>)
                 }
                 if (date.getFullYear() !== newYear) {
@@ -34,12 +36,12 @@ const TimeLinePage = (props) => {
                     return (
                         <div key={request._id} className="card__line">
                             <div className="titles__year">{date.getFullYear()}</div>
-                            <RequestCardItem key={request.id} request={request} />
+                            <RequestCardItem key={request.id} request={request} comments={filteredComments} upvote={filteredVote} user={props.user} />
                         </div>
                     )
                 } else {
                     return (
-                        <RequestCardItem key={request._id} request={request} />
+                        <RequestCardItem key={request._id} request={request} comments={filteredComments} upvote={filteredVote} user={props.user} />
                     )
                 }
             })
@@ -49,15 +51,19 @@ const TimeLinePage = (props) => {
 }
 
 
-TimeLinePage.getInitialProps = async () => {
-    let [requests, comments] = await Promise.all([
+TimeLinePage.getInitialProps = async (ctx) => {
+    const cookies = parseCookie(ctx)
+    const decodedToken = await AuthService.getDecodedToken(cookies.token)
+
+    let [requests, comments, upvotes] = await Promise.all([
         RequestService.getRequests(),
-        CommentService.getComments()
+        CommentService.getComments(),
+        VoteService.getVotesByStudent(decodedToken.id)
     ])
     requests = requests.reverse()
 
     return {
-        requests, comments
+        requests, comments, upvotes, user: decodedToken
     }
 }
 

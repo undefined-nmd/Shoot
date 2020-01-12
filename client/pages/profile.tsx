@@ -25,23 +25,26 @@ export type User = {
 
 interface ProfilePageProps {
     user?: User,
+    currentUser?: User
     badges?: Badge[]
 }
 
-const ProfilePage: NextPage = ({ user }: ProfilePageProps) => {
+const ProfilePage: NextPage = ({ currentUser }: ProfilePageProps) => {
     return (
         <div className="page profilepage">
             <div className="profile">
                 <div className="profile__image">
-                    <img src={user.profile_img} alt="profile image" />
+                    <img src={currentUser.profile_img} alt="profile image" />
                 </div>
                 <section className="profile__info">
-                    <div className="profile__name">{getFullName(user.first_name, user.last_name) || ''}</div>
-                    <div className="profile__major">{user.study}</div>
-                    <div className="profile__badges">
-                        <BadgeScore badges={user.badges} />
-                        <BadgeList badges={user.badges} />
-                    </div>
+                    <div className="profile__name">{getFullName(currentUser.first_name, currentUser.last_name) || ''}</div>
+                    <div className="profile__major">{currentUser.study}</div>
+                    {currentUser.badges && 
+                        <div className="profile__badges">
+                            <BadgeScore badges={currentUser.badges} />
+                            <BadgeList badges={currentUser.badges} />
+                        </div>
+                    }
                 </section>
                 <a className="btn btn--primary" onClick={() => AuthService.logout()}>Log out</a>
             </div>
@@ -52,10 +55,10 @@ const ProfilePage: NextPage = ({ user }: ProfilePageProps) => {
 ProfilePage.getInitialProps = async (ctx: any) => {
     const cookies = parseCookie(ctx)
     const decodedToken = await AuthService.getDecodedToken(cookies.token)
-    const user = await UserService.getUserById(decodedToken.id)
+    const currentUser = await UserService.getUserById(decodedToken.id)
 
     return { 
-        user
+        currentUser
     }
 }
 

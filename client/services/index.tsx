@@ -5,7 +5,8 @@ import SubjectService from "./subject.service"
 import CommentService from "./comment.service"
 import VoteService from "./vote.service"
 import AuthService from "./auth.service"
-
+import LiveRequestService from "./liveRequest.service"
+import LocationService from "./location.service"
 export {
     RequestService,
     UserService,
@@ -13,5 +14,7 @@ export {
     SubjectService,
     CommentService,
     VoteService,
-    AuthService
+    AuthService,
+    LiveRequestService,
+    LocationService
 }

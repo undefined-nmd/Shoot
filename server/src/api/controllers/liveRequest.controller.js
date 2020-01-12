@@ -90,11 +90,10 @@ class liveRequestController {
     }
   }
 
-  destroy = (req, res, next) => {
-    const { id } = req.params
-    let liveRequest = null
+  destroy = async (req, res, next) => {
     try {
-      liveRequest = liveRequest.findByIdAndRemove(id).exec()
+      const { id } = req.params
+      await liveRequest.findByIdAndRemove(id).exec()
 
       if (!liveRequest) {
         return res.status(404).json({

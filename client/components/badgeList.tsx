@@ -5,10 +5,14 @@ interface BadgeListProps {
 }
 
 const BadgeList = ({ badges }: BadgeListProps) => {
+    if(!badges) {
+        return <p>You currently have no badges.</p>
+    }
     return (
+
         <section className="badge__group">
             {badges.map(badge => {
-                return <BadgeItem key={badge.id} badge={badge} />
+                return <BadgeItem key={badge._id} badge={badge} />
             })}
         </section>
     )
