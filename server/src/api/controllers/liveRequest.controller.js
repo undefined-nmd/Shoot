@@ -49,7 +49,7 @@ class liveRequestController {
   show = async(req, res, next) => {
     try {
       const { id } = req.params
-      const liveRequest = await liveRequest.findById(id).exec()
+      const liveRequest = await liveRequest.findById(id).populate('location').exec()
 
       if (!liveRequest) {
         return res.status(404).json({
