@@ -26,7 +26,7 @@ const badgeRouter = express.Router();
  *            schema:
  *              $ref: '#/components/schemas/Badge'
  *  post:
- *    tags: [Comments]
+ *    tags: [Badges]
  *    summary: Create a new badge
  *    produces:
  *      - application/json

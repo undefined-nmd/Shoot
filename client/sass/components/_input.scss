@@ -55,3 +55,12 @@
     align-items: center;
     margin: $padding-lg 0;
 }
+
+.is-invalid {
+    border: 1px solid $color-danger;
+}
+
+.invalid-feedback {
+    margin-top: $padding-xs;
+    color: $color-danger;
+}

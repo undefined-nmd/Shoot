@@ -1,4 +1,4 @@
-import { useState } from 'react'
+import { useState, useEffect } from 'react'
 import Router from 'next/router'
 
 // Import layout
@@ -14,14 +14,17 @@ import { AuthService } from '../services'
 
 import '../sass/main.scss'
 
+import { validateLoginForm } from '../utils/validation'
+
 const LoginPage = () => {
     const [inputs, setInputs] = useState<any>({})
+    const [nerrors, setErrors] = useState<any>({})
 
     const handleSubmit = (e) => {
         e.preventDefault()
         AuthService.login(inputs).then(() => {
             Router.push('/')  
-        })
+        }).catch(() => setFormErrors())
     }
     
     const handleInputChange = (e) => {
@@ -31,6 +34,16 @@ const LoginPage = () => {
         })
     }
 
+    const setFormErrors = () => {
+        const { errors, isValid } = validateLoginForm(inputs)
+        
+        if(!isValid) {
+            setErrors(errors)
+        }
+
+        return isValid
+    }
+    
     return (
         <section className="d-flex-center">
             <form className="auth__form" onSubmit={handleSubmit}>
@@ -42,6 +55,7 @@ const LoginPage = () => {
                     name="email"
                     placeholder="Email"
                     onChange={handleInputChange}
+                    error={nerrors.email}
                 />
                 <TextInput 
                     icon="lock"
@@ -49,6 +63,7 @@ const LoginPage = () => {
                     name="password"
                     placeholder="Password"
                     onChange={handleInputChange}
+                    error={nerrors.password}
                 />
                 <Button label="Log In" />
             </form>

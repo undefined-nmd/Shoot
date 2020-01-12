@@ -10,11 +10,12 @@ const TextArea = (props) => (
             <label htmlFor={props.name} className="form-label">{props.label}</label>
         }
         <textarea 
-            className="form-control"
+            className={`form-control ${props.error ? 'is-invalid' : ''}`}
             rows={props}
             id={props.name}
             {...props}
         />
+        {props.error && <div className="invalid-feedback">{props.error}</div>}
     </div>
 ) 
 

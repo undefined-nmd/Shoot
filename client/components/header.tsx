@@ -6,24 +6,6 @@ import Logo from './logo'
 const Header = ({ onToggleFilter }) => {
 
 
-
-
-    useEffect(() => {
-
-        //remove logo when click on search input
-        let searchInput = document.getElementsByClassName("header__search")[0];
-        let logo = document.getElementById("header-logo");
-
-        searchInput.addEventListener('click', (e) => {
-            e.preventDefault();
-            if (logo !== null) {
-                logo.classList.add("remove")
-            }
-        })
-
-
-    }, [])
-
     return (
         <section className="header d-flex">
             <div id="header-logo" className="header__logo d-flex-center">
