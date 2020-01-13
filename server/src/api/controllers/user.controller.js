@@ -34,7 +34,6 @@ class UserController {
 
   create = async(req, res, next) => {
 
-    //TODO: guard agains duplicate emails
     try {
 
       const user = new User({
