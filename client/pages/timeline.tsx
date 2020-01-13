@@ -67,7 +67,6 @@ const TimeLinePage: NextPage = (props: TimeLinePageProps) => {
     );
 }
 
-
 TimeLinePage.getInitialProps = async (ctx: any) => {
     const cookies = parseCookie(ctx)
     const decodedToken = await AuthService.getDecodedToken(cookies.token)
