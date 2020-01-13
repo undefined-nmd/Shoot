@@ -50,13 +50,16 @@ const BaseLayout = (Page: any) => {
 
     static async getInitialProps(ctx: any) {
       let pageProps = {}
+      let user = {}
 
       const cookies = parseCookie(ctx)
       setAuthorizationHeader(cookies.token)
       
-      const decodedToken = await AuthService.getDecodedToken(cookies.token)
-      const user = await UserService.getUserById(decodedToken.id)
-
+      if(AuthService.isAuthenticated()) {
+        const decodedToken = await AuthService.getDecodedToken(cookies.token)
+        user = await UserService.getUserById(decodedToken.id)
+      }
+      
       try {
         if (Page.getInitialProps) {
           pageProps = await Page.getInitialProps(ctx)
