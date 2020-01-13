@@ -30,12 +30,17 @@ const CommentForm = ({ user, requestId }: CommentFormProps) => {
         setMessage(e.target.value)
     }
 
+    const handleClick = (e) => {
+        handleSubmit(e)
+    }
+
     return (
         <div className="comment__form">
             <form onSubmit={handleSubmit} className="form-container">
                 <CommentInput 
                     value={message}
                     onChange={handleChange}
+                    handleClick={handleClick}
                 />
             </form>
         </div>

@@ -40,7 +40,7 @@ const SearchInput = (props: SearchInputProps) => {
     return (
         <div className={`form-control search-control ${props.error ? 'is-invalid' : ''}`}>
             <input type="text" placeholder="Search" onBlur={e => handleOnBlur(e)} onChange={e => handleOnChange(e)} onFocus={e => handleOnFocus(e)} />
-            <div className="input__icon">
+            <div className="input__icon" onClick={handleSearch} >
                 <div onClick={e => handleSearch(e)} className="input__icon--search">
                     <Icon name="search" />
                 </div>

@@ -4,7 +4,7 @@ const CommentInput = (props: any) => {
     return (
         <div className={`form-control comment-control ${props.error ? 'is-invalid' : ''}`}>
             <input type="text" placeholder="Add a comment" {...props} />
-            <div className="input__icon">
+            <div className="input__icon" onClick={props.handleClick}>
                 <div className="input__icon--comment">
                     <Icon name="paper-plane" />
                 </div>

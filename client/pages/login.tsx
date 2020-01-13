@@ -6,7 +6,7 @@ import Router from 'next/router'
 import AuthLayout from '../layouts/auth'
 
 // Import components
-import { Button } from '../components/buttons'
+import { Button } from '../components/buttons/'
 import Logo from '../components/logo'
 import TextInput from '../components/inputs/textInput'
 
@@ -41,7 +41,6 @@ const LoginPage: NextPage = () => {
         if(!isValid) {
             setErrors(errors)
         }
-
         return isValid
     }
     
