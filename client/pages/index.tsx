@@ -1,4 +1,4 @@
-import { useState } from 'react'
+import { NextPage } from 'next'
 import Head from 'next/head'
 
 // Import layout
@@ -6,44 +6,43 @@ import BaseLayout from '../layouts/base'
 
 // Import components
 import RequestCardList from '../components/requestCardList'
+import { Request } from '../components/requestCardItem'
+import { Upvote } from '../components/upvote'
+import { Comment } from '../components/commentItem'
 
 // Import services
 import { RequestService, SubjectService, CommentService, VoteService, AuthService } from '../services'
 
-import '@fortawesome/fontawesome-svg-core/styles.css'
 import { parseCookie } from '../utils/helper'
-import AuthContext from '../components/context/AuthContext';
 
+interface HomePageProps {
+  requests: Request[],
+  comments?: Comment[],
+  upvotes?: Upvote[],
+}
 
-const HomePage = (props) => {
-  console.log(props)
+const HomePage: NextPage = (props: HomePageProps) => {
   return (
     <div className="page homepage">
       <Head>
         <title>Home</title>
         <link rel='icon' href='/favicon.ico' />
       </Head>
-      {/* <AuthContext.Consumer>
-        {value => {
-          console.log(value)
-        }}
-      </AuthContext.Consumer> */}
       {props.requests &&
-        <RequestCardList 
-          requests={props.requests} 
-          comments={props.comments} 
-          upvotes={props.upvotes} 
-          user={props.user}
-        />
+          <RequestCardList 
+            requests={props.requests} 
+            comments={props.comments} 
+            upvotes={props.upvotes} 
+          />
       }
     </div>
   );
 }
 
-HomePage.getInitialProps = async (ctx) => {
+HomePage.getInitialProps = async (ctx: any) => {
   const cookies = parseCookie(ctx)
   const decodedToken = await AuthService.getDecodedToken(cookies.token)
-  
+
   let [requests, subjects, comments, upvotes] = await Promise.all([
     RequestService.getRequests(),
     SubjectService.getSubjects(),
@@ -57,8 +56,7 @@ HomePage.getInitialProps = async (ctx) => {
     requests,
     subjects,
     comments,
-    upvotes,
-    user: decodedToken
+    upvotes
   }
 }
 

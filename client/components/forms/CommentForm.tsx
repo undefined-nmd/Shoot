@@ -4,11 +4,11 @@ import { CommentInput } from "../inputs"
 
 import { CommentService } from '../../services'
 
-import { DecodedToken } from '../../services/auth.service'
+import { User } from '../../pages/profile'
 
 interface CommentFormProps {
     requestId: string,
-    user?: DecodedToken
+    user?: User
 }
 
 const CommentForm = ({ user, requestId }: CommentFormProps) => {
@@ -18,7 +18,7 @@ const CommentForm = ({ user, requestId }: CommentFormProps) => {
         e.preventDefault()
 
         CommentService.createComment({
-            student_id: user.id,
+            student_id: user._id,
             request_id: requestId,
             message
         })

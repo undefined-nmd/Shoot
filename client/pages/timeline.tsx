@@ -1,21 +1,32 @@
 import React from 'react'
+import { NextPage } from 'next'
+
 // Import layout
-import baseLayout from '../layouts/base';
-import Head from 'next/head'
+import BaseLayout from '../layouts/base'
+
+// Import components
 import RequestCardItem from "../components/requestCardItem"
+import { Request } from '../components/requestCardItem'
+import { Upvote } from '../components/upvote'
+import { Comment } from '../components/commentItem'
+import { UserContext } from '../components/context'
 
 // Import services
-import { RequestService, SubjectService, CommentService, VoteService, AuthService } from '../services'
-import { parseCookie } from '../utils/helper';
+import { RequestService, CommentService, VoteService, AuthService } from '../services'
+import { parseCookie } from '../utils/helper'
 
-const TimeLinePage = (props) => {
+interface TimeLinePageProps {
+    requests: Request[],
+    comments?: Comment[],
+    upvotes?: Upvote[],
+}
 
+const TimeLinePage: NextPage = (props: TimeLinePageProps) => {
     let newYear = null
 
     return (
         <div className="page profilepage" >
             {props.requests.map((request, i) => {
-
                 const filteredComments = props.comments.filter(comment => comment.request_id === request._id)
                 const filteredVote = props.upvotes.filter(upvote => upvote.request_id === request._id)
                 //check for date
@@ -28,7 +39,9 @@ const TimeLinePage = (props) => {
                     return (
                         <div key={request._id} className="card__line">
                             <div className="titles__year">{date.getFullYear()}</div>
-                            <RequestCardItem key={request._id} request={request} comments={filteredComments} upvote={filteredVote} user={props.user} />
+                            <UserContext.Consumer key={request._id}>
+                                {user => <RequestCardItem request={request} comments={filteredComments} upvote={filteredVote} user={user} />}
+                            </UserContext.Consumer>
                         </div>)
                 }
                 if (date.getFullYear() !== newYear) {
@@ -36,12 +49,16 @@ const TimeLinePage = (props) => {
                     return (
                         <div key={request._id} className="card__line">
                             <div className="titles__year">{date.getFullYear()}</div>
-                            <RequestCardItem key={request.id} request={request} comments={filteredComments} upvote={filteredVote} user={props.user} />
+                            <UserContext.Consumer key={request._id}>
+                                {user => <RequestCardItem request={request} comments={filteredComments} upvote={filteredVote} user={user} />}
+                            </UserContext.Consumer>
                         </div>
                     )
                 } else {
                     return (
-                        <RequestCardItem key={request._id} request={request} comments={filteredComments} upvote={filteredVote} user={props.user} />
+                        <UserContext.Consumer key={request._id}>
+                            {user => <RequestCardItem request={request} comments={filteredComments} upvote={filteredVote} user={user} />}
+                        </UserContext.Consumer>
                     )
                 }
             })
@@ -51,7 +68,7 @@ const TimeLinePage = (props) => {
 }
 
 
-TimeLinePage.getInitialProps = async (ctx) => {
+TimeLinePage.getInitialProps = async (ctx: any) => {
     const cookies = parseCookie(ctx)
     const decodedToken = await AuthService.getDecodedToken(cookies.token)
 
@@ -60,11 +77,14 @@ TimeLinePage.getInitialProps = async (ctx) => {
         CommentService.getComments(),
         VoteService.getVotesByStudent(decodedToken.id)
     ])
+
     requests = requests.reverse()
 
     return {
-        requests, comments, upvotes, user: decodedToken
+        requests, 
+        comments, 
+        upvotes
     }
 }
 
-export default baseLayout(TimeLinePage);
+export default BaseLayout(TimeLinePage);

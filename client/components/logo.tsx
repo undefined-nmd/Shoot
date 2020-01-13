@@ -1,4 +1,8 @@
-const Logo = ({ isColored = false }) => {
+interface LogoProps {
+    isColored?: boolean
+}
+
+const Logo = ({ isColored = false }: LogoProps) => {
     let path: string
     isColored ? path = './logo-color.svg' : path = './logo.svg'
 

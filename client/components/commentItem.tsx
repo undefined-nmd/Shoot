@@ -12,7 +12,8 @@ export type Comment = {
         last_name?: string,
         profile_img?: string,
     }
-    message: string
+    message: string,
+    request_id: string,
     upvote_count?: number
 }
 

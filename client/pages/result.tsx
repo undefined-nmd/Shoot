@@ -1,4 +1,5 @@
 import { useState, useEffect } from 'react'
+import { NextPage } from 'next'
 import Head from 'next/head'
 
 // Import layout
@@ -6,18 +7,23 @@ import BaseLayout from '../layouts/base'
 
 // Import components
 import RequestCardList from '../components/requestCardList'
+import { Request } from '../components/requestCardItem'
+import { Upvote } from '../components/upvote'
+import { Comment } from '../components/commentItem'
 
 // Import services
 import { RequestService, SubjectService, CommentService, VoteService, AuthService } from '../services'
-import Cookies from 'js-cookie'
-import '@fortawesome/fontawesome-svg-core/styles.css'
-
 
 import getParameterURL from '../utils/getParameterURL'
 import { parseCookie } from '../utils/helper';
 
+interface ResultPageProps {
+    requests: Request[],
+    comments?: Comment[],
+    upvotes?: Upvote[],
+}
 
-const ResultPage = (props) => {
+const ResultPage: NextPage = (props: ResultPageProps) => {
     const [isFilter, setIsFilter] = useState(false)
     const [requests, setRequests] = useState(props.requests)
 
@@ -26,7 +32,6 @@ const ResultPage = (props) => {
         let subjectId = getParameterURL(window.location.href, 'subjectId')
         let sort = getParameterURL(window.location.href, 'sort')
         let searchTerm = getParameterURL(window.location.href, 'searchTerm')
-
 
         if (searchTerm === null) {
             RequestService.getRequestsByFilter(subjectId, sort).then((requests) => {
@@ -50,13 +55,13 @@ const ResultPage = (props) => {
                 <link rel='icon' href='/favicon.ico' />
             </Head>
             {requests &&
-                <RequestCardList requests={requests} comments={props.comments} upvotes={props.upvotes} user={props.user} />
+                <RequestCardList requests={requests} comments={props.comments} upvotes={props.upvotes} />
             }
         </div>
     );
 }
 
-ResultPage.getInitialProps = async (ctx) => {
+ResultPage.getInitialProps = async (ctx: any) => {
     const cookies = parseCookie(ctx)
     const decodedToken = await AuthService.getDecodedToken(cookies.token)
 
@@ -66,8 +71,6 @@ ResultPage.getInitialProps = async (ctx) => {
         CommentService.getComments(),
         VoteService.getVotesByStudent(decodedToken.id)
     ])
-
-
 
     return {
         requests,

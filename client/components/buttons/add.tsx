@@ -1,24 +1,12 @@
-import React, { Component } from 'react'
-import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
+import * as React from 'react'
+import Icon from '../icon'
 
-
-export interface AddProps {
-
+const Add: React.FC = () => {
+    return (
+        <div className="button__add">
+            <Icon name="plus" size="2x" />
+        </div>
+    )
 }
 
-export interface AddState {
-
-}
-
-class Add extends React.Component<AddProps, AddState> {
-
-    render() {
-        return (
-            <div className="button__add">
-                <FontAwesomeIcon icon="plus" size="2x" />
-            </div>
-        )
-    }
-}
-
-export default Add;
+export default Add

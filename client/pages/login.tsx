@@ -1,11 +1,13 @@
-import { useState, useEffect } from 'react'
+import { NextPage } from 'next'
+
+import { useState } from 'react'
 import Router from 'next/router'
 
 // Import layout
 import AuthLayout from '../layouts/auth'
 
 // Import components
-import Button from '../components/buttons/button'
+import { Button } from '../components/buttons'
 import Logo from '../components/logo'
 import TextInput from '../components/inputs/textInput'
 
@@ -16,9 +18,9 @@ import '../sass/main.scss'
 
 import { validateLoginForm } from '../utils/validation'
 
-const LoginPage = () => {
+const LoginPage: NextPage = () => {
     const [inputs, setInputs] = useState<any>({})
-    const [nerrors, setErrors] = useState<any>({})
+    const [errors, setErrors] = useState<any>({})
 
     const handleSubmit = (e) => {
         e.preventDefault()
@@ -55,7 +57,7 @@ const LoginPage = () => {
                     name="email"
                     placeholder="Email"
                     onChange={handleInputChange}
-                    error={nerrors.email}
+                    error={errors.email}
                 />
                 <TextInput 
                     icon="lock"
@@ -63,7 +65,7 @@ const LoginPage = () => {
                     name="password"
                     placeholder="Password"
                     onChange={handleInputChange}
-                    error={nerrors.password}
+                    error={errors.password}
                 />
                 <Button label="Log In" />
             </form>

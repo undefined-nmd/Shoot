@@ -1,8 +1,12 @@
-const RadioInput = (props) => {
+interface RadioInputProps {
+    label: string
+}
+
+const RadioInput = ({ label }: RadioInputProps) => {
     return (
         <div className="radio-control">
-            <label htmlFor={props.label}>{props.label}</label>
-            <input id={props.label} type="radio" />
+            <label htmlFor={label}>{label}</label>
+            <input id={label} type="radio" />
         </div>
     )
 }
