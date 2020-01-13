@@ -3,7 +3,7 @@ import { useState, useEffect } from "react"
 import { Badge } from "./badgeItem"
 
 interface BadgeScoreProps {
-    badges: Array<Badge>
+    badges: Badge[]
 }
 
 const BadgeScore = ({badges}: BadgeScoreProps) => {

@@ -1,4 +1,4 @@
-import { useState } from 'react'
+import { NextPage } from 'next'
 import Head from 'next/head'
 
 // Import layout
@@ -6,15 +6,22 @@ import BaseLayout from '../layouts/base'
 
 // Import components
 import RequestCardList from '../components/requestCardList'
+import { Request } from '../components/requestCardItem'
+import { Upvote } from '../components/upvote'
+import { Comment } from '../components/commentItem'
 
 // Import services
 import { LiveRequestService, SubjectService, CommentService, VoteService, AuthService } from '../services'
 
-import '@fortawesome/fontawesome-svg-core/styles.css'
-import { parseCookie } from '../utils/helper';
+import { parseCookie } from '../utils/helper'
 
+interface LivePageProps {
+    requests: Request[],
+    comments?: Comment[],
+    upvotes?: Upvote[],
+}
 
-const LivePage = (props) => {
+const LivePage: NextPage = (props: LivePageProps) => {
     return (
         <div className="page homepage">
             <Head>
@@ -26,7 +33,6 @@ const LivePage = (props) => {
                     requests={props.requests}
                     comments={props.comments}
                     upvotes={props.upvotes}
-                    user={props.user}
                     live={true}
                 />
             }
@@ -34,7 +40,7 @@ const LivePage = (props) => {
     );
 }
 
-LivePage.getInitialProps = async (ctx) => {
+LivePage.getInitialProps = async (ctx: any) => {
     const cookies = parseCookie(ctx)
     const decodedToken = await AuthService.getDecodedToken(cookies.token)
 

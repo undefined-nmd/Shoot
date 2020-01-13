@@ -1,4 +1,3 @@
-import { useState, useEffect } from 'react'
 interface DrawerProps {
     height?: string,
     visible: Boolean

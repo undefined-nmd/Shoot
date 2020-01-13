@@ -1,4 +1,3 @@
-import { useState, useEffect } from 'react' 
 import CommentItem, { Comment } from "./commentItem"
 
 interface CommentListProps {

@@ -1,6 +1,6 @@
 import { useState, useEffect } from 'react'
 import { TextInput, SelectInput, TextArea, TagInput } from "../inputs"
-import Button from "../buttons/button"
+import { Button } from "../buttons"
 import Toggle from 'react-toggle'
 import { RequestService, LiveRequestService, SubjectService, LocationService, VoteService, AuthService } from '../../services'
 import { _axiosInstance } from '../../services/api.service'

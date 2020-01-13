@@ -1,5 +1,9 @@
 import * as React from 'react'
-import Icon from "./icon";
+import Icon from "./icon"
+
+export type TagSchema = {
+    name: string
+}
 
 interface TagProps {
     name: string,

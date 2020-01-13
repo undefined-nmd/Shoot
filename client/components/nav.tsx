@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from 'react'
 import Link from 'next/link'
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
-import Add from '../components/buttons/add'
+import { Add } from '../components/buttons'
 import '@fortawesome/fontawesome-svg-core/styles.css'
 
 const links = [
@@ -17,24 +17,16 @@ const links = [
 
 
 const Nav = (props) => {
-
-  useEffect(() => {
-
-
-  }, [])
-
   const searchClick = (e) => {
-
     e.preventDefault();
+
     //remove logo when click on search input
     let searchInput = document.getElementsByClassName("header__search")[0];
     let logo = document.getElementById("header-logo");
     if (logo !== null) {
       logo.classList.add("remove")
     }
-
   }
-
 
   return (
     <nav className="nav__container d-flex-center">

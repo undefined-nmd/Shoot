@@ -1,18 +1,29 @@
 import React, { useState } from 'react'
 
+import { User } from '../pages/profile'
+
 import Icon from "./icon"
 import Upvote from './upvote'
 import CommentListWrapper from './commentListWrapper'
-
-import { DecodedToken } from '../services/auth.service'
+import { TagSchema } from './tag'
 
 import { getFullName } from '../utils/helper'
+
+export type Request = {
+    _id: string,
+    student_id: string,
+    subject_id: string,
+    message: string,
+    tags?: TagSchema[]
+    upvote_count?: number,
+    is_solved?: boolean,
+}
 
 interface RequestCardProps {
     request?: any,
     comments?: any,
     upvote?: any,
-    user: DecodedToken,
+    user: User,
     live?: boolean
 }
 
@@ -36,7 +47,6 @@ const RequestCardItem: React.FC<RequestCardProps> = ({ request, comments, upvote
                         {live === true &&
                             <span className="card__author-location"> location: {request.location.name}</span>
                         }
-
                     </div>
                 </div>
                 <div className="card__content">
@@ -46,7 +56,7 @@ const RequestCardItem: React.FC<RequestCardProps> = ({ request, comments, upvote
                     <div className="card__meta-item">
                         <Upvote
                             requestId={request._id}
-                            userId={user.id}
+                            userId={user._id}
                             upvote={upvote}
                             count={request.upvote_count}
                         />
@@ -59,14 +69,15 @@ const RequestCardItem: React.FC<RequestCardProps> = ({ request, comments, upvote
                     }
                 </div>
             </section>
-            <CommentListWrapper
-                key={request._id}
-                comments={comments}
-                requestId={request._id}
-                user={user}
-                open={showDrawer}
-                onHandleDrawer={handleDrawer}
-            />
+            {comments && 
+                <CommentListWrapper
+                    key={request._id}
+                    comments={comments}
+                    requestId={request._id}
+                    open={showDrawer}
+                    onHandleDrawer={handleDrawer}
+                />
+            }
         </React.Fragment>
     )
 }

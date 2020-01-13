@@ -1,28 +1,48 @@
-const SelectInput = (props) => (
-    <div className="form-group">
-        {props.label &&
-            <label htmlFor={props.name} className="form-label">{props.label}</label>
-        }
-        <select
-            onChange={props.onChange}
-            className="form-control"
-            defaultValue={props.placeholder}
-            {...props}
-        >
-            <option value={props.placeholder} disabled>{props.placeholder}</option>
-            {props.options.map(option => {
-                return (
-                    <option
-                        key={option._id}
-                        value={option._id}
-                        label={option.name}
-                    >
-                        {option.name}
-                    </option>
-                )
-            })}
-        </select>
-    </div>
-)
+interface SelectInputProps {
+    label: string,
+    name: string,
+    placeholder?: string,
+    onChange?(): void,
+    options: any[],
+    error?: any
+}
+
+const SelectInput = (props: SelectInputProps ) => {
+    const { 
+        label, 
+        name, onChange, 
+        placeholder, 
+        options,
+        error,
+        ...rest
+    } = props
+
+    return (
+        <div className="form-group">
+            {label &&
+                <label htmlFor={name} className="form-label">{label}</label>
+            }
+            <select
+                onChange={onChange}
+                className={`form-control ${error ? 'is-invalid' : ''}`}
+                defaultValue={placeholder}
+                {...rest}
+            >
+                <option value={placeholder} disabled>{placeholder}</option>
+                {options.map(option => {
+                    return (
+                        <option
+                            key={option._id}
+                            value={option._id}
+                            label={option.name}
+                        >
+                            {option.name}
+                        </option>
+                    )
+                })}
+            </select>
+        </div>
+    )
+}
 
 export default SelectInput
