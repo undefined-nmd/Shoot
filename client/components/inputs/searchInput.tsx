@@ -8,6 +8,7 @@ interface SearchInputProps {
 const SearchInput = (props: SearchInputProps) => {
     const [searchTerm, setSearchTerm] = useState()
 
+
     const handleOnChange = (e) => {
         e.preventDefault()
         setSearchTerm(e.target.value)
