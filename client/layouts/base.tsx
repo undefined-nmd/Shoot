@@ -54,11 +54,8 @@ const BaseLayout = (Page: any) => {
 
       const cookies = parseCookie(ctx)
       setAuthorizationHeader(cookies.token)
-      
-      if(AuthService.isAuthenticated()) {
-        const decodedToken = await AuthService.getDecodedToken(cookies.token)
-        user = await UserService.getUserById(decodedToken.id)
-      }
+      const decodedToken = await AuthService.getDecodedToken(cookies.token)
+      user = await UserService.getUserById(decodedToken.id)
       
       try {
         if (Page.getInitialProps) {

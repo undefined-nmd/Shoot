@@ -22,6 +22,8 @@ const CommentForm = ({ user, requestId }: CommentFormProps) => {
             request_id: requestId,
             message
         })
+
+        window.location.reload()
     }
 
     const handleChange = (e) => {

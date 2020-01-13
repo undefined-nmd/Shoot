@@ -45,7 +45,7 @@ const RequestCardItem: React.FC<RequestCardProps> = ({ request, comments, upvote
                         <h2 className="card__author-course">{request.subject_id.name}</h2>
                         <span className="card__author-name">{getFullName(request.student_id.first_name, request.student_id.last_name)}</span>
                         {live === true &&
-                            <span className="card__author-location"> location: {request.location.name}</span>
+                            <span className="card__author-location">Location: {request.location.name}</span>
                         }
                     </div>
                 </div>
