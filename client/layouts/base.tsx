@@ -1,33 +1,42 @@
 import { Component } from 'react'
+import { NextPage } from 'next'
 import Router from 'next/router'
 
 // Import components
 import Nav from '../components/nav'
 import Header from '../components/header'
 import Drawer from '../components/drawer'
-import AddPostForm from '../components/forms/AddPostForm'
-import FilterForm from '../components/forms/FilterForm'
+import { AddPostForm } from '../components/forms'
+import { FilterForm } from '../components/forms'
+import { User } from '../pages/profile'
+import { UserContext } from '../components/context'
 
 // Import services
-import { AuthService } from '../services'
+import { AuthService, UserService } from '../services'
 import { _axiosInstance, setAuthorizationHeader } from '../services/api.service'
+import { DecodedToken } from '../services/auth.service'
 import { parseCookie } from '../utils/helper'
 
-// Import icons
-import { faPlus, faArrowLeft, faHome, faSearch, faCalendarAlt, faUser, faTimes, faPaperPlane, faBolt } from '@fortawesome/free-solid-svg-icons'
-import { library } from '@fortawesome/fontawesome-svg-core'
-
+import '@fortawesome/fontawesome-svg-core/styles.css'
 import '../sass/main.scss'
-import { DecodedToken } from '../services/auth.service'
 
-library.add(faPlus, faArrowLeft, faHome, faSearch, faCalendarAlt, faUser, faTimes, faPaperPlane, faBolt)
+interface BaseLayoutProps {
+  cookie: string,
+  decodedUser: DecodedToken,
+  user: User
+}
+
+interface BaseLayoutState {
+  showDrawer: boolean,
+  isFilter: boolean
+}
 
 /*
 ** High Order Component that passes getInitialProps
 */
-const BaseLayout = Page => {
-  return class WithUserLayout extends Component<{ cookie: string, user: DecodedToken }, { showDrawer: boolean, isFilter: boolean }> {
-    constructor(props) {
+const BaseLayout = (Page: any) => {
+  return class WithUserLayout extends Component<BaseLayoutProps, BaseLayoutState> {
+    constructor(props: BaseLayoutProps) {
       super(props)
       this.state = {
         showDrawer: false,
@@ -39,14 +48,15 @@ const BaseLayout = Page => {
       AuthService.isAuthenticated() ? setAuthorizationHeader(this.props.cookie) : Router.push('/login')
     }
 
-    static async getInitialProps(ctx) {
+    static async getInitialProps(ctx: any) {
       let pageProps = {}
+      let user = {}
 
       const cookies = parseCookie(ctx)
       setAuthorizationHeader(cookies.token)
-
       const decodedToken = await AuthService.getDecodedToken(cookies.token)
-
+      user = await UserService.getUserById(decodedToken.id)
+      
       try {
         if (Page.getInitialProps) {
           pageProps = await Page.getInitialProps(ctx)
@@ -54,59 +64,46 @@ const BaseLayout = Page => {
       } catch (err) {
         console.log(`Couldn't fetch page props from ${Page.getInitialProps}`)
       }
-
       return {
         ...pageProps,
         cookie: cookies.token,
-        user: decodedToken
+        user
       }
     }
 
 
-    toggleDrawer = () => {
+    toggleDrawer = (): void => {
       this.setState({
         showDrawer: !this.state.showDrawer,
       })
     }
 
-    toggleFilterDrawer = () => {
+    toggleFilterDrawer = (): void => {
       this.setState({
         showDrawer: !this.state.showDrawer,
         isFilter: true,
       })
     }
 
-    toggleAddRequestDrawer = () => {
+    toggleAddRequestDrawer = (): void => {
       this.setState({
         showDrawer: !this.state.showDrawer,
         isFilter: false,
       })
     }
 
-    renderDrawerContent = () => {
-
-    }
-
     render() {
-      let drawerContent
-
-      if (this.state.isFilter) {
-        drawerContent = <FilterForm />
-      } else {
-        drawerContent = <AddPostForm user={this.props.user} />
-      }
-
       return (
-        <div>
+        <UserContext.Provider value={this.props.user}>
           <Header onToggleFilter={this.toggleFilterDrawer} />
           <main className="container container--spacing">
             <Page {...this.props} />
           </main>
           <Nav onToggleDrawer={this.toggleAddRequestDrawer} />
           <Drawer visible={this.state.showDrawer} onToggleDrawer={this.toggleDrawer}>
-            {drawerContent}
+            {this.state.isFilter ? <FilterForm /> : <AddPostForm user={this.props.user} />}
           </Drawer>
-        </div>
+        </UserContext.Provider>
       )
     }
   }

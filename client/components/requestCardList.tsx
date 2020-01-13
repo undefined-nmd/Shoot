@@ -1,12 +1,15 @@
 import * as React from 'react'
-import RequestCardItem from "./requestCardItem"
-import { DecodedToken } from "../services/auth.service"
+
+import { UserContext } from './context'
+
+import RequestCardItem, { Request } from "./requestCardItem"
+import { Comment } from './commentItem'
+import { Upvote } from './upvote'
 
 interface RequestCardListProps {
-    requests: any[],
-    comments?: any[],
-    upvotes?: any[],
-    user?: DecodedToken,
+    requests: Request[],
+    comments?: Comment[],
+    upvotes?: Upvote[],
     live?: boolean
 }
 
@@ -20,14 +23,17 @@ const RequestCardList: React.FC<RequestCardListProps> = (props) => {
                 let filteredVote = props.upvotes.filter(upvote => upvote.request_id === request._id)
 
                 return (
-                    <RequestCardItem
-                        key={request._id}
-                        request={request}
-                        comments={filteredComments}
-                        upvote={filteredVote}
-                        user={props.user}
-                        live={props.live}
-                    />
+                    <UserContext.Consumer key={request._id}>
+                        {user => (
+                            <RequestCardItem
+                                request={request}
+                                comments={filteredComments}
+                                upvote={filteredVote}
+                                user={user}
+                                live={props.live}
+                            />
+                        )}
+                    </UserContext.Consumer>
                 )
             })}
         </div>

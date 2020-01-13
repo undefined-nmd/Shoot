@@ -12,7 +12,8 @@ export type Comment = {
         last_name?: string,
         profile_img?: string,
     }
-    message: string
+    message: string,
+    request_id: string,
     upvote_count?: number
 }
 
@@ -39,7 +40,7 @@ const CommentItem = ({ comment }: CommentItemProps) => {
             </div>
             <div className="comment-item__content">
                 <div className="comment-item__top">
-                    <h4 className="comment-item__author">{getFullName(first_name, last_name) || ''}</h4>
+                    <h4 className="comment-item__author">{getFullName(first_name, last_name)}</h4>
                     <span className="comment-item__timestamp">
                         <TimeAgo date={timestamp} live={false} />
                     </span>

@@ -1,15 +1,20 @@
+import Link from 'next/link'
+
 import { SearchInput } from './inputs'
-import { useState, useEffect } from 'react'
 import Icon from './icon'
 import Logo from './logo'
 
-const Header = ({ onToggleFilter }) => {
+interface HeaderProps {
+    onToggleFilter?(): any
+}
 
-
+const Header = ({ onToggleFilter }: HeaderProps) => {
     return (
         <section className="header d-flex">
             <div id="header-logo" className="header__logo d-flex-center">
-                <Logo />
+                <a href="/">
+                    <Logo />
+                </a>
             </div>
             <div className="header__search">
                 <SearchInput />

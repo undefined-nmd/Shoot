@@ -1,3 +1,4 @@
+import { NextPage } from 'next'
 import { useState } from 'react'
 import Router from 'next/router'
 
@@ -5,7 +6,7 @@ import Router from 'next/router'
 import AuthLayout from '../layouts/auth'
 
 // Import components
-import Button from '../components/buttons/button'
+import { Button } from '../components/buttons'
 import Logo from '../components/logo'
 import TextInput from '../components/inputs/textInput'
 
@@ -14,14 +15,17 @@ import { AuthService } from '../services'
 
 import '../sass/main.scss'
 
-const LoginPage = () => {
+import { validateLoginForm } from '../utils/validation'
+
+const LoginPage: NextPage = () => {
     const [inputs, setInputs] = useState<any>({})
+    const [errors, setErrors] = useState<any>({})
 
     const handleSubmit = (e) => {
         e.preventDefault()
         AuthService.login(inputs).then(() => {
             Router.push('/')  
-        })
+        }).catch(() => setFormErrors())
     }
     
     const handleInputChange = (e) => {
@@ -31,6 +35,16 @@ const LoginPage = () => {
         })
     }
 
+    const setFormErrors = () => {
+        const { errors, isValid } = validateLoginForm(inputs)
+        
+        if(!isValid) {
+            setErrors(errors)
+        }
+
+        return isValid
+    }
+    
     return (
         <section className="d-flex-center">
             <form className="auth__form" onSubmit={handleSubmit}>
@@ -42,6 +56,7 @@ const LoginPage = () => {
                     name="email"
                     placeholder="Email"
                     onChange={handleInputChange}
+                    error={errors.email}
                 />
                 <TextInput 
                     icon="lock"
@@ -49,6 +64,7 @@ const LoginPage = () => {
                     name="password"
                     placeholder="Password"
                     onChange={handleInputChange}
+                    error={errors.password}
                 />
                 <Button label="Log In" />
             </form>

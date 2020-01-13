@@ -1,11 +1,11 @@
 import Icon from '../icon'
 
-const CommentInput = (props) => {
+const CommentInput = (props: any) => {
     return (
-        <div className="form-control comment-control">
-            <input type="text" placeholder="Add a comment" onChange={() => console.log('Clicked')} {...props} />
+        <div className={`form-control comment-control ${props.error ? 'is-invalid' : ''}`}>
+            <input type="text" placeholder="Add a comment" {...props} />
             <div className="input__icon">
-                <div onClick={() => console.log('Clicked')} className="input__icon--comment">
+                <div className="input__icon--comment">
                     <Icon name="paper-plane" />
                 </div>
             </div>

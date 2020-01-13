@@ -1,23 +1,20 @@
 import { useState, useEffect } from 'react'
 import { TextInput, SelectInput, TextArea, TagInput } from "../inputs"
-import Button from "../buttons/button"
+import { Button } from "../buttons"
 import Toggle from 'react-toggle'
 import { RequestService, LiveRequestService, SubjectService, LocationService, VoteService, AuthService } from '../../services'
-import { _axiosInstance } from '../../services/api.service';
+import { _axiosInstance } from '../../services/api.service'
+import { validateRequestForm } from '../../utils/validation'
+
 import "react-toggle/style.css"
 import '../../sass/main.scss'
 import getDistanceGeo from '../../utils/getDistanceGeo'
 
-
-
-
-
-
 const AddRequestForm = ({ user }) => {
     const [options, setOptions] = useState([])
-    // Temporary hardcoded user ID
     const [currentUser, setCurrentUser] = useState(user.id)
     const [inputs, setInputs] = useState<any>({})
+    const [errors, setErrors] = useState<any>({})
     const [isLive, setIsLive] = useState(false)
     const [locationId, setLocationId] = useState()
     const [locations, setLocations] = useState([])
@@ -29,18 +26,14 @@ const AddRequestForm = ({ user }) => {
             latitude: coords.latitude,
             longitude: coords.longitude
         });
-        //console.log(coords)
     };
 
     const handleToggle = () => {
-
         let distance = 999999999999999999999
         let closestLocationId = ''
         locations.map((location, i) => {
-
             let distanceTwoPoints = getDistanceGeo(userPosition.latitude, userPosition.longitude, location.coordinates.lat, location.coordinates.long, "METER")
-
-
+            
             if (distance > distanceTwoPoints) {
                 distance = distanceTwoPoints
                 closestLocationId = location._id
@@ -51,18 +44,15 @@ const AddRequestForm = ({ user }) => {
     }
 
     useEffect(() => {
-
         geo.getCurrentPosition(onChange)
+        
         LocationService.getLocations().then((data) => {
             setLocations(data)
 
         })
-
         SubjectService.getSubjects().then((data) => {
             setOptions(data)
         })
-
-
 
         setInputs({ ...inputs, student_id: currentUser })
     }, [])
@@ -78,15 +68,14 @@ const AddRequestForm = ({ user }) => {
                 message: inputs.message,
                 location: locationId,
                 subject_id: inputs.subject
-            })
+            }).catch(() => setFormErrors())
         } else {
             RequestService.createRequest({
                 student_id: inputs.student_id,
                 message: inputs.message,
                 subject_id: inputs.subject
-            })
+            }).catch(() => setFormErrors())
         }
-
     }
 
     const handleInputChange = (e) => {
@@ -96,9 +85,25 @@ const AddRequestForm = ({ user }) => {
         })
     }
 
+    const setFormErrors = () => {
+        const { errors, isValid } = validateRequestForm(inputs)
+
+        if(!isValid) {
+            setErrors(errors)
+        }
+
+        return isValid
+    }
+
     return (
         <form onSubmit={handleSubmit} className="form-container">
-            <TextArea label="Message" name="message" rows={5} onChange={handleInputChange} />
+            <TextArea 
+                label="Message" 
+                name="message" 
+                rows={5} 
+                onChange={handleInputChange}
+                error={errors.message}
+            />
             <SelectInput placeholder="Choose subject" name="subject" options={options} onChange={handleInputChange} />
             <TagInput name="tags" onChange={handleInputChange} selectedTags={selectedTags} />
 
@@ -108,7 +113,7 @@ const AddRequestForm = ({ user }) => {
                 defaultChecked={isLive}
                 aria-labelledby='is-live'
                 onChange={handleToggle} />
-            <Button label="Add Question" onClick={e => handleSubmit(e)} />
+            <Button label="Add Question" />
         </form>
     )
 }

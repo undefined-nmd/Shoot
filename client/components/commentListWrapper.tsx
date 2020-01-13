@@ -1,23 +1,26 @@
-import React, { useState } from 'react'
+import React from 'react'
+
+import { UserContext } from './context'
+
 import Drawer from "./drawer"
 import CommentList from "./commentList"
 import { Comment } from './commentItem'
-import CommentForm from './forms/commentForm'
-import { DecodedToken } from '../services/auth.service'
+import { CommentForm } from './forms'
 
 interface CommentListWrapperProps {
     open: boolean,
     requestId: string,
-    comments: Comment[],
-    user: DecodedToken,
+    comments: Comment[]
     onHandleDrawer(): void
 }
 
-const CommentListWrapper = ({ comments, requestId, user, open, onHandleDrawer }: CommentListWrapperProps) => {
+const CommentListWrapper = ({ comments, requestId, open, onHandleDrawer }: CommentListWrapperProps) => {
     return (
         <Drawer visible={open} onToggleDrawer={onHandleDrawer} height="95vh">
             <CommentList comments={comments} />
-            <CommentForm user={user} requestId={requestId} />
+            <UserContext.Consumer>
+                {user => <CommentForm user={user} requestId={requestId} />}
+            </UserContext.Consumer>
         </Drawer>
     )
 }

@@ -1,6 +1,6 @@
 import { useState, useEffect } from 'react'
 import { SelectInput } from "../inputs"
-import Button from "../buttons/button"
+import { Button } from "../buttons"
 import RadioInput from '../inputs/radioInput';
 import { SubjectService } from '../../services'
 import Cookies from 'js-cookie'

@@ -1,6 +1,6 @@
 import { useState, ChangeEvent } from 'react'
 
-import Tag from "../tag";
+import Tag from "../tag"
 
 interface TagInputProps {
     selectedTags: any,
@@ -29,8 +29,8 @@ const TagInput: React.FC<TagInputProps> = (props) => {
             <div className="form-control tag-control d-flex">
                 <ul className="tags">
                     {tags.map((tag, index) => (
-                        <li key={ index }>
-                            <Tag name={ tag } removeHandler={() => removeTags(index)} />
+                        <li key={index}>
+                            <Tag name={tag} removeHandler={() => removeTags(index)} />
                         </li>
                     ))}
                 </ul>
@@ -38,7 +38,7 @@ const TagInput: React.FC<TagInputProps> = (props) => {
                     type="text"
                     id={props.name}
                     placeholder="Press enter to add a tag" 
-                    onKeyUp={(event) => addTags(event)}
+                    onKeyUp={(e) => addTags(e)}
                     onChange={props.onChange}
                     {...props}
                 />
