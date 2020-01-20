@@ -55,7 +55,7 @@ const ResultPage: NextPage = (props: ResultPageProps) => {
                 <link rel='icon' href='/favicon.ico' />
             </Head>
             {requests &&
-                <RequestCardList requests={requests} comments={props.comments} upvotes={props.upvotes} />
+                <RequestCardList requests={requests} comments={props.comments} upvotes={props.upvotes} live={false} />
             }
         </div>
     );
