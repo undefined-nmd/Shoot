@@ -53,14 +53,17 @@ const RequestCardItem: React.FC<RequestCardProps> = ({ request, comments, upvote
                     <p>{request.message}</p>
                 </div>
                 <div className="card__meta d-flex">
-                    <div className="card__meta-item">
-                        <Upvote
-                            requestId={request._id}
-                            userId={user._id}
-                            upvote={upvote}
-                            count={request.upvote_count}
-                        />
-                    </div>
+                    {live === false &&
+                        <div className="card__meta-item">
+                            <Upvote
+                                requestId={request._id}
+                                userId={user._id}
+                                upvote={upvote}
+                                count={request.upvote_count}
+                            />
+                        </div>
+                    }
+
                     {comments &&
                         <div className="card__meta-item">
                             <span className="card__meta-number">{comments.length}</span>
@@ -69,7 +72,7 @@ const RequestCardItem: React.FC<RequestCardProps> = ({ request, comments, upvote
                     }
                 </div>
             </section>
-            {comments && 
+            {comments &&
                 <CommentListWrapper
                     key={request._id}
                     comments={comments}
