@@ -29,11 +29,12 @@ const HomePage: NextPage = (props: HomePageProps) => {
         <link rel='icon' href='/favicon.ico' />
       </Head>
       {props.requests &&
-          <RequestCardList 
-            requests={props.requests} 
-            comments={props.comments} 
-            upvotes={props.upvotes} 
-          />
+        <RequestCardList
+          requests={props.requests}
+          comments={props.comments}
+          upvotes={props.upvotes}
+          live={false}
+        />
       }
     </div>
   );
