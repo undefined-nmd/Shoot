@@ -53,7 +53,7 @@ const RequestCardItem: React.FC<RequestCardProps> = ({ request, comments, upvote
                     <p>{request.message}</p>
                 </div>
                 <div className="card__meta d-flex">
-                    {live === false &&
+                    {!live &&
                         <div className="card__meta-item">
                             <Upvote
                                 requestId={request._id}
@@ -63,7 +63,6 @@ const RequestCardItem: React.FC<RequestCardProps> = ({ request, comments, upvote
                             />
                         </div>
                     }
-
                     {comments &&
                         <div className="card__meta-item">
                             <span className="card__meta-number">{comments.length}</span>

@@ -61,7 +61,6 @@ const AddRequestForm = ({ user }) => {
 
     const handleSubmit = (e) => {
         e.preventDefault()
-        console.log(inputs);
         if (isLive) {
             LiveRequestService.createRequest({
                 student_id: inputs.student_id,

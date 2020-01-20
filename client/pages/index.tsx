@@ -33,7 +33,6 @@ const HomePage: NextPage = (props: HomePageProps) => {
           requests={props.requests}
           comments={props.comments}
           upvotes={props.upvotes}
-          live={false}
         />
       }
     </div>
