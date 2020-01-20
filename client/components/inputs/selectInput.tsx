@@ -7,10 +7,11 @@ interface SelectInputProps {
     error?: any
 }
 
-const SelectInput = (props: SelectInputProps ) => {
+const SelectInput = (props: any) => {
     const { 
         label, 
-        name, onChange, 
+        name, 
+        onChange, 
         placeholder, 
         options,
         error,
@@ -26,6 +27,7 @@ const SelectInput = (props: SelectInputProps ) => {
                 onChange={onChange}
                 className={`form-control ${error ? 'is-invalid' : ''}`}
                 defaultValue={placeholder}
+                name={name}
                 {...rest}
             >
                 <option value={placeholder} disabled>{placeholder}</option>

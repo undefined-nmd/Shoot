@@ -1,11 +1,12 @@
 interface TextAreaProps {
-    name: string,
+    name?: string,
     label?: string,
-    rows: number,
-    error?: any
+    rows?: number,
+    error?: any,
+    onChange?(): void
 }
 
-const TextArea = ({ name, label, rows, error, ...rest }: TextAreaProps) => (
+const TextArea = ({ name, label, rows, error, onChange }: any) => (
     <div className="form-group">
         {label && 
             <label htmlFor={name} className="form-label">{label}</label>
@@ -14,7 +15,8 @@ const TextArea = ({ name, label, rows, error, ...rest }: TextAreaProps) => (
             className={`form-control ${error ? 'is-invalid' : ''}`}
             rows={rows}
             id={name}
-            {...rest}
+            name={name}
+            onChange={onChange}
         />
         {error && <div className="invalid-feedback">{error}</div>}
     </div>

@@ -12,7 +12,7 @@ import getDistanceGeo from '../../utils/getDistanceGeo'
 
 const AddRequestForm = ({ user }) => {
     const [options, setOptions] = useState([])
-    const [currentUser, setCurrentUser] = useState(user.id)
+    const [currentUser, setCurrentUser] = useState(user._id)
     const [inputs, setInputs] = useState<any>({})
     const [errors, setErrors] = useState<any>({})
     const [isLive, setIsLive] = useState(false)
@@ -61,20 +61,20 @@ const AddRequestForm = ({ user }) => {
 
     const handleSubmit = (e) => {
         e.preventDefault()
-
+        console.log(inputs);
         if (isLive) {
             LiveRequestService.createRequest({
                 student_id: inputs.student_id,
                 message: inputs.message,
                 location: locationId,
                 subject_id: inputs.subject
-            }).catch(() => setFormErrors())
+            })
         } else {
             RequestService.createRequest({
                 student_id: inputs.student_id,
                 message: inputs.message,
                 subject_id: inputs.subject
-            }).catch(() => setFormErrors())
+            }).catch(err => console.log(err))
         }
     }
 
